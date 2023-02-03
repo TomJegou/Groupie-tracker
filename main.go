@@ -1,7 +1,7 @@
 package main
 
 import (
-	"absolute-music/src"
+	"absolut-music/src"
 )
 
 func main() {
