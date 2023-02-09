@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"text/template"
 )
 
 type data struct {
@@ -96,4 +97,9 @@ func locatlist() {
 	for i := 0; i < len(g); i++ {
 		fmt.Println(g[i].locations)
 	}
+}
+
+func ArtistsHandlerFunc(w http.ResponseWriter, r *http.Request) {
+	template, _ := template.ParseFiles("static/html/artists.html")
+	template.Execute(w, nil)
 }
