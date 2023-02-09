@@ -45,7 +45,7 @@ func main() {
 	groupName(1)
 	membersName(1)
 	FirstAlbum(1)
-	locatlist(1)
+	Locatlist(1)
 	dates(1)
 }
 
