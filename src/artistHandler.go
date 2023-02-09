@@ -21,9 +21,10 @@ type groupe struct {
 	Members      []string
 	CreationDate int
 	FirstAlbum   string
-	locations    string
+	locations    []string
 	ConcertDates string
 	Relations    string
+	index        []string
 }
 
 func main() {
@@ -83,7 +84,7 @@ func namelist() {
 
 func locatlist() {
 	var g []groupe
-	url := "https://groupietrackers.herokuapp.com/api/artists"
+	url := "https://groupietrackers.herokuapp.com/api/locations/1"
 	req, _ := http.NewRequest("GET", url, nil)
 	res, _ := http.DefaultClient.Do(req)
 	defer res.Body.Close()
