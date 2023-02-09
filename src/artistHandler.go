@@ -35,10 +35,17 @@ type location struct {
 	Locations []string
 }
 
+type date struct {
+	Id    int
+	Dates []string
+}
+
 func main() {
-	groupName(2)
-	membersName(2)
-	locatlist(2)
+	groupName(1)
+	membersName(1)
+	FirstAlbum(1)
+	locatlist(1)
+	dates(1)
 }
 
 func groupName(id int) {
@@ -54,7 +61,6 @@ func groupName(id int) {
 		return
 	}
 	fmt.Println("Groupe :", g[id].Name)
-	fmt.Println(g[id].Members)
 }
 
 func membersName(id int) {
@@ -72,6 +78,21 @@ func membersName(id int) {
 	fmt.Println(g[id].Members)
 }
 
+func FirstAlbum(id int) {
+	var g []groupe
+	url := "https://groupietrackers.herokuapp.com/api/artists"
+	req, _ := http.NewRequest("GET", url, nil)
+	res, _ := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	err := json.Unmarshal([]byte(body), &g)
+	if err != nil {
+		fmt.Println("Error :", err)
+		return
+	}
+	fmt.Println(g[id].FirstAlbum)
+}
+
 func locatlist(id int) {
 	var l location
 	url := "https://groupietrackers.herokuapp.com/api/locations/" + strconv.Itoa(id)
@@ -85,6 +106,21 @@ func locatlist(id int) {
 		return
 	}
 	fmt.Println(l.Locations)
+}
+
+func dates(id int) {
+	var d date
+	url := "https://groupietrackers.herokuapp.com/api/dates/" + strconv.Itoa(id)
+	req, _ := http.NewRequest("GET", url, nil)
+	res, _ := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	err := json.Unmarshal(body, &d)
+	if err != nil {
+		fmt.Println("Error", err)
+		return
+	}
+	fmt.Println(d.Dates)
 }
 
 func ArtistsHandlerFunc(w http.ResponseWriter, r *http.Request) {
