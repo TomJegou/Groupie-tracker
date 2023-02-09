@@ -93,7 +93,22 @@ func FirstAlbum(id int) {
 	fmt.Println(g[id].FirstAlbum)
 }
 
-func locatlist(id int) {
+func CreationDate(id int) {
+	var g []groupe
+	url := "https://groupietrackers.herokuapp.com/api/artists"
+	req, _ := http.NewRequest("GET", url, nil)
+	res, _ := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	err := json.Unmarshal([]byte(body), &g)
+	if err != nil {
+		fmt.Println("Error :", err)
+		return
+	}
+	fmt.Println(g[id].CreationDate)
+}
+
+func Locatlist(id int) {
 	var l location
 	url := "https://groupietrackers.herokuapp.com/api/locations/" + strconv.Itoa(id)
 	req, _ := http.NewRequest("GET", url, nil)
