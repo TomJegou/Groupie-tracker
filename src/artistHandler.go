@@ -16,7 +16,7 @@ type data struct {
 }
 
 type groupe struct {
-	Id           int
+	id           int
 	Image        string
 	Name         string
 	Members      []string
@@ -28,10 +28,17 @@ type groupe struct {
 	index        []string
 }
 
+type loca struct {
+	Index     []string
+	Id        int
+	Locations []string
+}
+
 func main() {
 	art()
 	loc()
-	namelist()
+	groupName(2)
+	membersName(2)
 	locatlist()
 }
 
@@ -65,7 +72,7 @@ func loc() {
 	fmt.Println(d.Locations)
 }
 
-func namelist() {
+func groupName(id int) {
 	var g []groupe
 	url := "https://groupietrackers.herokuapp.com/api/artists"
 	req, _ := http.NewRequest("GET", url, nil)
@@ -77,15 +84,13 @@ func namelist() {
 		fmt.Println("Error :", err)
 		return
 	}
-	for i := 0; i < len(g); i++ {
-		fmt.Println("Groupe :", i, g[i].Name)
-		fmt.Println(g[i].Members)
-	}
+	fmt.Println("Groupe :", g[id].Name)
+	fmt.Println(g[id].Members)
 }
 
-func locatlist() {
+func membersName(id int) {
 	var g []groupe
-	url := "https://groupietrackers.herokuapp.com/api/locations/1"
+	url := "https://groupietrackers.herokuapp.com/api/artists"
 	req, _ := http.NewRequest("GET", url, nil)
 	res, _ := http.DefaultClient.Do(req)
 	defer res.Body.Close()
@@ -95,9 +100,11 @@ func locatlist() {
 		fmt.Println("Error :", err)
 		return
 	}
-	for i := 0; i < len(g); i++ {
-		fmt.Println(g[i].locations)
-	}
+	fmt.Println(g[id].Members)
+}
+
+func locatlist() {
+//louis
 }
 
 func ArtistsHandlerFunc(w http.ResponseWriter, r *http.Request) {
