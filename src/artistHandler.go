@@ -75,7 +75,6 @@ func membersName(id int) {
 func locatlist(id int) {
 	var l location
 	url := "https://groupietrackers.herokuapp.com/api/locations/" + strconv.Itoa(id)
-	fmt.Println(url)
 	req, _ := http.NewRequest("GET", url, nil)
 	res, _ := http.DefaultClient.Do(req)
 	defer res.Body.Close()
@@ -85,7 +84,7 @@ func locatlist(id int) {
 		fmt.Println("Error", err)
 		return
 	}
-	fmt.Println(l)
+	fmt.Println(l.Locations)
 }
 
 func ArtistsHandlerFunc(w http.ResponseWriter, r *http.Request) {
