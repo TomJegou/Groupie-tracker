@@ -8,6 +8,10 @@ img {
     width: 100%;
 }
 
+.legalnotice {
+    font-size:x-large;
+}
+
 li {
     list-style: none;
 }
