@@ -26,7 +26,6 @@ type groupe struct {
 	locations    []string
 	ConcertDates string
 	Relations    string
-	index        []string
 }
 
 type location struct {
@@ -40,98 +39,94 @@ type date struct {
 	Dates []string
 }
 
-func main() {
-	image(1)
-	groupName(1)
-	membersName(1)
-	FirstAlbum(1)
-	Locatlist(1)
-	dates(1)
+type relation struct {
+	id            int
+	dateLocations []string
 }
 
-func image(id int) {
+func Image(id int) {
 	var g []groupe
 	url := "https://groupietrackers.herokuapp.com/api/artists"
-	req, _ := http.NewRequest("GET", url, nil)
-	res, _ := http.DefaultClient.Do(req)
+	req, err := http.NewRequest("GET", url, nil)
+	res, err := http.DefaultClient.Do(req)
 	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
-	err := json.Unmarshal([]byte(body), &g)
+	body, err := ioutil.ReadAll(res.Body)
+	err = json.Unmarshal([]byte(body), &g)
 	if err != nil {
-		fmt.Println("Error :", err)
+		fmt.Println("Error : 404")
 		return
 	}
 	fmt.Println("", g[id].Image)
 }
 
-func groupName(id int) {
+func GroupName() {
 	var g []groupe
 	url := "https://groupietrackers.herokuapp.com/api/artists"
-	req, _ := http.NewRequest("GET", url, nil)
-	res, _ := http.DefaultClient.Do(req)
+	req, err := http.NewRequest("GET", url, nil)
+	res, err := http.DefaultClient.Do(req)
 	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
-	err := json.Unmarshal([]byte(body), &g)
+	body, err := ioutil.ReadAll(res.Body)
+	err = json.Unmarshal([]byte(body), &g)
 	if err != nil {
-		fmt.Println("Error :", err)
+		fmt.Println("Error : 404")
 		return
 	}
-	fmt.Println("Groupe :", g[id].Name)
+	fmt.Println("Groupe :", g[3].Name)
 }
 
-func membersName(id int) {
+func MembersName(id int) {
 	var g []groupe
 	url := "https://groupietrackers.herokuapp.com/api/artists"
-	req, _ := http.NewRequest("GET", url, nil)
-	res, _ := http.DefaultClient.Do(req)
+	req, err := http.NewRequest("GET", url, nil)
+	res, err := http.DefaultClient.Do(req)
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
-	err := json.Unmarshal([]byte(body), &g)
+	err = json.Unmarshal([]byte(body), &g)
 	if err != nil {
-		fmt.Println("Error :", err)
+		fmt.Println("Error : 404")
 		return
 	}
 	fmt.Println(g[id].Members)
 }
 
-func FirstAlbum(id int) {
-	var g []groupe
-	url := "https://groupietrackers.herokuapp.com/api/artists"
-	req, _ := http.NewRequest("GET", url, nil)
-	res, _ := http.DefaultClient.Do(req)
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
-	err := json.Unmarshal([]byte(body), &g)
-	if err != nil {
-		fmt.Println("Error :", err)
-		return
-	}
-	fmt.Println(g[id].FirstAlbum)
-}
-
 func CreationDate(id int) {
 	var g []groupe
 	url := "https://groupietrackers.herokuapp.com/api/artists"
-	req, _ := http.NewRequest("GET", url, nil)
-	res, _ := http.DefaultClient.Do(req)
+	req, err := http.NewRequest("GET", url, nil)
+	res, err := http.DefaultClient.Do(req)
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
-	err := json.Unmarshal([]byte(body), &g)
+	err = json.Unmarshal([]byte(body), &g)
 	if err != nil {
-		fmt.Println("Error :", err)
+		fmt.Println("Error : 404")
 		return
 	}
 	fmt.Println(g[id].CreationDate)
 }
 
+func FirstAlbum(id int) {
+	var g []groupe
+	url := "https://groupietrackers.herokuapp.com/api/artists"
+	req, err := http.NewRequest("GET", url, nil)
+	res, err := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	err = json.Unmarshal([]byte(body), &g)
+	if err != nil {
+		fmt.Println("Error : 404", err)
+		return
+	}
+	fmt.Println(g[id].FirstAlbum)
+}
+
 func Locatlist(id int) {
 	var l location
 	url := "https://groupietrackers.herokuapp.com/api/locations/" + strconv.Itoa(id)
-	req, _ := http.NewRequest("GET", url, nil)
-	res, _ := http.DefaultClient.Do(req)
+	req, err := http.NewRequest("GET", url, nil)
+	res, err := http.DefaultClient.Do(req)
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
-	err := json.Unmarshal(body, &l)
+	err = json.Unmarshal(body, &l)
 	if err != nil {
 		fmt.Println("Error", err)
 		return
@@ -139,19 +134,34 @@ func Locatlist(id int) {
 	fmt.Println(l.Locations)
 }
 
-func dates(id int) {
+func Dates(id int) {
 	var d date
 	url := "https://groupietrackers.herokuapp.com/api/dates/" + strconv.Itoa(id)
-	req, _ := http.NewRequest("GET", url, nil)
-	res, _ := http.DefaultClient.Do(req)
+	req, err := http.NewRequest("GET", url, nil)
+	res, err := http.DefaultClient.Do(req)
 	defer res.Body.Close()
 	body, _ := ioutil.ReadAll(res.Body)
-	err := json.Unmarshal(body, &d)
+	err = json.Unmarshal(body, &d)
 	if err != nil {
-		fmt.Println("Error", err)
+		fmt.Println("Error 404")
 		return
 	}
 	fmt.Println(d.Dates)
+}
+
+func Relations(id int) {
+	var r []relation
+	url := "https://groupietrackers.herokuapp.com/api/relation/" + strconv.Itoa(id)
+	req, err := http.NewRequest("GET", url, nil)
+	res, err := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	err = json.Unmarshal(body, &r)
+	if err != nil {
+		fmt.Println("Error 404", err)
+		return
+	}
+	fmt.Println(r[id].dateLocations)
 }
 
 func ArtistsHandlerFunc(w http.ResponseWriter, r *http.Request) {
