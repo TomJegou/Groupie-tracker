@@ -149,7 +149,7 @@ func Dates(id int) {
 	fmt.Println(d.Dates)
 }
 
-func Relations(id int) {
+/* func Relations(id int) {
 	var r []relation
 	url := "https://groupietrackers.herokuapp.com/api/relation/" + strconv.Itoa(id)
 	req, err := http.NewRequest("GET", url, nil)
@@ -163,7 +163,7 @@ func Relations(id int) {
 	}
 	fmt.Println(r[id].dateLocations)
 }
-
+*/
 func ArtistsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	template, _ := template.ParseFiles("static/html/artists.html")
 	template.Execute(w, nil)
