@@ -3,6 +3,10 @@ img {
     width: 8%;
 }
 
+.container {
+    background-color: #85B7E5;
+}
+
 li {
     list-style: none;
 }
