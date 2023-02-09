@@ -41,11 +41,27 @@ type date struct {
 }
 
 func main() {
+	image(1)
 	groupName(1)
 	membersName(1)
 	FirstAlbum(1)
 	locatlist(1)
 	dates(1)
+}
+
+func image(id int) {
+	var g []groupe
+	url := "https://groupietrackers.herokuapp.com/api/artists"
+	req, _ := http.NewRequest("GET", url, nil)
+	res, _ := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	err := json.Unmarshal([]byte(body), &g)
+	if err != nil {
+		fmt.Println("Error :", err)
+		return
+	}
+	fmt.Println("", g[id].Image)
 }
 
 func groupName(id int) {
