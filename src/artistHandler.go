@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"strconv"
 	"text/template"
 )
 
@@ -28,48 +29,16 @@ type groupe struct {
 	index        []string
 }
 
-type loca struct {
+type location struct {
 	Index     []string
 	Id        int
 	Locations []string
 }
 
 func main() {
-	art()
-	loc()
 	groupName(2)
 	membersName(2)
-	locatlist()
-}
-
-func art() {
-	var d data
-	url := "https://groupietrackers.herokuapp.com/api"
-	req, _ := http.NewRequest("GET", url, nil)
-	res, _ := http.DefaultClient.Do(req)
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
-	err := json.Unmarshal([]byte(body), &d)
-	if err != nil {
-		fmt.Println("Error :", err)
-		return
-	}
-	fmt.Println(d.Artists)
-}
-
-func loc() {
-	var d data
-	url := "https://groupietrackers.herokuapp.com/api"
-	req, _ := http.NewRequest("GET", url, nil)
-	res, _ := http.DefaultClient.Do(req)
-	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
-	err := json.Unmarshal([]byte(body), &d)
-	if err != nil {
-		fmt.Println("Error :", err)
-		return
-	}
-	fmt.Println(d.Locations)
+	locatlist(2)
 }
 
 func groupName(id int) {
@@ -103,8 +72,20 @@ func membersName(id int) {
 	fmt.Println(g[id].Members)
 }
 
-func locatlist() {
-//louis
+func locatlist(id int) {
+	var l location
+	url := "https://groupietrackers.herokuapp.com/api/locations/" + strconv.Itoa(id)
+	fmt.Println(url)
+	req, _ := http.NewRequest("GET", url, nil)
+	res, _ := http.DefaultClient.Do(req)
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	err := json.Unmarshal(body, &l)
+	if err != nil {
+		fmt.Println("Error", err)
+		return
+	}
+	fmt.Println(l)
 }
 
 func ArtistsHandlerFunc(w http.ResponseWriter, r *http.Request) {
