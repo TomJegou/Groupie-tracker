@@ -17,7 +17,7 @@ type data struct {
 }
 
 type groupe struct {
-	id           int
+	Id           int
 	Image        string
 	Name         string
 	Members      []string
@@ -40,8 +40,8 @@ type date struct {
 }
 
 type relation struct {
-	id            int
-	dateLocations []string
+	Id            int
+	DateLocations []string
 }
 
 func Image(id int) {
