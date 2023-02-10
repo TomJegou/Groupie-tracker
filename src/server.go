@@ -1,6 +1,7 @@
 package src
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"net/http"
@@ -49,7 +50,27 @@ var Dates map[string][]Date
 var Locations map[string][]Location
 var Relations map[string][]Relation
 
+func GetALlApi() {
+	err := json.Unmarshal([]byte(GetApi(URLARTISTS)), &Artists)
+	if err != nil {
+		fmt.Println("Erreur Unmarshal JSON")
+	}
+	err = json.Unmarshal([]byte(GetApi(URLDATES)), &Dates)
+	if err != nil {
+		fmt.Println("Erreur Unmarshal JSON")
+	}
+	err = json.Unmarshal([]byte(GetApi(URLLOCATIONS)), &Locations)
+	if err != nil {
+		fmt.Println("Erreur Unmarshal JSON")
+	}
+	err = json.Unmarshal([]byte(GetApi(URLRELATION)), &Relations)
+	if err != nil {
+		fmt.Println("Erreur Unmarshal JSON")
+	}
+}
+
 func StartServer() {
+	GetALlApi()
 	FileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static", FileServer))
 	http.HandleFunc("/", Accueil)
