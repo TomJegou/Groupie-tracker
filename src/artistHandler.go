@@ -7,7 +7,7 @@ import (
 	"text/template"
 )
 
-func getApi(url string) string {
+func GetApi(url string) string {
 	req, _ := http.NewRequest("GET", url, nil)
 	res, errors := http.DefaultClient.Do(req)
 	if errors != nil {
