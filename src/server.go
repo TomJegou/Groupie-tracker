@@ -3,7 +3,7 @@ package src
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"log"
 	"net/http"
 )
@@ -20,7 +20,7 @@ type Artist struct {
 	Members      []string
 	CreationDate int
 	FirstAlbum   string
-	Locations    []string
+	Locations    string
 	ConcertDates string
 	Relations    string
 }
@@ -52,7 +52,7 @@ func GetApi(url string) string {
 		log.Fatal(errors)
 	}
 	defer res.Body.Close()
-	body, _ := ioutil.ReadAll(res.Body)
+	body, _ := io.ReadAll(res.Body)
 	return string(body)
 }
 
@@ -60,6 +60,7 @@ func GetALlApi() {
 	err := json.Unmarshal([]byte(GetApi(URLARTISTS)), &Artists)
 	if err != nil {
 		fmt.Println("Erreur Unmarshal JSON artists")
+		fmt.Println(err)
 	}
 	err = json.Unmarshal([]byte(GetApi(URLDATES)), &Dates)
 	if err != nil {
