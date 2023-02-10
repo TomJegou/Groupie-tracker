@@ -3,9 +3,9 @@ package src
 import (
 	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net/http"
-	"text/template"
 )
 
 const URLARTISTS = "https://groupietrackers.herokuapp.com/api/artists"
@@ -40,32 +40,38 @@ type Relation struct {
 	DatesLocations map[string][]string
 }
 
-func Accueil(w http.ResponseWriter, r *http.Request) {
-	template, _ := template.ParseFiles("static/html/index.html")
-	template.Execute(w, nil)
-}
-
 var Artists []Artist
 var Dates map[string][]Date
 var Locations map[string][]Location
 var Relations map[string][]Relation
 
+func GetApi(url string) string {
+	req, _ := http.NewRequest("GET", url, nil)
+	res, errors := http.DefaultClient.Do(req)
+	if errors != nil {
+		log.Fatal(errors)
+	}
+	defer res.Body.Close()
+	body, _ := ioutil.ReadAll(res.Body)
+	return string(body)
+}
+
 func GetALlApi() {
 	err := json.Unmarshal([]byte(GetApi(URLARTISTS)), &Artists)
 	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON")
+		fmt.Println("Erreur Unmarshal JSON artists")
 	}
 	err = json.Unmarshal([]byte(GetApi(URLDATES)), &Dates)
 	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON")
+		fmt.Println("Erreur Unmarshal JSON dates")
 	}
 	err = json.Unmarshal([]byte(GetApi(URLLOCATIONS)), &Locations)
 	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON")
+		fmt.Println("Erreur Unmarshal JSON locations")
 	}
 	err = json.Unmarshal([]byte(GetApi(URLRELATION)), &Relations)
 	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON")
+		fmt.Println("Erreur Unmarshal JSON relations")
 	}
 }
 
