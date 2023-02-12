@@ -77,6 +77,7 @@ func GetALlApi() {
 }
 
 func StartServer() {
+	GetALlApi()
 	FileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static", FileServer))
 	http.HandleFunc("/", Accueil)
