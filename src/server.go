@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"text/template"
 )
 
 const URLARTISTS = "https://groupietrackers.herokuapp.com/api/artists"
@@ -78,10 +79,12 @@ func GetALlApi() {
 
 func StartServer() {
 	GetALlApi()
+	tmpl := template.Must(template.ParseFiles("libraryArtists.tmpl"))
 	FileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static", FileServer))
 	http.HandleFunc("/", Accueil)
 	http.HandleFunc("/artists", ArtistsHandlerFunc)
+	tmpl.Execute(w, Artists)
 	http.HandleFunc("/artistsDetails", ArtistsDetailsHandlerFunc)
 	http.HandleFunc("/about", AboutHandlerFunc)
 	http.HandleFunc("/legalNotice", LegalNoticeHandlerFunc)

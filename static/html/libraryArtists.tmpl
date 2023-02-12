@@ -25,7 +25,8 @@
 <body>
     <div>
         {{ range . }}
-            <img src="{{.Image}}" alt="">
+			<li><img src="{{ .Image }}" alt="{{ .Name }}"></li>
+		{{ end }}
     </div>
 </body>
     <footer>
