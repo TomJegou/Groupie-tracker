@@ -78,6 +78,9 @@ func GetALlApi() {
 
 func StartServer() {
 	GetALlApi()
+	for i, _ := range Artists {
+		fmt.Println(Artists[i].Image)
+	}
 	FileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static", FileServer))
 	http.HandleFunc("/", Accueil)
