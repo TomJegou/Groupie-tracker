@@ -6,6 +6,6 @@ import (
 )
 
 func libraryArtists(w http.ResponseWriter, r *http.Request) {
-	template, _ := template.ParseFiles("static/html/libraryArtists.html")
-	template.Execute(w, nil)
+	template, _ := template.ParseFiles("static/html/libraryArtists.tmpl")
+	template.Execute(w, Artists)
 }

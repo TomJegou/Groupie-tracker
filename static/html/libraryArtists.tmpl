@@ -24,8 +24,8 @@
 </header>
 <body>
     <div>
-        {{ range . }}
-			<li><img src="{{ .Image }}" alt="{{ .Name }}"></li>
+        {{ range. }}
+			<img src="{{.Image}}" alt="{{.Name}}"></li>
 		{{ end }}
     </div>
 </body>
