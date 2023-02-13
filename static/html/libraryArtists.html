@@ -25,7 +25,9 @@
 <body>
     <div>
         {{ range. }}
-			<img src="{{.Image}}" alt="{{.Name}}">            
+            <a href="/artistsDetails">
+			<img src="{{.Image}}" alt="{{.Name}}">
+            </a>
 		{{ end }}
     </div>
 </body>
