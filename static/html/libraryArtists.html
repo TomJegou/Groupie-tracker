@@ -11,7 +11,7 @@
 <header>
     <div class="container">
         <div class="logo">
-            <img src="http://localhost:8080/static/img/absolut_music.jpg" alt="logo">
+            <img id="navlogo" src="http://localhost:8080/static/img/absolut_music.jpg" alt="logo">
         </div>
         <nav class="navbar">
             <ul>
@@ -26,8 +26,8 @@
     <div>
         <form action="/artistsDetails" method="post">
         {{ range. }}
-        <button value="{{.Id}}" name="artistCard">
-			<img src="{{.Image}}" alt="{{.Name}}">
+        <button class="cardartists" value="{{.Id}}" name="artistCard">
+			<img id="imgartists" src="{{.Image}}" alt="{{.Name}}">
         </button>
 		{{ end }}
         </form>
