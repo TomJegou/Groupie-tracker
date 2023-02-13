@@ -17,6 +17,12 @@
     width: 100%;
 }
 
+.spotify {
+    position: absolute;
+    bottom: 0%;
+    width: 143%;
+}
+
 .navbar {
     position: absolute;
     top: 5%;
