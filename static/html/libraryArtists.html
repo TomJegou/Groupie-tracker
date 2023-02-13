@@ -24,11 +24,13 @@
 </header>
 <body>
     <div>
+        <form action="/artistsDetails" method="post">
         {{ range. }}
-            <a href="/artistsDetails">
+        <button value="{{.Id}}" name="artistCard">
 			<img src="{{.Image}}" alt="{{.Name}}">
-            </a>
+        </button>
 		{{ end }}
+        </form>
     </div>
 </body>
     <footer>
