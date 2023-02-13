@@ -16,9 +16,10 @@
     overflow-x: hidden;
 }
 
-.container {
-    background-color: #85B7E5;
-    width: 100%;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 .navbar {
@@ -29,6 +30,9 @@
     height: auto;
     width: 100vw;
     color: #fff;
+}
+.Navcontainer{
+    background-color: #85B7E5;
 }
 
 #nav {
@@ -57,11 +61,16 @@ li a:hover {
     color: red;
 }
 
+.container {
+    background-color: #85B7E5;
+    width: 100%;
+    margin-top: 150px;
+}
+
 .footer {
     display: flex;
     justify-content: center;
-    background-color: #85B7E5;
-    position: fixed;
+    position:relative ;
     bottom: 0;
     left: 0;
     right: 0;
