@@ -16,19 +16,24 @@
     overflow-x: hidden;
 }
 
-.container {
-    background-color: #85B7E5;
-    width: 100%;
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
 }
 
 .navbar {
     position: absolute;
-    top: 5%;
+    top: 4%;
     left: 60%;
     right: 0;
     height: auto;
     width: 100vw;
     color: #fff;
+}
+
+.navcontainer{
+    background-color: #85B7E5;
 }
 
 #nav {
@@ -39,7 +44,7 @@
 
 button {
     margin-top: 3%;
-    margin-left: 2.4%;
+    margin-left: 2.7%;
     display: inline-flex;
     border-radius: 10px;
     transition: transform 0.5s;
@@ -57,11 +62,16 @@ li a:hover {
     color: red;
 }
 
+.container {
+    background-color: #85B7E5;
+    width: 100%;
+    margin-top: 100px;
+}
+
 .footer {
     display: flex;
     justify-content: center;
-    background-color: #85B7E5;
-    position: fixed;
+    position:  relative;
     bottom: 0;
     left: 0;
     right: 0;
