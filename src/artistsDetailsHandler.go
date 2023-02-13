@@ -3,11 +3,16 @@ package src
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 	"text/template"
 )
 
 func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
-	fmt.Println(r.FormValue("artistCard"))
+	idInt, err := strconv.Atoi(r.FormValue("artistCard"))
+	if err != nil {
+		fmt.Println(err)
+	}
+	var artistToDisplay = Artists[idInt]
 	template, _ := template.ParseFiles("static/html/artistsDetails.html")
-	template.Execute(w, nil)
+	template.Execute(w, artistToDisplay)
 }
