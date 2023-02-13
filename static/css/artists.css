@@ -31,6 +31,9 @@ html, body {
     width: 100vw;
     color: #fff;
 }
+.Navcontainer{
+    background-color: #85B7E5;
+}
 
 .navcontainer{
     background-color: #85B7E5;
@@ -71,7 +74,7 @@ li a:hover {
 .footer {
     display: flex;
     justify-content: center;
-    position:  relative;
+    position:relative ;
     bottom: 0;
     left: 0;
     right: 0;
