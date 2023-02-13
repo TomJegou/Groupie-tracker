@@ -46,13 +46,13 @@ var Locations map[string][]Location
 var Relations map[string][]Relation
 
 func GetApi(url string) string {
-	req, _ := http.NewRequest("GET", url, nil)
+	req, errors := http.NewRequest("GET", url, nil)
 	res, errors := http.DefaultClient.Do(req)
 	if errors != nil {
 		log.Fatal(errors)
 	}
 	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
+	body, errors := io.ReadAll(res.Body)
 	return string(body)
 }
 
