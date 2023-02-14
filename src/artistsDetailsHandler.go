@@ -7,7 +7,7 @@ import (
 	"text/template"
 )
 
-type DateLocationConcertRelation struct {
+type ArtistDetailled struct {
 	*Artist
 }
 
@@ -23,7 +23,7 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	artist := Artists[idInt]
-	datelocationmachintruc := DateLocationConcertRelation{}
-	datelocationmachintruc.Artist = &artist
-	template.Execute(w, datelocationmachintruc)
+	dateLocationRelation := ArtistDetailled{}
+	dateLocationRelation.Artist = &artist
+	template.Execute(w, dateLocationRelation)
 }
