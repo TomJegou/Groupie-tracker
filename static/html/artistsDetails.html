@@ -13,13 +13,13 @@
 <header>
     <div class="navcontainer">
             <img id="navlogo" src="http://localhost:8080/static/img/absolut_music.jpg" alt="logo">
-            <div class="navtext">
-                    <ul>
+            <ul>
+                <div class="navtext">
                     <li id="nav"><a href="http://localhost:8080">Accueil</a></li>
                     <li id="nav"><a href="http://localhost:8080/artists">Artistes</a></li>
                     <li id="nav"><a href="http://localhost:8080/about">À propos</a></li>
-                </ul>
                 </div>
+            </ul>
     </div>
 </header>
 <body>
@@ -29,8 +29,14 @@
         <p>{{.CreationDate}}</p>
         <p>{{.FirstAlbum}}</p>
         <p>{{range .Members}} {{.}} {{end}}</p>
-        <p>{{range .ArtistConcertsLocation}} {{.}} {{end}}</p>
-        <p>{{range .ArtistConcertsDates}} {{.}} {{end}}</p>
+        <table>
+            {{range .ArtistConcertsDates}}
+            <tr>
+                <td>{{.}}</td>
+                <td></td>
+            </tr>
+            {{end}}
+        </table>
     </div>
 </body>
     <footer>
