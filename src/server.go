@@ -47,12 +47,18 @@ var Relations map[string][]Relation
 
 func GetApi(url string) string {
 	req, errors := http.NewRequest("GET", url, nil)
+	if errors != nil {
+		fmt.Println("Error Request")
+	}
 	res, errors := http.DefaultClient.Do(req)
 	if errors != nil {
-		log.Fatal(errors)
+		fmt.Println("Error default client")
 	}
 	defer res.Body.Close()
 	body, errors := io.ReadAll(res.Body)
+	if errors != nil {
+		fmt.Println("Error during read body")
+	}
 	return string(body)
 }
 
