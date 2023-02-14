@@ -29,8 +29,8 @@
         <p>{{.CreationDate}}</p>
         <p>{{.FirstAlbum}}</p>
         <p>{{range .Members}} {{.}} {{end}}</p>
-        <p>{{.ArtistConcertsDates}}</p>
-        <p>{{.ArtistConcertsLocation}}</p>
+        <p>{{range .ArtistConcertsLocation}} {{.}} {{end}}</p>
+        <p>{{range .ArtistConcertsDates}} {{.}} {{end}}</p>
     </div>
 </body>
     <footer>
