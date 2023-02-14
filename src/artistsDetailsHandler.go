@@ -7,6 +7,10 @@ import (
 	"text/template"
 )
 
+type DateLocationConcertRelation struct {
+	*Artist
+}
+
 func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	idInt, err := strconv.Atoi(r.FormValue("artistCard"))
 	if err != nil {
@@ -18,5 +22,8 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error parsing template artistsDetails.html")
 		fmt.Println(err)
 	}
-	template.Execute(w, Artists[idInt])
+	artist := Artists[idInt]
+	datelocationmachintruc := DateLocationConcertRelation{}
+	datelocationmachintruc.Artist = &artist
+	template.Execute(w, datelocationmachintruc)
 }
