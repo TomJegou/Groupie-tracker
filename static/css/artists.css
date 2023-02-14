@@ -6,11 +6,11 @@
          url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.ttf") format("truetype"), 
          url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.svg#Circular Sp UI v3 T Light") format("svg"); }
 
-         #navlogo {
-            padding-top: 0.2%;
-            padding-left: 2%;
-            width: 6%;
-        }
+#navlogo {
+    padding-top: 0.2%;
+    padding-left: 2%;
+    width: 6%;
+}
 
 * {
     overflow-x: hidden;
@@ -22,22 +22,6 @@ html, body {
     height: 100%;
 }
 
-.navbar {
-    position: absolute;
-    top: 4%;
-    left: 60%;
-    right: 0;
-    height: auto;
-    width: 100vw;
-    color: #fff;
-}
-.Navcontainer{
-    background-color: #85B7E5;
-}
-
-.navcontainer{
-    background-color: #85B7E5;
-}
 
 #nav {
     justify-content: space-between;
@@ -63,22 +47,4 @@ li {
 
 li a:hover {
     color: red;
-}
-
-.container {
-    background-color: #85B7E5;
-    width: 100%;
-    margin-top: 100px;
-}
-
-.footer {
-    display: flex;
-    justify-content: center;
-    position:relative ;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: auto;
-    width: 100vw;
-    color: #fff;
 }
