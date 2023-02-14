@@ -13,6 +13,7 @@ img {
 }
 
 * {
+    overflow-y: hidden;
     overflow-x: hidden;
 }
 
@@ -24,8 +25,8 @@ html, body {
 
 .spotify {
     position: absolute;
-    bottom: 0%;
-    width: 143%;
+    bottom: -1%;
+    width: 145%;
 }
 
 #nav {

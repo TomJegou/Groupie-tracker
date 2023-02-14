@@ -15,3 +15,16 @@
     width: 100vw;
     color: #fff;
 }
+
+.footer1 {
+    background-color: #85B7E5;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: auto;
+    width: 100vw;
+    color: #fff;
+}
