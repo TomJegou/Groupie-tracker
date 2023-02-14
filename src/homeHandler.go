@@ -10,6 +10,7 @@ func Accueil(w http.ResponseWriter, r *http.Request) {
 	template, errors := template.ParseFiles("static/html/index.html")
 	if errors != nil {
 		fmt.Println("Error Parsing Template")
+		fmt.Println(errors)
 	}
 	template.Execute(w, nil)
 }
