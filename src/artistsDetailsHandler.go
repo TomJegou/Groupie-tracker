@@ -9,8 +9,7 @@ import (
 
 type ArtistDetailled struct {
 	*Artist
-	ArtistConcertsDates    []string
-	ArtistConcertsLocation []string
+	ArtistConcertsDatesLocation map[string][]string
 }
 
 func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
@@ -27,9 +26,7 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	artist := Artists[idInt]
 	artistDetailled := ArtistDetailled{}
 	artistDetailled.Artist = &artist
-	for _, location := range Locations["index"][idInt-1].Locations {
-		artistDetailled.ArtistConcertsLocation = append(artistDetailled.ArtistConcertsLocation, location)
-		artistDetailled.ArtistConcertsDates = append(artistDetailled.ArtistConcertsDates, Relations["index"][idInt-1].DatesLocations[location]...)
-	}
+	artistDetailled.ArtistConcertsDatesLocation = Relations["index"][idInt-1].DatesLocations
+	fmt.Println(artistDetailled.ArtistConcertsDatesLocation)
 	template.Execute(w, artistDetailled)
 }
