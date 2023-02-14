@@ -9,6 +9,8 @@ import (
 
 type ArtistDetailled struct {
 	*Artist
+	ArtistConcertsDates    []string
+	ArtistConcertsLocation []string
 }
 
 func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
@@ -23,7 +25,12 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 	}
 	artist := Artists[idInt]
-	dateLocationRelation := ArtistDetailled{}
-	dateLocationRelation.Artist = &artist
-	template.Execute(w, dateLocationRelation)
+	artistDetailled := ArtistDetailled{}
+	artistDetailled.Artist = &artist
+	for _, location := range Locations["index"][idInt-1].Locations {
+		artistDetailled.ArtistConcertsLocation = append(artistDetailled.ArtistConcertsLocation, location)
+		artistDetailled.ArtistConcertsDates = append(artistDetailled.ArtistConcertsDates, Relations["index"][idInt-1].DatesLocations[location]...)
+	}
+	fmt.Println(artistDetailled.ArtistConcertsDates)
+	template.Execute(w, artistDetailled)
 }
