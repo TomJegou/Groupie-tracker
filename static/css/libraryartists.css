@@ -19,7 +19,7 @@ html, body {
     display: flex;
     margin-bottom: 5%;
 }
-button {
+.cardartists {
     margin-top: 3%;
     margin-left: 2.7%;
     display: inline-flex;

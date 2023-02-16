@@ -6,11 +6,6 @@
          url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.ttf") format("truetype"), 
          url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.svg#Circular Sp UI v3 T Light") format("svg"); }
 
-img {
-    padding-top: 0.2%;
-    padding-left: 2%;
-    width: 6%;
-}
 
 * {
     overflow-x: hidden;
