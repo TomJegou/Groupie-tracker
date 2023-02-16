@@ -27,6 +27,5 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	artistDetailled := ArtistDetailled{}
 	artistDetailled.Artist = &artist
 	artistDetailled.ArtistConcertsDatesLocation = Relations["index"][idInt-1].DatesLocations
-	fmt.Println(artistDetailled.ArtistConcertsDatesLocation)
 	template.Execute(w, artistDetailled)
 }

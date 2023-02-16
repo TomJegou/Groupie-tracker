@@ -29,6 +29,13 @@
         <p>{{.CreationDate}}</p>
         <p>{{.FirstAlbum}}</p>
         <p>{{range .Members}} {{.}} {{end}}</p>
+        <div class="tableCardConcertDates">
+        {{ range $key, $value := .ArtistConcertsDatesLocation}}
+            <div class="cardConcertDates">
+            <p>{{ $key }}: {{ range $value }} {{.}} {{ end }}</p>
+            </div>
+        {{ end }}
+        </div>
     </div>
 </body>
     <footer>
