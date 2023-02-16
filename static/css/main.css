@@ -15,4 +15,10 @@
 
 body {
     margin: 0px;
+    display: flex;
+}
+
+img {
+    width: 10%;
+    height: 10%;
 }
