@@ -22,6 +22,12 @@
     </div>
 </header>
 <body>
+    <div class="search-container">
+        <form>
+          <input type="text" placeholder="Rechercher..." name="searchBar">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
+      </div>
     <div id="listcardArtist">
         <form action="/artistsDetails" method="post">
         {{ range. }}
