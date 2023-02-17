@@ -24,10 +24,46 @@ body {
     min-height: 100%;
 }
 
+
+/*Header*/
 #navlogo {
     width: 10%;
     height: 10%;
+    display: flex;
+    justify-content: flex-start;
 }
+
+.txt{
+    color: black;
+}
+
+.txt:link{
+    text-decoration: none; 
+}
+
+
+.txt:hover{
+    color: gray;
+}
+header{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+nav{
+    width: 100vw;
+    display: flex;
+    justify-content: flex-end;
+}
+nav ul{
+    display: flex;
+}
+nav li{
+    margin-right: 10vw;
+}
+
+/*Footer*/
+
 
 footer{
     display: flex;
