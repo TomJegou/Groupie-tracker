@@ -18,7 +18,7 @@ body {
     display: flex;
 }
 
-img {
+#navlogo {
     width: 10%;
     height: 10%;
 }
