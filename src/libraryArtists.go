@@ -33,7 +33,7 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		template.Execute(w, Artists)
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
-		Artists = searchArtists(Artists, searchContent)
+		Artists  = searchArtists(Artists, searchContent)
 		template, errors := template.ParseFiles("static/html/libraryArtists.html")
 		if errors != nil {
 			fmt.Println("Error Parsing Template")
