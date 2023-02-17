@@ -24,6 +24,7 @@ func searchArtists(artistList []Artist, searchContent string) []Artist {
 }
 
 func libraryArtists(w http.ResponseWriter, r *http.Request) {
+	fmt.Println(r.Method)
 	if r.Method == "GET" {
 		template, errors := template.ParseFiles("static/html/libraryArtists.html")
 		if errors != nil {
@@ -33,12 +34,12 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		template.Execute(w, Artists)
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
-		Artists  = searchArtists(Artists, searchContent)
+		newListArtists := searchArtists(Artists, searchContent)
 		template, errors := template.ParseFiles("static/html/libraryArtists.html")
 		if errors != nil {
 			fmt.Println("Error Parsing Template")
 			fmt.Println(errors)
 		}
-		template.Execute(w, Artists)
+		template.Execute(w, newListArtists)
 	}
 }
