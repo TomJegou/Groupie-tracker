@@ -12,8 +12,17 @@ type ArtistDetailled struct {
 	ArtistConcertsDatesLocation map[string][]string
 }
 
+func findArtistById(listArtist []Artist, id int) (Artist, string) {
+	for _, artist := range listArtist {
+		if artist.Id == id {
+			return artist, ""
+		}
+	}
+	return listArtist[0], "Error id incorect"
+}
+
 func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
-	idInt, err := strconv.Atoi(r.FormValue("artistCard"))
+	idArtist, err := strconv.Atoi(r.FormValue("artistCard"))
 	if err != nil {
 		fmt.Println("Error converting string to integer")
 		fmt.Println(err)
@@ -23,9 +32,15 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error parsing template artistsDetails.html")
 		fmt.Println(err)
 	}
-	artist := Artists[idInt]
-	artistDetailled := ArtistDetailled{}
-	artistDetailled.Artist = &artist
-	artistDetailled.ArtistConcertsDatesLocation = Relations["index"][idInt-1].DatesLocations
-	template.Execute(w, artistDetailled)
+	artist, errorId := findArtistById(Artists, idArtist)
+	if errorId != "" {
+		fmt.Println(errorId)
+		http.Redirect(w, r, "/artists", http.StatusFound)
+	} else {
+		artistDetailled := ArtistDetailled{}
+		artistDetailled.Artist = &artist
+		artistDetailled.ArtistConcertsDatesLocation = Relations["index"][idArtist-1].DatesLocations // a changer
+		template.Execute(w, artistDetailled)
+	}
+
 }
