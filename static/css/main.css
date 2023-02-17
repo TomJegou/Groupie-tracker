@@ -6,7 +6,6 @@
          url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.ttf") format("truetype"), 
          url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.svg#Circular Sp UI v3 T Light") format("svg");
 }
-
 html{
     height: 100%;
 }
@@ -45,6 +44,7 @@ body {
     color: gray;
 }
 header{
+    height: 10vh;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -65,11 +65,21 @@ nav li{
 
 
 footer{
+    height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #85B7E5;
+    background-color: gray;
     margin-top: auto;
-    padding: 2vw;
+
     color: white;
+}
+footer a{
+    color: white;
+}
+#ftxt:link{
+    text-decoration: none; 
+}
+#ftxt:hover{
+    color: rgb(222, 222, 222);
 }
