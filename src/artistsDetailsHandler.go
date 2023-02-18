@@ -26,20 +26,20 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		fmt.Println("Error converting string to integer")
 		fmt.Println(err)
-	}
-	template, err := template.ParseFiles("static/html/artistsDetails.html")
-	if err != nil {
-		fmt.Println("Error parsing template artistsDetails.html")
-		fmt.Println(err)
-	}
-	artist, errorId := findArtistById(Artists, idArtist)
-	if errorId != "" {
-		fmt.Println(errorId)
-		http.Redirect(w, r, "/artists", http.StatusFound)
 	} else {
-		artistDetailled := ArtistDetailled{}
-		artistDetailled.Artist = &artist
-		artistDetailled.ArtistConcertsDatesLocation = Relations["index"][idArtist-1].DatesLocations // a changer
-		template.Execute(w, artistDetailled)
+		template, err := template.ParseFiles("static/html/artistsDetails.html")
+		if err != nil {
+			fmt.Println("Error parsing template artistsDetails.html")
+			fmt.Println(err)
+		} else {
+			artist, errorId := findArtistById(Artists, idArtist)
+			if errorId != "" {
+				fmt.Println(errorId)
+				http.Redirect(w, r, "/artists", http.StatusFound)
+			} else {
+				artistDetailled := ArtistDetailled{Artist: &artist, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
+				template.Execute(w, artistDetailled)
+			}
+		}
 	}
 }
