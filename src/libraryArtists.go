@@ -7,44 +7,45 @@ import (
 	"text/template"
 )
 
-func makeAllArtistVisible(truc *Artist) {
-	truc.IsVisible = true
+func setArtistVisibility(a *Artist, isVisible bool) {
+	a.IsVisible = isVisible
 }
 
-func searchArtists(artistList []Artist, searchContent string) []Artist {
-	result := []Artist{}
-	for _, artist := range artistList {
+func setAllArtistVisibility(isVisible bool) {
+	for i := 0; i < len(Artists); i++ {
+		setArtistVisibility(&Artists[i], isVisible)
+	}
+}
+
+func searchArtists(searchContent string) {
+	setAllArtistVisibility(false)
+	for i := 0; i < len(Artists); i++ {
 		isOk := true
 		for indexChar, char := range searchContent {
-			if !strings.EqualFold(string(artist.Name[indexChar]), string(char)) {
+			if !strings.EqualFold(string(Artists[i].Name[indexChar]), string(char)) {
 				isOk = false
 				break
 			}
 		}
 		if isOk {
-			result = append(result, artist)
+			setArtistVisibility(&Artists[i], true)
 		}
 	}
-	return result
 }
 
 func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
+	template, errors := template.ParseFiles("static/html/libraryArtists.html")
+	if errors != nil {
+		fmt.Println("Error Parsing Template")
+		fmt.Println(errors)
+	}
 	if r.Method == "GET" {
-		template, errors := template.ParseFiles("static/html/libraryArtists.html")
-		if errors != nil {
-			fmt.Println("Error Parsing Template")
-			fmt.Println(errors)
-		}
+		setAllArtistVisibility(true)
 		template.Execute(w, Artists)
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
-		searchArtistsListResult := searchArtists(Artists, searchContent)
-		template, errors := template.ParseFiles("static/html/libraryArtists.html")
-		if errors != nil {
-			fmt.Println("Error Parsing Template")
-			fmt.Println(errors)
-		}
-		template.Execute(w, searchArtistsListResult)
+		searchArtists(searchContent)
 	}
+	template.Execute(w, Artists)
 }
