@@ -22,6 +22,7 @@ func findArtistById(listArtist []Artist, id int) (Artist, string) {
 }
 
 func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
+	CallApiRelation()
 	idArtist, err := strconv.Atoi(r.FormValue("artistCard"))
 	if err != nil {
 		fmt.Println("Error converting string to integer")

@@ -25,6 +25,7 @@ func searchArtists(artistList []Artist, searchContent string) []Artist {
 }
 
 func libraryArtists(w http.ResponseWriter, r *http.Request) {
+	CallApiArtist()
 	if r.Method == "GET" {
 		template, errors := template.ParseFiles("static/html/libraryArtists.html")
 		if errors != nil {
