@@ -7,7 +7,7 @@ import (
 	"text/template"
 )
 
-func searchArtists(artistList []Artist, artistListResult []Artist, searchContent string) {
+func searchArtists(artistList []Artist, artistListResult []Artist, searchContent string) []Artist {
 	for _, artist := range artistList {
 		isOk := true
 		for indexChar, char := range searchContent {
@@ -20,6 +20,7 @@ func searchArtists(artistList []Artist, artistListResult []Artist, searchContent
 			artistListResult = append(artistListResult, artist)
 		}
 	}
+	return artistListResult
 }
 
 func libraryArtists(w http.ResponseWriter, r *http.Request) {
@@ -33,7 +34,7 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
 		searchArtistsListResult := []Artist{}
-		searchArtists(Artists, searchArtistsListResult, searchContent)
+		searchArtistsListResult = searchArtists(Artists, searchArtistsListResult, searchContent)
 		template, errors := template.ParseFiles("static/html/libraryArtists.html")
 		if errors != nil {
 			fmt.Println("Error Parsing Template")
