@@ -65,28 +65,36 @@ func GetApi(url string) string {
 	return string(body)
 }
 
-func GetALlApi() {
+func CallApiLocation() {
+	err := json.Unmarshal([]byte(GetApi(URLLOCATIONS)), &Locations)
+	if err != nil {
+		fmt.Println("Erreur Unmarshal JSON locations")
+	}
+}
+
+func CallApiDates() {
+	err := json.Unmarshal([]byte(GetApi(URLDATES)), &Dates)
+	if err != nil {
+		fmt.Println("Erreur Unmarshal JSON dates")
+	}
+}
+
+func CallApiArtist() {
 	err := json.Unmarshal([]byte(GetApi(URLARTISTS)), &Artists)
 	if err != nil {
 		fmt.Println("Erreur Unmarshal JSON artists")
 		fmt.Println(err)
 	}
-	err = json.Unmarshal([]byte(GetApi(URLDATES)), &Dates)
-	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON dates")
-	}
-	err = json.Unmarshal([]byte(GetApi(URLLOCATIONS)), &Locations)
-	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON locations")
-	}
-	err = json.Unmarshal([]byte(GetApi(URLRELATION)), &Relations)
+}
+
+func CallApiRelation() {
+	err := json.Unmarshal([]byte(GetApi(URLRELATION)), &Relations)
 	if err != nil {
 		fmt.Println("Erreur Unmarshal JSON relations")
 	}
 }
 
 func StartServer() {
-	GetALlApi()
 	FileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static", FileServer))
 	http.HandleFunc("/", Accueil)
