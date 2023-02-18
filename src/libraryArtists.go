@@ -33,12 +33,22 @@ func searchArtists(searchContent string) {
 	}
 }
 
-func sortArtistsByName() {
+func sortArtists(sortingBy string) {
 	for i := 0; i < len(Artists)-1; i++ {
 		x := i
 		for j := i + 1; j < len(Artists); j++ {
-			if Artists[j].Name < Artists[x].Name {
-				x = j
+			if sortingBy == "name" {
+				if Artists[j].Name < Artists[x].Name {
+					x = j
+				}
+			} else if sortingBy == "creationDate" {
+				if Artists[j].CreationDate < Artists[x].CreationDate {
+					x = j
+				}
+			} else if sortingBy == "numberMembers" {
+				if len(Artists[j].Members) < len(Artists[x].Members) {
+					x = j
+				}
 			}
 		}
 		Artists[i], Artists[x] = Artists[x], Artists[i]
@@ -54,7 +64,7 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	}
 	if r.Method == "GET" {
 		setAllArtistVisibility(true)
-		sortArtistsByName()
+		sortArtists("name")
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
 		if len(searchContent) > 0 {
