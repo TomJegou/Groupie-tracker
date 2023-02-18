@@ -36,7 +36,7 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 			artist, errorId := findArtistById(Artists, idArtist)
 			if errorId != "" {
 				fmt.Println(errorId)
-				http.Redirect(w, r, "/artists", http.StatusFound)
+				http.Redirect(w, r, "/libraryArtists", http.StatusFound)
 			} else {
 				artistDetailled := ArtistDetailled{Artist: &artist, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
 				template.Execute(w, artistDetailled)

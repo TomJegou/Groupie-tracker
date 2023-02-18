@@ -77,7 +77,7 @@ func StartServer() {
 	FileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static", FileServer))
 	http.HandleFunc("/", Accueil)
-	http.HandleFunc("/artists", libraryArtists)
+	http.HandleFunc("/libraryArtists", libraryArtists)
 	http.HandleFunc("/artistsDetails", ArtistsDetailsHandlerFunc)
 	http.HandleFunc("/about", AboutHandlerFunc)
 	http.HandleFunc("/legalNotice", LegalNoticeHandlerFunc)

@@ -14,23 +14,25 @@
     <nav>
         <ul>
             <li><a class="txt" href="http://localhost:8080">Accueil</a></li>
-            <li><a class="txt" href="http://localhost:8080/artists">Artistes</a></li>
+            <li><a class="txt" href="http://localhost:8080/libraryArtists">Artistes</a></li>
             <li><a class="txt" href="http://localhost:8080/about">À propos</a></li>
         </ul>
     </nav>
 </header>
 <body>
     <div class="search-container">
-        <form>
+        <form action="/libraryArtists">
           <input type="text" placeholder="Rechercher..." name="searchBar">
-          <button type="submit" formmethod="post"><i class="fa fa-search"></i></button>
+          <button formmethod="post">
+            <i class="fa fa-search"></i>
+        </button>
         </form>
       </div>
     <div id="listcardArtist">
         <form action="/artistsDetails">
         {{ range. }}
             {{ if .IsVisible}}
-                <button class="cardartists" value="{{.Id}}" name="artistCard">
+                <button class="cardartists" value="{{.Id}}" name="artistCard" formmethod="post">
                     <img id="imgartists" src="{{.Image}}" alt="{{.Name}}">
                 </button>
             {{ end }}
