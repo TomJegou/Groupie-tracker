@@ -23,6 +23,7 @@ type Artist struct {
 	Locations    string
 	ConcertDates string
 	Relations    string
+	IsVisible    bool
 }
 
 type Location struct {
