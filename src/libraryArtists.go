@@ -54,6 +54,7 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	}
 	if r.Method == "GET" {
 		setAllArtistVisibility(true)
+		sortArtistsByName()
 		template.Execute(w, Artists)
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
