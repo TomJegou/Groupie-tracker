@@ -29,9 +29,11 @@
     <div id="listcardArtist">
         <form action="/artistsDetails">
         {{ range. }}
-        <button class="cardartists" value="{{.Id}}" name="artistCard">
-			<img id="imgartists" src="{{.Image}}" alt="{{.Name}}">
-        </button>
+            {{ if .IsVisible}}
+                <button class="cardartists" value="{{.Id}}" name="artistCard">
+                    <img id="imgartists" src="{{.Image}}" alt="{{.Name}}">
+                </button>
+            {{ end }}
 		{{ end }}
         </form>
     </div>
