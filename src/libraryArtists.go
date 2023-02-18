@@ -7,6 +7,10 @@ import (
 	"text/template"
 )
 
+func makeAllArtistVisible(truc *Artist) {
+	truc.IsVisible = true
+}
+
 func searchArtists(artistList []Artist, searchContent string) []Artist {
 	result := []Artist{}
 	for _, artist := range artistList {
@@ -25,7 +29,7 @@ func searchArtists(artistList []Artist, searchContent string) []Artist {
 }
 
 func libraryArtists(w http.ResponseWriter, r *http.Request) {
-	CallApiArtist()
+	PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
 	if r.Method == "GET" {
 		template, errors := template.ParseFiles("static/html/libraryArtists.html")
 		if errors != nil {
