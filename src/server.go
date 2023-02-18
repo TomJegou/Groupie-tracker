@@ -66,32 +66,10 @@ func GetApi(url string) string {
 	return string(body)
 }
 
-func CallApiLocation() {
-	err := json.Unmarshal([]byte(GetApi(URLLOCATIONS)), &Locations)
+func PutBodyResponseApiIntoStruct(url string, structure interface{}) {
+	err := json.Unmarshal([]byte(GetApi(url)), &structure)
 	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON locations")
-	}
-}
-
-func CallApiDates() {
-	err := json.Unmarshal([]byte(GetApi(URLDATES)), &Dates)
-	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON dates")
-	}
-}
-
-func CallApiArtist() {
-	err := json.Unmarshal([]byte(GetApi(URLARTISTS)), &Artists)
-	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON artists")
-		fmt.Println(err)
-	}
-}
-
-func CallApiRelation() {
-	err := json.Unmarshal([]byte(GetApi(URLRELATION)), &Relations)
-	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON relations")
+		fmt.Println("Erreur Unmarshal JSON\n", err)
 	}
 }
 
