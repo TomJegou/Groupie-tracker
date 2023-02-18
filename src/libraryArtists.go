@@ -45,7 +45,9 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		template.Execute(w, Artists)
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
-		searchArtists(searchContent)
+		if len(searchContent) > 0 {
+			searchArtists(searchContent)
+		}
 	}
 	template.Execute(w, Artists)
 }
