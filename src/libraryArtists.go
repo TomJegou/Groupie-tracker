@@ -33,19 +33,19 @@ func searchArtists(searchContent string) {
 	}
 }
 
-func sortArtists(sortingBy string) {
+func sortArtists(sortingOption string) {
 	for i := 0; i < len(Artists)-1; i++ {
 		x := i
 		for j := i + 1; j < len(Artists); j++ {
-			if sortingBy == "name" {
+			if sortingOption == "name" {
 				if Artists[j].Name < Artists[x].Name {
 					x = j
 				}
-			} else if sortingBy == "creationDate" {
+			} else if sortingOption == "creationDate" {
 				if Artists[j].CreationDate < Artists[x].CreationDate {
 					x = j
 				}
-			} else if sortingBy == "numberMembers" {
+			} else if sortingOption == "numberMembers" {
 				if len(Artists[j].Members) < len(Artists[x].Members) {
 					x = j
 				}
