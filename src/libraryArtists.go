@@ -61,6 +61,5 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 			searchArtists(searchContent)
 		}
 	}
-	fmt.Println(len(Artists))
 	template.Execute(w, Artists)
 }
