@@ -31,18 +31,33 @@
     <div class="sortingFilter">
         <fieldset><legend>Trier par</legend>
             <form action="/libraryArtists">
-                <input id="RadioSortingName" type="radio" name="sort" value="name" checked>
+                {{ if eq .SortingFilter "name"}} 
+                <input id="radioSortingName" type="radio" name="sortFilter" value="name" checked>
+                {{else}}
+                <input id="radioSortingName" type="radio" name="sortFilter" value="name">
+                {{end}}
                 <label>Name</label>
-                <input id="RadioSortingCreationDate" type="radio" name="sort" value="creationDate">
+                {{ if eq .SortingFilter "creationDate"}}
+                <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate" checked>
+                {{else}}
+                <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate">
+                {{end}}
                 <label>Date de Création</label>
+                {{ if eq .SortingFilter "numberMembers"}}
+                <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers" checked>
+                {{else}}
+                <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
+                {{end}}
+                <label>Nombre de membres</label>
+                <input id="submitButonForSort" type="submit" formmethod="post" value="Appliquer">
             </form>
         </fieldset>
     </div>
     <div id="listcardArtist">
         <form action="/artistsDetails">
-        {{ range. }}
+        {{ range .Artistlist }}
             {{ if .IsVisible}}
-                <button class="cardartists" value="{{.Id}}" name="artistCard" formmethod="post">
+                <button class="cardartists" value="{{.Id}}" name="artistCardId" formmethod="post">
                     <img id="imgartists" src="{{.Image}}" alt="{{.Name}}">
                     <p id="artistNameBtn">{{ .Name }}</p>
                 </button>
