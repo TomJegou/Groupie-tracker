@@ -84,7 +84,9 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
 		sortingOption := r.FormValue("sortFilter")
-		LibArtists.SortingFilter = sortingOption
+		if len(sortingOption) != 0 {
+			LibArtists.SortingFilter = sortingOption
+		}
 		if len(searchContent) > 0 {
 			searchArtists(searchContent)
 		}
