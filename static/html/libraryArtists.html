@@ -29,9 +29,14 @@
         </form>
     </div>
     <div class="sortingFilter">
-        <form action="/libraryArtists">
-            <input type="radio" name="filterSelection">
-        </form>
+        <fieldset><legend>Trier par</legend>
+            <form action="/libraryArtists">
+                <input id="RadioSortingName" type="radio" name="sort" value="name" checked>
+                <label>Name</label>
+                <input id="RadioSortingCreationDate" type="radio" name="sort" value="creationDate">
+                <label>Date de Création</label>
+            </form>
+        </fieldset>
     </div>
     <div id="listcardArtist">
         <form action="/artistsDetails">
