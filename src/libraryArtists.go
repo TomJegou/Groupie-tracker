@@ -7,6 +7,12 @@ import (
 	"text/template"
 )
 
+type LibraryArtists struct {
+	Artistlist    *[]Artist
+	SortingFilter string
+	Asc           bool
+}
+
 func setArtistVisibility(a *Artist, isVisible bool) {
 	a.IsVisible = isVisible
 }
@@ -57,6 +63,7 @@ func sortArtists(sortingOption string) {
 
 func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
+	LibArtist := LibraryArtists{Artistlist: &Artists, SortingFilter: "name", Asc: true}
 	template, errors := template.ParseFiles("static/html/libraryArtists.html")
 	if errors != nil {
 		fmt.Println("Error Parsing Template")
@@ -64,12 +71,14 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	}
 	if r.Method == "GET" {
 		setAllArtistVisibility(true)
-		sortArtists("name")
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
+		sortingOption := r.FormValue("sortFilter")
+		LibArtist.SortingFilter = sortingOption
 		if len(searchContent) > 0 {
 			searchArtists(searchContent)
 		}
 	}
-	template.Execute(w, Artists)
+	sortArtists(LibArtist.SortingFilter)
+	template.Execute(w, LibArtist)
 }
