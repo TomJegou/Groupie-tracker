@@ -12,7 +12,7 @@ body {
     background-attachment: fixed;
 }
 
-.search-container {
+.searchContainer {
     display: flex;
     justify-content: right;
     margin-top: 3%;
@@ -20,7 +20,7 @@ body {
     padding-right: 3%;
   }
   
-  .search-container form {
+  .searchContainer form {
     display: flex;
     align-items: center;
     background-color: white;
@@ -28,14 +28,14 @@ body {
     width: 20%;
   }
   
-  .search-container input[type="text"] {
+  .searchContainer input[type="text"] {
     border: solid 1px black;
     font-size: 16px;
     padding: 10px;
     width: 100%;
   }
   
-  .search-container button[type="submit"] {
+  .searchContainer button[type="submit"] {
     background-color: white;
     background-image: url("../img/loupe.png");
     background-repeat: no-repeat;

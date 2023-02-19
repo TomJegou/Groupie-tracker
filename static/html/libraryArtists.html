@@ -10,7 +10,7 @@
     <title>Absolut Music</title>
 </head>
 <header>
-    <img id="navlogo" src="http://localhost:8080/static/img/absolut_music.jpg" alt="logo">
+    <img id="navLogo" src="http://localhost:8080/static/img/absolut_music.jpg" alt="logo">
     <nav>
         <ul>
             <li><a class="txt" href="http://localhost:8080">Accueil</a></li>
@@ -20,14 +20,19 @@
     </nav>
 </header>
 <body>
-    <div class="search-container">
+    <div class="searchContainer">
         <form action="/libraryArtists">
           <input type="text" placeholder="Rechercher..." name="searchBar">
-          <button formmethod="post">
-            <i class="fa fa-search"></i>
-        </button>
+            <button formmethod="post">
+                <i class="fa fa-search"></i>
+            </button>
         </form>
-      </div>
+    </div>
+    <div class="sortingFilter">
+        <form action="/libraryArtists">
+            <input type="radio" name="filterSelection">
+        </form>
+    </div>
     <div id="listcardArtist">
         <form action="/artistsDetails">
         {{ range. }}
