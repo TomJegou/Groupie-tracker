@@ -26,7 +26,7 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 		PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
 	}
 	PutBodyResponseApiIntoStruct(URLRELATION, &Relations)
-	idArtist, err := strconv.Atoi(r.FormValue("artistCard"))
+	idArtist, err := strconv.Atoi(r.FormValue("artistCardId"))
 	if err != nil {
 		fmt.Println("Error converting string to integer")
 		fmt.Println(err)
