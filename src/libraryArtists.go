@@ -52,7 +52,7 @@ func sortArtists(sortingOption string, asc bool) {
 		x := i
 		for j := i + 1; j < len(Artists); j++ {
 			if sortingOption == "name" {
-				if Artists[j].Name < Artists[x].Name {
+				if strings.ToLower(Artists[j].Name) < strings.ToLower(Artists[x].Name) {
 					x = j
 				}
 			} else if sortingOption == "creationDate" {
@@ -93,11 +93,19 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
 		sortingOption := r.FormValue("sortFilter")
+		sortingOrder := r.FormValue("sortOrder")
 		if len(sortingOption) != 0 {
 			LibArtists.SortingFilter = sortingOption
 		}
 		if len(searchContent) > 0 {
 			searchArtists(searchContent)
+		}
+		if len(sortingOrder) != 0 {
+			if sortingOrder == "asc" {
+				LibArtists.Asc = true
+			} else if sortingOrder == "desc" {
+				LibArtists.Asc = false
+			}
 		}
 	}
 	sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
