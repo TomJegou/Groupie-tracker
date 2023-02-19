@@ -49,7 +49,7 @@
                 <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
                 {{end}}
                 <label>Nombre de membres</label>
-                <input id="submitButonForSort" type="submit" formmethod="post" value="Appliquer">
+                <input id="submitInputSort" type="submit" formmethod="post" value="Appliquer">
             </form>
         </fieldset>
     </div>
@@ -60,6 +60,8 @@
                 <button class="cardartists" value="{{.Id}}" name="artistCardId" formmethod="post">
                     <img id="imgartists" src="{{.Image}}" alt="{{.Name}}">
                     <p id="artistNameBtn">{{ .Name }}</p>
+                    <p id="artistNameBtn">{{ .Members }}</p>
+                    <p id="artistNameBtn">{{ .CreationDate }}</p>
                 </button>
             {{ end }}
 		{{ end }}
