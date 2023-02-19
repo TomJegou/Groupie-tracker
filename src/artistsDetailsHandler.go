@@ -22,6 +22,7 @@ func findArtistById(listArtist []Artist, id int) (Artist, string) {
 }
 
 func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
+	OnLibraryArtists = false
 	if len(Artists) == 0 {
 		PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
 	}

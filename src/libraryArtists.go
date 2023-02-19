@@ -64,7 +64,10 @@ func sortArtists(sortingOption string) {
 }
 
 func libraryArtists(w http.ResponseWriter, r *http.Request) {
-	PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
+	if !OnLibraryArtists {
+		PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
+		OnLibraryArtists = true
+	}
 	LibArtists.Artistlist = &Artists
 	if IsStartServer {
 		LibArtists.SortingFilter = "name"

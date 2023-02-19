@@ -14,6 +14,7 @@ const URLLOCATIONS = "https://groupietrackers.herokuapp.com/api/locations"
 const URLRELATION = "https://groupietrackers.herokuapp.com/api/relation"
 
 var IsStartServer = true
+var OnLibraryArtists = false
 
 type Artist struct {
 	Id           int
