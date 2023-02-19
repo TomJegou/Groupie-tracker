@@ -41,7 +41,13 @@ func searchArtists(searchContent string) {
 	}
 }
 
-func sortArtists(sortingOption string) {
+func reverseSliceArtist() {
+	for i := 0; i < len(Artists)/2; i++ {
+		Artists[i], Artists[len(Artists)-1-i] = Artists[len(Artists)-1-i], Artists[i]
+	}
+}
+
+func sortArtists(sortingOption string, asc bool) {
 	for i := 0; i < len(Artists)-1; i++ {
 		x := i
 		for j := i + 1; j < len(Artists); j++ {
@@ -60,6 +66,9 @@ func sortArtists(sortingOption string) {
 			}
 		}
 		Artists[i], Artists[x] = Artists[x], Artists[i]
+	}
+	if !asc {
+		reverseSliceArtist()
 	}
 }
 
@@ -91,6 +100,6 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 			searchArtists(searchContent)
 		}
 	}
-	sortArtists(LibArtists.SortingFilter)
+	sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
 	template.Execute(w, LibArtists)
 }
