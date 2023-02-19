@@ -31,24 +31,39 @@
     <div class="sortingFilter">
         <fieldset><legend>Trier par</legend>
             <form action="/libraryArtists">
-                {{ if eq .SortingFilter "name"}} 
-                <input id="radioSortingName" type="radio" name="sortFilter" value="name" checked>
-                {{else}}
-                <input id="radioSortingName" type="radio" name="sortFilter" value="name">
-                {{end}}
-                <label>Name</label>
-                {{ if eq .SortingFilter "creationDate"}}
-                <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate" checked>
-                {{else}}
-                <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate">
-                {{end}}
-                <label>Date de Création</label>
-                {{ if eq .SortingFilter "numberMembers"}}
-                <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers" checked>
-                {{else}}
-                <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
-                {{end}}
-                <label>Nombre de membres</label>
+                <div class="sortingFilterDiv">
+                    {{ if eq .SortingFilter "name"}} 
+                    <input id="radioSortingName" type="radio" name="sortFilter" value="name" checked>
+                    {{else}}
+                    <input id="radioSortingName" type="radio" name="sortFilter" value="name">
+                    {{end}}
+                    <label>Name</label>
+                    {{ if eq .SortingFilter "creationDate"}}
+                    <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate" checked>
+                    {{else}}
+                    <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate">
+                    {{end}}
+                    <label>Date de Création</label>
+                    {{ if eq .SortingFilter "numberMembers"}}
+                    <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers" checked>
+                    {{else}}
+                    <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
+                    {{end}}
+                    <label>Nombre de membres</label>
+                </div>
+                <div class="sortingOrderDiv">
+                    {{if .Asc}}
+                    <input id="radioSortingOrder" type="radio" name="sortOrder" value="asc" checked>
+                    <label>Croissant</label>
+                    <input id="radioSortingOrder" type="radio" name="sortOrder" value="dsc">
+                    <label>Décroissant</label>
+                    {{else}}
+                    <input id="radioSortingOrder" type="radio" name="sortOrder" value="asc">
+                    <label>Croissant</label>
+                    <input id="radioSortingOrder" type="radio" name="sortOrder" value="dsc" checked>
+                    <label>Décroissant</label>
+                    {{end}}
+                </div>
                 <input id="submitInputSort" type="submit" formmethod="post" value="Appliquer">
             </form>
         </fieldset>
