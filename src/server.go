@@ -13,6 +13,8 @@ const URLDATES = "https://groupietrackers.herokuapp.com/api/dates"
 const URLLOCATIONS = "https://groupietrackers.herokuapp.com/api/locations"
 const URLRELATION = "https://groupietrackers.herokuapp.com/api/relation"
 
+var IsStartServer = true
+
 type Artist struct {
 	Id           int
 	Image        string
