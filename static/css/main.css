@@ -26,9 +26,11 @@ body {
 
 /*Header*/
 #navLogo {
-    width: 190px;
-    height: 160px;
+    width: 4.5vw;
+    height: 8vh;
     margin-left: 2.5vw;
+    padding-top: 1.5vh;
+    padding-bottom: 1.5vh;
 }
 
 .txt{
@@ -44,11 +46,11 @@ body {
     color: gray;
 }
 header{
-    height: 10vh;
+    height: 8vh;
     display: flex;
     align-items: center;
     flex-direction: row;
-    overflow-y: hidden
+    overflow-y: hidden;
 }
 nav{
     width: 100vw;
