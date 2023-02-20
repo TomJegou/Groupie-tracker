@@ -55,9 +55,12 @@ body {
 }
 
 .formListcardArtist{
+  padding-top: 1.5vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2vw 2vh;
 }
 
 .cardArtists {
@@ -68,6 +71,7 @@ body {
     border-radius: 1vh;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  
     transition: 1s;
+    overflow: hidden;
 }
 
 .cardArtists:hover {
