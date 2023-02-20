@@ -1,44 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost:8080/static/css/artistsDetails.css">
-    <link rel="stylesheet" href="http://localhost:8080/static/css/main.css">
-    <link rel="shortcut icon" href="http://localhost:8080/static/img/absolut_music.jpg">
-    <title>Absolut Music</title>
-</head>
-<header>
-    <img id="navLogo" src="http://localhost:8080/static/img/absolut_music.jpg" alt="logo">
-    <nav>
-        <ul>
-            <li><a class="txt" href="http://localhost:8080">Accueil</a></li>
-            <li><a class="txt" href="http://localhost:8080/libraryArtists">Artistes</a></li>
-            <li><a class="txt" href="http://localhost:8080/about">À propos</a></li>
-        </ul>
-    </nav>
-</header>
-<body>
-    <div>
-        <img src="{{.Image}}" alt="{{.Name}}">
-        <p>{{.Name}}</p>
-        <p>{{.CreationDate}}</p>
-        <p>{{.FirstAlbum}}</p>
-        <p>{{range .Members}} {{.}} {{end}}</p>
-        <div class="tableCardConcertDates">
-        {{ range $key, $value := .ArtistConcertsDatesLocation}}
-            <div class="cardConcertDates">
-            <p>{{ $key }}: {{ range $value }} {{.}} {{ end }}</p>
-            </div>
-        {{ end }}
-        </div>
-    </div>
-</body>
-    <footer>
-            <p>© 2023 Absolut Music</p>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://localhost:8080/static/css/artistsDetails.css">
+        <link rel="stylesheet" href="http://localhost:8080/static/css/main.css">
+        <link rel="shortcut icon" href="http://localhost:8080/static/img/absolut_music.jpg">
+        <title>Absolut Music</title>
+    </head>
+    <header>
+        <img id="navLogo" src="http://localhost:8080/static/img/absolut_music.jpg" alt="logo">
+        <nav>
             <ul>
-                <li><a id="ftxt" href="http://localhost:8080/legalNotice">Mentions légales</a></li>
+                <li><a class="txt" href="http://localhost:8080">Accueil</a></li>
+                <li><a class="txt" href="http://localhost:8080/libraryArtists">Artistes</a></li>
+                <li><a class="txt" href="http://localhost:8080/about">À propos</a></li>
             </ul>
-</footer>
+        </nav>
+    </header>
+    <body>
+        <div>
+            <img src="{{.Image}}" alt="{{.Name}}">
+            <p>{{.Name}}</p>
+            <p>{{.CreationDate}}</p>
+            <p>{{.FirstAlbum}}</p>
+            <p>{{range .Members}} {{.}} {{end}}</p>
+            <div class="tableCardConcertDates">
+            {{ range $key, $value := .ArtistConcertsDatesLocation}}
+                <div class="cardConcertDates">
+                <p>{{ $key }}: {{ range $value }} {{.}} {{ end }}</p>
+                </div>
+            {{ end }}
+            </div>
+        </div>
+    </body>
+    <footer>
+        <p>© 2023 Absolut Music</p>
+        <ul>
+            <li><a id="ftxt" href="http://localhost:8080/legalNotice">Mentions légales</a></li>
+        </ul>
+    </footer>
 </html>
