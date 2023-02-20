@@ -37,7 +37,7 @@ body {
   
   .searchContainer button[type="submit"] {
     background-color: white;
-    background-image: url("../img/loupe.png");
+    background-image: url("http://localhost:8080/static/img/loupe.png");
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
@@ -49,6 +49,7 @@ body {
   }  
 .listcardArtist{
     display: flex;
+    flex-direction: row;
 }
 
 button {
