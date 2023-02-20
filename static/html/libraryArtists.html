@@ -69,7 +69,7 @@
         </fieldset>
     </div>
     <div class="listcardArtist">
-        <form action="/artistsDetails">
+        <form class="formListcardArtist" action="/artistsDetails">
         {{ range .Artistlist }}
             {{ if .IsVisible}}
                 <button class="cardArtists" value="{{.Id}}" name="artistCardId" formmethod="post">
