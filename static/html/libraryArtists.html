@@ -72,8 +72,8 @@
         <form action="/artistsDetails">
         {{ range .Artistlist }}
             {{ if .IsVisible}}
-                <button class="cardartists" value="{{.Id}}" name="artistCardId" formmethod="post">
-                    <img id="imgartists" src="{{.Image}}" alt="{{.Name}}">
+                <button class="cardArtists" value="{{.Id}}" name="artistCardId" formmethod="post">
+                    <img id="imgArtists" src="{{.Image}}" alt="{{.Name}}">
                     <p id="artistNameBtn">{{ .Name }}</p>
                 </button>
             {{ end }}

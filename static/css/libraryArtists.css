@@ -46,17 +46,17 @@ body {
     font-size: 16px;
     padding: 10px 15px;
     cursor: pointer;
-  }  
+  }
+
 .listcardArtist{
     display: flex;
-    flex-direction: row;
 }
 
 button {
   margin-left: 2.75%;
 }
 
-.cardartists {
+.cardArtists {
     display: flex;
     justify-content: center;
     margin: 2.5%;
@@ -67,11 +67,11 @@ button {
     overflow: hidden;
 }
 
-.cardartists:hover {
+.cardArtists:hover {
     transform: translatey(-10px);
 }
 
-#imgartists{
+#imgArtists{
     width: 10vw;
     height: 15vh;
 }
