@@ -51,6 +51,7 @@ header{
     align-items: center;
     flex-direction: row;
     overflow-y: hidden;
+    background-color: white;
 }
 
 nav{
