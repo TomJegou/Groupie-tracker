@@ -81,4 +81,5 @@ body {
 .imgArtists{
     width: 10vw;
     height: 15vh;
+    border-radius: 5%;
 }
