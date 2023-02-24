@@ -26,11 +26,9 @@ body {
 
 /*Header*/
 #navLogo {
-    width: 4.5vw;
-    height: 7vh;
-    margin-left: 2.5vw;
-    padding-top: 1.5vh;
-    padding-bottom: 1.5vh;
+    width: 29.04vw;
+    height: 13.2vh;
+    margin-left: -3vw;
 }
 
 .txt{
@@ -55,7 +53,6 @@ header{
 }
 
 nav{
-    width: 100vw;
     display: flex;
     justify-content: flex-end;
 }
@@ -65,7 +62,7 @@ nav ul{
 }
 
 nav li{
-    margin-right: 10vw;
+    margin-right: 5vw;
 }
 
 /*Footer*/
