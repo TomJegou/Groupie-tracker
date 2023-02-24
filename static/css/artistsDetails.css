@@ -28,8 +28,8 @@ body {
 
 .imgArtistDetailled{
     display: flex;
-    width: 10vw;
-    height: 20vh;
+    width: 20vw;
+    height: 10vh;
     border-radius: 5%;
 }
 
