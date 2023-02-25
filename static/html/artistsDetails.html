@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="http://localhost:8080/static/css/main.css">
         <link rel="shortcut icon" href="http://localhost:8080/static/img/absolut_music.jpg">
         <title>Absolut Music</title>
+        <script src="http://localhost:8080/static/scripts/animationArtistsDetailled.js"></script>
     </head>
     <header>
         <img id="navLogo" src="http://localhost:8080/static/img/absolut_music.jpg" alt="logo">
@@ -22,7 +23,7 @@
     <body>
         <div class="allInfo">
             <div class="divImgArtistDetailled">
-                <img class="imgArtistDetailled" src="{{.Image}}" alt="{{.Name}}">
+                <img id="idImgArtistDetailled" class="imgArtistDetailled" src="{{.Image}}" alt="{{.Name}}">
             </div>
             <p class="infoTextArtist">{{.Name}}</p>
             <p class="infoTextArtist">{{.CreationDate}}</p>
