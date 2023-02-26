@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     background: white;
     background-attachment: fixed;
@@ -44,6 +45,9 @@ body {
     height: 12vh;
     align-items: center;
     background: linear-gradient(to bottom, #292929, #0B0B0B);
+    border-radius: 5px;
+    width: 90%;
+    margin: 5vw;
 }
 
 #idImgArtistDetailled{
@@ -75,6 +79,7 @@ body {
     justify-content: center;
     flex-direction: column;
     background: linear-gradient(to bottom, #090438, #01162F);
+    border-radius: 5%;
     gap: 0vh;
 }
 
