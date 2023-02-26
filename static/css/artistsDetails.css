@@ -3,13 +3,13 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    background: linear-gradient(to bottom, #02326E, #01162F) ;
+    background: white;
     background-attachment: fixed;
     background-repeat: no-repeat;
     gap: 1vh;
   }
 
-.txtArtistDetailled{
+.navTxtArtistDetailled{
     display: flex;
     color: black;
     text-decoration: none;
@@ -19,6 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background: black;
 }
 
 .divImgArtistDetailled{
@@ -44,6 +45,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    background: linear-gradient(to bottom, #02326E, #01162F)
 }
 
 .cardConcertDates{
