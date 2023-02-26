@@ -64,7 +64,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background: linear-gradient(to bottom, #02326E, #01162F);
+    background: linear-gradient(to bottom, #090438, #01162F);
     gap: 0vh;
 }
 
