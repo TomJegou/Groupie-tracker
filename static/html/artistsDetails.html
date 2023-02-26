@@ -37,13 +37,15 @@
                     </fieldset>
                 </div>
             </div>
-            <div class="tableCardConcertDates">
-                <p id="titleTableCardConcertDates">Lieux de Concert : </p>
-                {{ range $key, $value := .ArtistConcertsDatesLocation}}
-                    <div class="cardConcertDates">
-                        <p>{{ $key }}: {{ range $value }} {{.}} {{ end }}</p>
-                    </div>
-                {{ end }}
+            <div class="divtableCardConcertDates">
+                <fieldset class="fieldsetTableCityDate">
+                    <legend id="titleTableCardConcertDates">Lieux de Concert</legend>
+                    {{ range $city, $listDates := .ArtistConcertsDatesLocation}}
+                        <div class="cardConcertDates">
+                            <p>{{ $city }}: {{ range $listDates }} {{.}} {{ end }}</p>
+                        </div>
+                    {{ end }}
+                </fieldset>
             </div>
         </div>
     </body>

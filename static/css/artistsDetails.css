@@ -80,7 +80,6 @@ body {
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    overflow: hidden;
 }
 
 #titleMembreGrp{
@@ -90,7 +89,14 @@ body {
     font-size: 1.5em;
 }
 
-.tableCardConcertDates{
+.fieldsetTableCityDate{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.divtableCardConcertDates{
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -98,6 +104,7 @@ body {
     border-radius: 5px;
     width: 90%;
     margin: 5vw;
+    padding-bottom: 1vh;
 }
 
 .cardConcertDates{
