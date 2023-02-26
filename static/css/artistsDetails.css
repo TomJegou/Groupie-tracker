@@ -58,6 +58,7 @@ body {
 #idImgArtistDetailled{
     display: flex;
     width: 20vw;
+    min-width: 95px;
     height: 10vh;
     border-radius: 5%;
 }
