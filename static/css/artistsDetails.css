@@ -67,6 +67,9 @@ body {
 
 .divMembersArtist{
     background: linear-gradient(to bottom, #292929, #0B0B0B);
+    width: 90%;
+    margin: 5vw;
+    border-radius: 5px;
 }
 
 #titleMembreGrp{
@@ -79,8 +82,9 @@ body {
     justify-content: center;
     flex-direction: column;
     background: linear-gradient(to bottom, #090438, #01162F);
-    border-radius: 5%;
-    gap: 0vh;
+    border-radius: 5px;
+    width: 90%;
+    margin: 5vw;
 }
 
 .cardConcertDates{
