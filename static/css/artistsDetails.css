@@ -26,20 +26,27 @@ body {
     gap: 1vh;
 }
 
-.infoTextArtist{
+.divInfoTxtArtist{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: linear-gradient(to bottom, #1E1E1E, #040404);
+    background: white;
+    gap: 1vh;
+}
+
+.divInfoTxtArtist p{
+    color: black;
 }
 
 .divImgArtistDetailled{
     display: flex;
     justify-content: center;
-    background: white;
+    height: 12vh;
+    align-items: center;
+    background: linear-gradient(to bottom, #292929, #0B0B0B);
 }
 
-.imgArtistDetailled{
+#idImgArtistDetailled{
     display: flex;
     width: 20vw;
     height: 10vh;
