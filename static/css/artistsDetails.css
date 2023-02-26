@@ -9,6 +9,9 @@ body {
     gap: 1vh;
   }
 
+*{
+    font-weight: bold;
+}
 .navTxtArtistDetailled{
     display: flex;
     color: black;
@@ -19,12 +22,21 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background: black;
+    background: white;
+    gap: 1vh;
+}
+
+.infoTextArtist{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: linear-gradient(to bottom, #1E1E1E, #040404);
 }
 
 .divImgArtistDetailled{
     display: flex;
     justify-content: center;
+    background: white;
 }
 
 .imgArtistDetailled{
@@ -45,16 +57,33 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background: linear-gradient(to bottom, #02326E, #01162F)
+    background: linear-gradient(to bottom, #02326E, #01162F);
+    gap: 0vh;
 }
 
 .cardConcertDates{
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
 .cardConcertDates p{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     color: white;
+}
+
+#nameArtist{
+    height: 4vh;
+}
+
+#creationDateArtist{
+    height: 4vh;
+}
+
+#titleTableCardConcertDates{
+    color: white;
+    height: 4vh;
+    font-size: 2em;
+    overflow: hidden;
 }
