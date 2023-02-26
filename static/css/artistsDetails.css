@@ -52,6 +52,7 @@ body {
     border-radius: 5px;
     width: 90%;
     margin: 5vw;
+    overflow: hidden;
 }
 
 #idImgArtistDetailled{
@@ -145,8 +146,29 @@ body {
 @media only screen and (min-width: 500px) {
     #idImgArtistDetailled{
         display: flex;
-        width: 15vw;
+        width: 17vw;
         height: 10vh;
+        border-radius: 5%;
+    }
+  }
+
+  @media only screen and (min-width: 800px) {
+    .divImgArtistDetailled{
+        display: flex;
+        justify-content: center;
+        height: 15vh;
+        align-items: center;
+        background: linear-gradient(to bottom, #292929, #0B0B0B);
+        border-radius: 5px;
+        width: 90%;
+        margin: 5vw;
+        overflow: hidden;
+    }
+
+    #idImgArtistDetailled{
+        display: flex;
+        width: 20vw;
+        height: 14vh;
         border-radius: 5%;
     }
   }
