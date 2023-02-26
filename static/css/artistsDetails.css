@@ -15,6 +15,13 @@ body {
 }
 .navTxtArtistDetailled{
     display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 50vw;
+    height: 8vh;
+}
+
+.navTxtArtistDetailled a{
     color: black;
     text-decoration: none;
 }
