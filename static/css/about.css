@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom ,#0bf,#066aff);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    }
+
+.about {
+    display: flex;
+    justify-content: center;
+    margin-top: 30%;
+    font-size: large;
+    color: white;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom ,#0bf,#066aff);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    }
+
+    .about {
+        display: flex;
+        font-size: xx-large;
+        justify-content: center;
+        margin-top: 7%;
+    }
+}
