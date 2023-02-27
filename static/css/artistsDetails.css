@@ -58,8 +58,8 @@ body {
 #idImgArtistDetailled{
     display: flex;
     width: 20vw;
-    min-width: 95px;
-    min-height: 90px;
+    max-width: 200px;
+    max-height: 151px;
     height: 10vh;
     border-radius: 5%;
 }
@@ -93,6 +93,7 @@ body {
     flex-direction: column;
     color: white;
     font-size: 1.5em;
+    overflow: hidden;
 }
 
 .fieldsetTableCityDate{
@@ -100,6 +101,14 @@ body {
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+#titleTableCardConcertDates{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 2em;
+    overflow: hidden;
 }
 
 .divtableCardConcertDates{
@@ -133,14 +142,9 @@ body {
     height: 4vh;
 }
 
-#titleTableCardConcertDates{
-    color: white;
-    height: 4vh;
-    font-size: 2em;
-    overflow: hidden;
-}
-
 #membersArtist{
+    display: flex;
+    flex-direction: column;
     color: white;
 }
 
@@ -151,9 +155,30 @@ body {
         height: 10vh;
         border-radius: 5%;
     }
+}
+
+@media only screen and (min-width: 650px) {
+    #idImgArtistDetailled{
+        display: flex;
+        width: 17vw;
+        height: 12vh;
+        border-radius: 5%;
+    }
+
+    .divImgArtistDetailled{
+        display: flex;
+        justify-content: center;
+        height: 14vh;
+        width: 90vw;
+        align-items: center;
+        background: linear-gradient(to bottom, #292929, #0B0B0B);
+        border-radius: 5px;
+        margin: 5vw;
+        overflow: hidden;
+    }
   }
 
-  @media only screen and (min-width: 800px) {
+@media only screen and (min-width: 800px) {
     .divImgArtistDetailled{
         display: flex;
         justify-content: center;
@@ -173,4 +198,29 @@ body {
         max-width: 200px;
         border-radius: 5%;
     }
-  }
+}
+
+@media only screen and (min-width: 800px) {
+    .allInfo{
+        flex-direction: row;
+    }
+    .divImgArtistDetailled{
+        display: flex;
+        justify-content: center;
+        height: 15vh;
+        width: 90vw;
+        align-items: center;
+        background: linear-gradient(to bottom, #292929, #0B0B0B);
+        border-radius: 5px;
+        margin: 5vw;
+        overflow: hidden;
+    }
+
+    #idImgArtistDetailled{
+        display: flex;
+        width: 20vw;
+        height: 14vh;
+        max-width: 200px;
+        border-radius: 5%;
+    }
+}
