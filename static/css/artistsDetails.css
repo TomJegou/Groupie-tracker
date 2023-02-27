@@ -87,6 +87,19 @@ body {
     flex-wrap: wrap;
 }
 
+.divMembersArtistName{
+    display: flex;
+    width: 30vw;
+}
+
+.divMembersArtistName p{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    color: white;
+}
+
 #titleMembreGrp{
     display: flex;
     flex-direction: column;
@@ -141,12 +154,6 @@ body {
     height: 4vh;
 }
 
-#membersArtist{
-    display: flex;
-    flex-direction: column;
-    color: white;
-}
-
 @media only screen and (min-width: 500px) {
     #idImgArtistDetailled{
         width: 17vw;
@@ -173,7 +180,9 @@ body {
 
 @media only screen and (min-width: 800px) {
     .allInfo{
-        flex-direction: column;
+        flex-direction: row;
+        align-items: flex-end;
+        flex-wrap: wrap;
     }
 
     .infoTextArtist{
@@ -184,6 +193,7 @@ body {
         padding: 0;
         margin: 0;
         flex-direction: column;
+        width: 30vw;
     }
 
     .divtableCardConcertDates{
@@ -196,9 +206,11 @@ body {
 
     .divImgArtistDetailled{
         margin: 0;
-        padding: 0;
+        padding: 1vw;
+        width: 100%;
         justify-content: center;
         align-items: center;
+        align-self: flex-start;
     }
 
     #idImgArtistDetailled{
