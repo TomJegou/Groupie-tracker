@@ -56,11 +56,10 @@ body {
 }
 
 #idImgArtistDetailled{
-    display: flex;
     width: 20vw;
+    height: 10vh;
     max-width: 200px;
     max-height: 151px;
-    height: 10vh;
     border-radius: 5%;
 }
 
@@ -150,7 +149,6 @@ body {
 
 @media only screen and (min-width: 500px) {
     #idImgArtistDetailled{
-        display: flex;
         width: 17vw;
         height: 10vh;
     }
@@ -158,7 +156,6 @@ body {
 
 @media only screen and (min-width: 650px) {
     #idImgArtistDetailled{
-        display: flex;
         width: 17vw;
         height: 12vh;
     }
@@ -180,21 +177,18 @@ body {
     }
 
     .infoTextArtist{
-        display: flex;
         justify-content: center;
     }
 
     .divMembersArtist{
         padding: 0;
         margin: 0;
-        display: flex;
         flex-direction: column;
     }
 
     .divtableCardConcertDates{
         padding: 0;
         margin: 0;
-        display: flex;
         justify-content: center;
         flex-direction: column;
         width: 50vw;
@@ -203,13 +197,11 @@ body {
     .divImgArtistDetailled{
         margin: 0;
         padding: 0;
-        display: flex;
         justify-content: center;
         align-items: center;
     }
 
     #idImgArtistDetailled{
-        display: flex;
         width: 20vw;
         height: 14vh;
         max-width: 200px;
