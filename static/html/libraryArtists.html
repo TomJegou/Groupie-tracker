@@ -50,6 +50,12 @@
                     <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
                     {{end}}
                     <label>Nombre de membres</label>
+                    {{ if eq .SortingFilter "Firstalbumrelease"}} 
+                    <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease" checked>
+                    {{else}}
+                    <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease">
+                    {{end}}
+                    <label>Date du premier Album</label>
                 </div>
                 <div class="sortingOrderDiv">
                     {{if .Asc}}

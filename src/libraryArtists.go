@@ -3,6 +3,7 @@ package src
 import (
 	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 	"text/template"
 )
@@ -47,6 +48,10 @@ func reverseSliceArtist() {
 	}
 }
 
+func selectionSort(){
+
+}
+
 func sortArtists(sortingOption string, asc bool) {
 	for i := 0; i < len(Artists)-1; i++ {
 		x := i
@@ -63,6 +68,8 @@ func sortArtists(sortingOption string, asc bool) {
 				if len(Artists[j].Members) < len(Artists[x].Members) {
 					x = j
 				}
+			} else if sortingOption == "Firstalbumrelease" {
+				SortFirstAlbum()
 			}
 		}
 		Artists[i], Artists[x] = Artists[x], Artists[i]
