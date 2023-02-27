@@ -58,7 +58,8 @@ body {
 #idImgArtistDetailled{
     display: flex;
     width: 20vw;
-    min-width: 30px;
+    max-width: 200px;
+    max-height: 151px;
     height: 10vh;
     border-radius: 5%;
 }
@@ -102,6 +103,14 @@ body {
     flex-wrap: wrap;
 }
 
+#titleTableCardConcertDates{
+    display: flex;
+    flex-direction: column;
+    color: white;
+    font-size: 2em;
+    overflow: hidden;
+}
+
 .divtableCardConcertDates{
     display: flex;
     justify-content: center;
@@ -133,15 +142,9 @@ body {
     height: 4vh;
 }
 
-#titleTableCardConcertDates{
+#membersArtist{
     display: flex;
     flex-direction: column;
-    color: white;
-    font-size: 2em;
-    overflow: hidden;
-}
-
-#membersArtist{
     color: white;
 }
 
