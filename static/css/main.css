@@ -18,7 +18,6 @@ html{
 
 body {
     margin: 0;
-    margin: 0px;
     display: flex;
     flex-direction: column;
     min-height: 100%;
@@ -26,9 +25,8 @@ body {
 
 /*Header*/
 #navLogo {
-    width: 29.04vw;
-    height: 13.2vh;
-    margin-left: -3vw;
+    width: 25vw;
+    height: 13vh;
 }
 
 .txt{
@@ -46,6 +44,7 @@ body {
 header{
     height: 8vh;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     flex-direction: row;
     overflow-y: hidden;
@@ -54,7 +53,6 @@ header{
 
 nav{
     display: flex;
-    justify-content: flex-end;
 }
 
 nav ul{
@@ -87,4 +85,72 @@ footer a{
 
 #ftxt:hover{
     color: rgb(222, 222, 222);
+}
+
+@media screen and (min-width: 768px) {
+    /*Header*/
+#navLogo {
+    width: 8vw;
+    height: 12vh;
+    margin-left: 3%;
+}
+
+.txt{
+    color: black;
+}
+
+.txt:link{
+    text-decoration: none; 
+}
+
+.txt:hover{
+    color: gray;
+}
+
+header{
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    overflow-y: hidden;
+    background-color: white;
+}
+
+nav{
+    display: flex;
+}
+
+nav ul{
+    display: flex;
+}
+
+nav li{
+    margin-right: 5vw;
+}
+
+/*Footer*/
+footer{
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    margin-top: auto;
+
+    color: white;
+}
+
+footer a{
+    color: white;
+}
+
+#ftxt:link{
+    text-decoration: none; 
+}
+
+#ftxt:hover{
+    color: rgb(222, 222, 222);
+    }
 }
