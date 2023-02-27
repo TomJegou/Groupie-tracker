@@ -1,10 +1,8 @@
 import {THREE} from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-
 let container;
 let camera;
 let scene;
-let house;
+let casque;
 
 function init(){
     container = document.querySelector('.scene')
@@ -17,7 +15,15 @@ function init(){
 
     camera.position.set(-50, 40, 350);
 
+    renderer = new THREE.WebGLRenderer({antialias:true, alpha: true});
+    renderer.setSize(container.clientWidth,container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio)
+    container.appendChild(renderer.domElement);
+
     let loader = new THREE.GLTFLoader();
-    loader.load("../img/casque.gltf")
+    loader.load("../img/casque.gltf", function(gltf){
+        scene.add(gltf.scene);
+    });
 
 }
+init()
