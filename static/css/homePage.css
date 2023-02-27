@@ -1,22 +1,23 @@
-
-.containerone{
+.containerone {
     height: 90vh;
     width: 100vw;
     background: linear-gradient(to bottom,#0bf,#066aff);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
-.menutextwelcome{
+
+.menutextwelcome {
     height: auto;
     width: 50vw;
     color: white;
 }
 
-.containertwo{
-    height: 90vh;
+.containertwo {
+    overflow-y: hidden;
+    height: 19.3vh;
     width: 100vw;
-    display: flex;
+    display: inline;
     justify-content: space-between;
     align-items: center;
 }
@@ -25,4 +26,42 @@
     position: relative;
     bottom: -1%;
     width: 145%;
+}
+
+@media screen and (min-width: 768px) {
+
+    .containerone {
+        height: 90vh;
+        width: 100vw;
+        background: linear-gradient(to bottom,#0bf,#066aff);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .menutextwelcome {
+        height: auto;
+        width: 50vw;
+        color: white;
+    }
+    
+    .containertwo {
+        overflow-y: hidden;
+        height: 17vh;
+        width: 100vw;
+        display: inline;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    #title {
+        display: flex;
+        justify-content: center;
+    }
+    
+    .spotify {
+        position: relative;
+        bottom: -1%;
+        width: 144%;
+    }  
 }
