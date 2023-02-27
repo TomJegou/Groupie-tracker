@@ -185,6 +185,10 @@ body {
         flex-wrap: wrap;
     }
 
+    .divInfoTxtArtist{
+        width: 20vw;
+    }
+
     .infoTextArtist{
         justify-content: center;
     }
@@ -192,8 +196,11 @@ body {
     .divMembersArtist{
         padding: 0;
         margin: 0;
-        flex-direction: column;
-        width: 30vw;
+        width: 20vw;
+    }
+
+    .divMembersArtistName{
+        width: 15vw;
     }
 
     .divtableCardConcertDates{
