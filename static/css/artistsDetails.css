@@ -203,12 +203,43 @@ body {
 @media only screen and (min-width: 800px) {
     .allInfo{
         flex-direction: row;
+        justify-content: flex-start;
     }
+
+    .infoTextArtist{
+        display: flex;
+        justify-content: center;
+        height: 5vh;
+        color: white;
+    }
+
+    .divMembersArtist{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(to bottom, #292929, #0B0B0B);
+        border-radius: 5px;
+        width: 50vw;
+        height: 50vh;
+    }
+
+    .divtableCardConcertDates{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        background: linear-gradient(to bottom, #090438, #01162F);
+        border-radius: 5px;
+        width: 50vw;
+    }
+
     .divImgArtistDetailled{
         display: flex;
         justify-content: center;
         height: 15vh;
-        width: 90vw;
+        width: 50vw;
         align-items: center;
         background: linear-gradient(to bottom, #292929, #0B0B0B);
         border-radius: 5px;
