@@ -23,7 +23,7 @@ function init(){
     container.appendChild(renderer.domElement);
 
     let loader = new THREE.GLTFLoader();
-    loader.load("../img/casque.gltf", function(gltf){
+    loader.load("http://localhost:8080/static/img/casque.gltf", function(gltf){
         scene.add(gltf.scene);
     });
 
