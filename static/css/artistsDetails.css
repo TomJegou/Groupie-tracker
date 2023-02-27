@@ -166,19 +166,15 @@ body {
     .divImgArtistDetailled{
         display: flex;
         justify-content: center;
-        height: 14vh;
         align-items: center;
         border-radius: 5px;
+        height: 14vh;
         margin: 5vw;
         overflow: hidden;
     }
 }
 
 @media only screen and (min-width: 800px) {
-    body{
-        flex-direction: column;
-    }
-
     .allInfo{
         flex-direction: column;
     }
@@ -186,7 +182,6 @@ body {
     .infoTextArtist{
         display: flex;
         justify-content: center;
-        height: 5vh;
     }
 
     .divMembersArtist{
@@ -206,11 +201,11 @@ body {
     }
 
     .divImgArtistDetailled{
+        margin: 0;
+        padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
-        margin: 0;
-        padding: 0;
     }
 
     #idImgArtistDetailled{
