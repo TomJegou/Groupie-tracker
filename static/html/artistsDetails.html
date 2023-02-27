@@ -28,14 +28,14 @@
                 <p id="nameArtist" class="infoTextArtist">{{.Name}}</p>
                 <p id="creationDateArtist" class="infoTextArtist">{{.CreationDate}}</p>
                 <p id="firstAlbumArtist" class="infoTextArtist">{{.FirstAlbum}}</p>
-                <div class="divMembersArtist">
-                    <fieldset class="fieldsetArtistsMembers">
-                        <legend id="titleMembreGrp">Membres du Groupe</legend>
-                        {{range .Members}}
-                        <p id="membersArtist" class="infoTextArtist"> {{.}}</p>
-                        {{end}}
-                    </fieldset>
-                </div>
+            </div>
+            <div class="divMembersArtist">
+                <fieldset class="fieldsetArtistsMembers">
+                    <legend id="titleMembreGrp">Membres du Groupe</legend>
+                    {{range .Members}}
+                    <p id="membersArtist" class="infoTextArtist"> {{.}}</p>
+                    {{end}}
+                </fieldset>
             </div>
             <div class="divtableCardConcertDates">
                 <fieldset class="fieldsetTableCityDate">
