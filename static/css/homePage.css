@@ -1,4 +1,5 @@
 .containerone {
+    overflow-y: hidden;
     height: 90vh;
     width: 100vw;
     background: linear-gradient(to bottom,#0bf,#066aff);
@@ -17,14 +18,14 @@
     overflow-y: hidden;
     height: 19.8vh;
     width: 100vw;
-    display: inline;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
 }
 
 .spotify {
-    position: relative;
-    bottom: -1%;
+    display: flex;
     width: 145%;
 }
 
@@ -50,19 +51,18 @@
         height: 17.4vh;
         width: 100vw;
         display: flex;
-        justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: center;
         align-items: center;
     }
 
     #title {
         display: flex;
-        justify-content: center;
+        align-items: center;
     }
     
     .spotify {
         display: flex;
-        position: relative;
-        bottom: -1%;
-        width: 144%;
+        width: 145%;
     }  
 }
