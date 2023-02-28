@@ -7,10 +7,18 @@ import (
 	"text/template"
 )
 
+type Page struct {
+	Index   int
+	IsFirst bool
+	IsLast  bool
+	Content *[]Artist
+}
+
 type LibraryArtists struct {
 	Artistlist    *[]Artist
 	SortingFilter string
 	Asc           bool
+	ThePage       *Page
 }
 
 var LibArtists LibraryArtists
