@@ -30,10 +30,13 @@
     </div>
     <div class="divButtonPagination">
         <form action="/libraryArtists">
-            {{if}}
-            <button class="buttonPagination" id="idButtonPrev" value="prev" name="pagination" formmethod="post">Prev</button>
-            <p>{{.IdPageToDisplay}}</p>
-            <button class="buttonPagination" id="idButtonNext" value="next" name="pagination" formmethod="post">Next</button>
+            {{ if ne .ThePage.IsFirst true}}
+                <button class="buttonPagination" id="idButtonPrev" value="prev" name="pagination" formmethod="post">Prev</button>
+            {{ end }}
+            <p>{{ .IdPageToDisplay }}</p>
+            {{ if ne .ThePage.IsLast true }}
+                <button class="buttonPagination" id="idButtonNext" value="next" name="pagination" formmethod="post">Next</button>
+            {{ end }}
         </form>
     </div>
     <div class="divNbrElemDisplayed">
