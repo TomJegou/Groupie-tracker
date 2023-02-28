@@ -20,6 +20,7 @@ type LibraryArtists struct {
 	SortingFilter   string
 	Asc             bool
 	ThePage         *Page
+	ContentOfPage   []Artist
 	IdPageToDisplay int
 }
 
@@ -117,9 +118,6 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		LibArtists.IdPageToDisplay = 0
 		LibArtists.SortingFilter = "name"
 		PageCapacity = 10
-		setAllArtistVisibility(true)
-		dispatchIntoPage()
-		LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 		LibArtists.Asc = true
 		IsStartServer = false
 	}
@@ -159,6 +157,8 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
-	fmt.Println(LibArtists.ThePage.Content)
+	dispatchIntoPage()
+	LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
+	LibArtists.ContentOfPage = LibArtists.ThePage.Content
 	template.Execute(w, LibArtists)
 }
