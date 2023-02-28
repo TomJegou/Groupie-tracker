@@ -21,7 +21,6 @@ type LibraryArtists struct {
 	SortingFilter   string
 	Asc             bool
 	ThePage         *Page
-	ContentOfPage   []Artist
 	IdPageToDisplay int
 }
 
@@ -161,6 +160,5 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
 	dispatchIntoPage()
 	LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
-	LibArtists.ContentOfPage = LibArtists.ThePage.Content
 	template.Execute(w, LibArtists)
 }
