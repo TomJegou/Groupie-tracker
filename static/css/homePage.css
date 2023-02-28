@@ -49,7 +49,7 @@
         overflow-y: hidden;
         height: 17.4vh;
         width: 100vw;
-        display: inline;
+        display: flex;
         justify-content: space-between;
         align-items: center;
     }
@@ -60,6 +60,7 @@
     }
     
     .spotify {
+        display: flex;
         position: relative;
         bottom: -1%;
         width: 144%;
