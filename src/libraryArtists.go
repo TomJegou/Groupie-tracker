@@ -8,10 +8,11 @@ import (
 )
 
 type Page struct {
-	Index   int
-	IsFirst bool
-	IsLast  bool
-	Content *[]Artist
+	Index    int
+	IsFirst  bool
+	IsLast   bool
+	Capacity int
+	Content  []Artist
 }
 
 type LibraryArtists struct {
@@ -21,7 +22,9 @@ type LibraryArtists struct {
 	ThePage       *Page
 }
 
+var PageCapacity int
 var LibArtists LibraryArtists
+var ListPages []Page
 
 func setArtistVisibility(a *Artist, isVisible bool) {
 	a.IsVisible = isVisible
@@ -59,6 +62,22 @@ func selectionSort() {
 
 }
 
+func dispatchIntoPage() {
+	pageCount := 0
+	countArtist := 0
+	page := Page{Index: pageCount, Capacity: PageCapacity}
+	for i := 0; i < len(Artists); i++ {
+		if countArtist == PageCapacity {
+			ListPages = append(ListPages, page)
+			pageCount++
+			page = Page{Index: pageCount, Capacity: PageCapacity}
+			countArtist = 0
+		}
+		page.Content = append(page.Content, Artists[i])
+		countArtist++
+	}
+}
+
 func sortArtists(sortingOption string, asc bool) {
 	for i := 0; i < len(Artists)-1; i++ {
 		x := i
@@ -94,9 +113,11 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	LibArtists.Artistlist = &Artists
 	if IsStartServer {
 		LibArtists.SortingFilter = "name"
+		PageCapacity = 10
 		LibArtists.Asc = true
 		IsStartServer = false
 	}
+	dispatchIntoPage()
 	template, errors := template.ParseFiles("static/html/libraryArtists.html")
 	if errors != nil {
 		fmt.Println("Error Parsing Template")
