@@ -1,6 +1,6 @@
 .containerone {
     overflow-y: hidden;
-    height: 90vh;
+    height: 100vh;
     width: 100vw;
     background: linear-gradient(to bottom,#0bf,#066aff);
     display: flex;
@@ -32,7 +32,7 @@
 @media screen and (min-width: 768px) {
 
     .containerone {
-        height: 90vh;
+        height: 100vh;
         width: 100vw;
         background: linear-gradient(to bottom,#0bf,#066aff);
         display: flex;
