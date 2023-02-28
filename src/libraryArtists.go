@@ -2,18 +2,32 @@ package src
 
 import (
 	"fmt"
+	"math"
 	"net/http"
 	"strings"
 	"text/template"
 )
 
-type LibraryArtists struct {
-	Artistlist    *[]Artist
-	SortingFilter string
-	Asc           bool
+type Page struct {
+	Index    int
+	IsFirst  bool
+	IsLast   bool
+	Capacity int
+	Content  []Artist
 }
 
+type LibraryArtists struct {
+	Artistlist      *[]Artist
+	SortingFilter   string
+	Asc             bool
+	ThePage         *Page
+	ContentOfPage   []Artist
+	IdPageToDisplay int
+}
+
+var PageCapacity int
 var LibArtists LibraryArtists
+var ListPages []Page
 
 func setArtistVisibility(a *Artist, isVisible bool) {
 	a.IsVisible = isVisible
@@ -51,6 +65,24 @@ func selectionSort() {
 
 }
 
+func dispatchIntoPage() {
+	pageCount := 0
+	countArtist := 0
+	page := Page{Index: pageCount, Capacity: PageCapacity, IsFirst: true}
+	for i := 0; i < len(Artists); i++ {
+		if countArtist == PageCapacity {
+			ListPages = append(ListPages, page)
+			pageCount++
+			page = Page{Index: pageCount, Capacity: PageCapacity, IsFirst: false, IsLast: false}
+			countArtist = 0
+		}
+		page.Content = append(page.Content, Artists[i])
+		countArtist++
+	}
+	page.IsLast = true
+	ListPages = append(ListPages, page)
+}
+
 func sortArtists(sortingOption string, asc bool) {
 	for i := 0; i < len(Artists)-1; i++ {
 		x := i
@@ -83,12 +115,14 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
 		OnLibraryArtists = true
 	}
-	LibArtists.Artistlist = &Artists
 	if IsStartServer {
+		LibArtists.IdPageToDisplay = 0
 		LibArtists.SortingFilter = "name"
+		PageCapacity = 10
 		LibArtists.Asc = true
 		IsStartServer = false
 	}
+	LibArtists.Artistlist = &Artists
 	template, errors := template.ParseFiles("static/html/libraryArtists.html")
 	if errors != nil {
 		fmt.Println("Error Parsing Template")
@@ -100,6 +134,15 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		searchContent := r.FormValue("searchBar")
 		sortingOption := r.FormValue("sortFilter")
 		sortingOrder := r.FormValue("sortOrder")
+		paginationRequest := r.FormValue("pagination")
+		if len(paginationRequest) != 0 {
+			if paginationRequest == "next" {
+				LibArtists.IdPageToDisplay = int(math.Min(float64(len(ListPages)-1), float64(LibArtists.IdPageToDisplay+1)))
+			} else {
+				LibArtists.IdPageToDisplay = int(math.Max(float64(0), float64(LibArtists.IdPageToDisplay-1)))
+			}
+			LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
+		}
 		if len(sortingOption) != 0 {
 			LibArtists.SortingFilter = sortingOption
 		}
@@ -115,5 +158,8 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
+	dispatchIntoPage()
+	LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
+	LibArtists.ContentOfPage = LibArtists.ThePage.Content
 	template.Execute(w, LibArtists)
 }
