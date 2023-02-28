@@ -35,6 +35,19 @@
             <button class="buttonPagination" id="idButtonNext" value="next" name="pagination" formmethod="post">Next</button>
         </form>
     </div>
+    <div class="divNbrElemDisplayed">
+        <fieldset><legend>Nombre d'éléments</legend>
+            <form action="/libraryArtists">
+                <input type="radio" name="nbrElem" value="10">
+                <label>10</label>
+                <input type="radio" name="nbrElem" value="20">
+                <label>20</label>
+                <input type="radio" name="nbrElem" value="30">
+                <label>30</label>
+                <input type="submit" formmethod="post" value=">">
+            </form>
+        </fieldset>
+    </div>
     <div class="sortingFilter">
         <fieldset><legend>Trier par</legend>
             <form action="/libraryArtists">

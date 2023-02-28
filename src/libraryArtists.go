@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math"
 	"net/http"
+	"strconv"
 	"strings"
 	"text/template"
 )
@@ -135,6 +136,13 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		sortingOption := r.FormValue("sortFilter")
 		sortingOrder := r.FormValue("sortOrder")
 		paginationRequest := r.FormValue("pagination")
+		numberOfElem := r.FormValue("nbrElem")
+		if len(numberOfElem) != 0 {
+			PageCapacity, errors = strconv.Atoi(numberOfElem)
+			if errors != nil {
+				fmt.Println(errors)
+			}
+		}
 		if len(paginationRequest) != 0 {
 			if paginationRequest == "next" {
 				LibArtists.IdPageToDisplay = int(math.Min(float64(len(ListPages)-1), float64(LibArtists.IdPageToDisplay+1)))
