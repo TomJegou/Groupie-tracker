@@ -38,11 +38,23 @@
     <div class="divNbrElemDisplayed">
         <fieldset><legend>Nombre d'éléments</legend>
             <form action="/libraryArtists">
-                <input type="radio" name="nbrElem" value="10">
-                <label>10</label>
-                <input type="radio" name="nbrElem" value="20">
-                <label>20</label>
-                <input type="radio" name="nbrElem" value="30">
+                {{ if eq .ThePage.Capacity 10 }}
+                    <input type="radio" name="nbrElem" value="10" checked>
+                {{else}}
+                    <input type="radio" name="nbrElem" value="10">
+                {{ end }}
+                    <label>10</label>
+                {{ if eq .ThePage.Capacity 20 }}
+                    <input type="radio" name="nbrElem" value="20" checked>
+                {{else}}
+                    <input type="radio" name="nbrElem" value="20">
+                {{ end }}
+                    <label>20</label>
+                {{ if eq .ThePage.Capacity 30 }}
+                    <input type="radio" name="nbrElem" value="30" checked>
+                {{else}}
+                    <input type="radio" name="nbrElem" value="30">
+                {{ end }}
                 <label>30</label>
                 <input type="submit" formmethod="post" value=">">
             </form>
