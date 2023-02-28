@@ -66,6 +66,7 @@ func selectionSort() {
 }
 
 func dispatchIntoPage() {
+	ListPages = []Page{}
 	pageCount := 0
 	countArtist := 0
 	page := Page{Index: pageCount, Capacity: PageCapacity, IsFirst: true}
