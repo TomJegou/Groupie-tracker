@@ -30,6 +30,7 @@
     </div>
     <div class="divButtonPagination">
         <form action="/libraryArtists">
+            {{if}}
             <button class="buttonPagination" id="idButtonPrev" value="prev" name="pagination" formmethod="post">Prev</button>
             <p>{{.IdPageToDisplay}}</p>
             <button class="buttonPagination" id="idButtonNext" value="next" name="pagination" formmethod="post">Next</button>
@@ -40,19 +41,19 @@
             <form action="/libraryArtists">
                 {{ if eq .ThePage.Capacity 10 }}
                     <input type="radio" name="nbrElem" value="10" checked>
-                {{else}}
+                {{ else }}
                     <input type="radio" name="nbrElem" value="10">
                 {{ end }}
                     <label>10</label>
                 {{ if eq .ThePage.Capacity 20 }}
                     <input type="radio" name="nbrElem" value="20" checked>
-                {{else}}
+                {{ else }}
                     <input type="radio" name="nbrElem" value="20">
                 {{ end }}
                     <label>20</label>
                 {{ if eq .ThePage.Capacity 30 }}
                     <input type="radio" name="nbrElem" value="30" checked>
-                {{else}}
+                {{ else }}
                     <input type="radio" name="nbrElem" value="30">
                 {{ end }}
                 <label>30</label>
@@ -64,43 +65,43 @@
         <fieldset><legend>Trier par</legend>
             <form action="/libraryArtists">
                 <div class="sortingFilterDiv">
-                    {{ if eq .SortingFilter "name"}} 
+                    {{ if eq .SortingFilter "name" }} 
                         <input id="radioSortingName" type="radio" name="sortFilter" value="name" checked>
-                    {{else}}
+                    {{ else }}
                         <input id="radioSortingName" type="radio" name="sortFilter" value="name">
-                    {{end}}
+                    {{ end }}
                     <label>Name</label>
-                    {{ if eq .SortingFilter "creationDate"}}
+                    {{ if eq .SortingFilter "creationDate" }}
                         <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate" checked>
-                    {{else}}
+                    {{ else }}
                         <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate">
-                    {{end}}
+                    {{ end }}
                     <label>Date de Création</label>
-                    {{ if eq .SortingFilter "numberMembers"}}
+                    {{ if eq .SortingFilter "numberMembers" }}
                         <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers" checked>
-                    {{else}}
+                    {{ else }}
                         <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
-                    {{end}}
+                    {{ end }}
                     <label>Nombre de membres</label>
-                    {{ if eq .SortingFilter "Firstalbumrelease"}} 
+                    {{ if eq .SortingFilter "Firstalbumrelease" }} 
                         <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease" checked>
-                    {{else}}
+                    {{ else }}
                         <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease">
-                    {{end}}
+                    {{ end }}
                     <label>Date du premier Album</label>
                 </div>
                 <div class="sortingOrderDiv">
-                    {{if .Asc}}
+                    {{ if .Asc }}
                     <input id="radioSortingOrder" type="radio" name="sortOrder" value="asc" checked>
                     <label>Croissant</label>
                     <input id="radioSortingOrder" type="radio" name="sortOrder" value="desc">
                     <label>Décroissant</label>
-                    {{else}}
+                    {{ else }}
                     <input id="radioSortingOrder" type="radio" name="sortOrder" value="asc">
                     <label>Croissant</label>
                     <input id="radioSortingOrder" type="radio" name="sortOrder" value="desc" checked>
                     <label>Décroissant</label>
-                    {{end}}
+                    {{ end }}
                 </div>
                 <input id="submitInputSort" type="submit" formmethod="post" value="Appliquer">
             </form>
@@ -109,9 +110,9 @@
     <div class="listcardArtist">
         <form class="formListcardArtist" action="/artistsDetails">
         {{ range .ThePage.Content }}
-            {{ if .IsVisible}}
-                <button class="cardArtists" value="{{.Id}}" name="artistCardId" formmethod="post">
-                    <img class="imgArtists" src="{{.Image}}" alt="{{.Name}}">
+            {{ if .IsVisible }}
+                <button class="cardArtists" value="{{ .Id }}" name="artistCardId" formmethod="post">
+                    <img class="imgArtists" src="{{ .Image }}" alt="{{ .Name }}">
                     <p id="artistNameBtn">{{ .Name }}</p>
                 </button>
             {{ end }}
