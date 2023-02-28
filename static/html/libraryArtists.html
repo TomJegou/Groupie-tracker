@@ -30,8 +30,8 @@
     </div>
     <div class="divButtonPagination">
         <form action="/libraryArtists">
-            <button class="buttonPagination" id="idButtonPrev" value="prev" name="pagination">Prev</button>
-            <button class="buttonPagination" id="idButtonNext" value="next" name="pagination">Next</button>
+            <button class="buttonPagination" id="idButtonPrev" value="prev" name="pagination" formmethod="post">Prev</button>
+            <button class="buttonPagination" id="idButtonNext" value="next" name="pagination" formmethod="post">Next</button>
         </form>
     </div>
     <div class="sortingFilter">
@@ -82,7 +82,7 @@
     </div>
     <div class="listcardArtist">
         <form class="formListcardArtist" action="/artistsDetails">
-        {{ range .Artistlist }}
+        {{ range .Content }}
             {{ if .IsVisible}}
                 <button class="cardArtists" value="{{.Id}}" name="artistCardId" formmethod="post">
                     <img class="imgArtists" src="{{.Image}}" alt="{{.Name}}">
