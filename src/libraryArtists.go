@@ -144,12 +144,16 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		if len(paginationRequest) != 0 {
-			if paginationRequest == "next" {
-				LibArtists.IdPageToDisplay = int(math.Min(float64(len(ListPages)-1), float64(LibArtists.IdPageToDisplay+1)))
+			if len(ListPages) > 0 {
+				if paginationRequest == "next" {
+					LibArtists.IdPageToDisplay = int(math.Min(float64(len(ListPages)-1), float64(LibArtists.IdPageToDisplay+1)))
+				} else {
+					LibArtists.IdPageToDisplay = int(math.Max(float64(0), float64(LibArtists.IdPageToDisplay-1)))
+				}
+				LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 			} else {
-				LibArtists.IdPageToDisplay = int(math.Max(float64(0), float64(LibArtists.IdPageToDisplay-1)))
+				http.Redirect(w, r, "/libraryArtists", http.StatusFound)
 			}
-			LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 		}
 		if len(sortingOption) != 0 {
 			LibArtists.SortingFilter = sortingOption
