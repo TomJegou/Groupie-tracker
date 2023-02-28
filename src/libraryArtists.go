@@ -2,6 +2,7 @@ package src
 
 import (
 	"fmt"
+	"math"
 	"net/http"
 	"strings"
 	"text/template"
@@ -136,9 +137,9 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		paginationRequest := r.FormValue("pagination")
 		if len(paginationRequest) != 0 {
 			if paginationRequest == "next" {
-				LibArtists.IdPageToDisplay++
+				LibArtists.IdPageToDisplay = int(math.Min(float64(len(ListPages)-1), float64(LibArtists.IdPageToDisplay+1)))
 			} else {
-				LibArtists.IdPageToDisplay--
+				LibArtists.IdPageToDisplay = int(math.Max(float64(0), float64(LibArtists.IdPageToDisplay-1)))
 			}
 			LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 		}
