@@ -30,8 +30,8 @@
     </div>
     <div class="divButtonPagination">
         <form action="/libraryArtists">
-            <p>{{.IdPageToDisplay}}</p>
             <button class="buttonPagination" id="idButtonPrev" value="prev" name="pagination" formmethod="post">Prev</button>
+            <p>{{.IdPageToDisplay}}</p>
             <button class="buttonPagination" id="idButtonNext" value="next" name="pagination" formmethod="post">Next</button>
         </form>
     </div>
@@ -40,27 +40,27 @@
             <form action="/libraryArtists">
                 <div class="sortingFilterDiv">
                     {{ if eq .SortingFilter "name"}} 
-                    <input id="radioSortingName" type="radio" name="sortFilter" value="name" checked>
+                        <input id="radioSortingName" type="radio" name="sortFilter" value="name" checked>
                     {{else}}
-                    <input id="radioSortingName" type="radio" name="sortFilter" value="name">
+                        <input id="radioSortingName" type="radio" name="sortFilter" value="name">
                     {{end}}
                     <label>Name</label>
                     {{ if eq .SortingFilter "creationDate"}}
-                    <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate" checked>
+                        <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate" checked>
                     {{else}}
-                    <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate">
+                        <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate">
                     {{end}}
                     <label>Date de Création</label>
                     {{ if eq .SortingFilter "numberMembers"}}
-                    <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers" checked>
+                        <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers" checked>
                     {{else}}
-                    <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
+                        <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
                     {{end}}
                     <label>Nombre de membres</label>
                     {{ if eq .SortingFilter "Firstalbumrelease"}} 
-                    <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease" checked>
+                        <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease" checked>
                     {{else}}
-                    <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease">
+                        <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease">
                     {{end}}
                     <label>Date du premier Album</label>
                 </div>
