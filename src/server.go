@@ -6,16 +6,11 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"sync"
+	"text/template"
 )
 
-const URLARTISTS = "https://groupietrackers.herokuapp.com/api/artists"
-const URLDATES = "https://groupietrackers.herokuapp.com/api/dates"
-const URLLOCATIONS = "https://groupietrackers.herokuapp.com/api/locations"
-const URLRELATION = "https://groupietrackers.herokuapp.com/api/relation"
-
-var IsStartServer = true
-var OnLibraryArtists = false
-
+/*Structures*/
 type Artist struct {
 	Id           int
 	Image        string
@@ -44,11 +39,25 @@ type Relation struct {
 	DatesLocations map[string][]string
 }
 
+/*Constances*/
+const URLARTISTS = "https://groupietrackers.herokuapp.com/api/artists"
+const URLDATES = "https://groupietrackers.herokuapp.com/api/dates"
+const URLLOCATIONS = "https://groupietrackers.herokuapp.com/api/locations"
+const URLRELATION = "https://groupietrackers.herokuapp.com/api/relation"
+
+/*Variables*/
+var IsStartServer = true
+var OnLibraryArtists = false
 var Artists []Artist
 var Dates map[string][]Date
 var Locations map[string][]Location
 var Relations map[string][]Relation
 
+/*Channels*/
+var ChanArtists chan (*[]Artist)
+var ChanTemplates chan (*template.Template)
+
+/*Functions*/
 func GetApi(url string) string {
 	req, errors := http.NewRequest("GET", url, nil)
 	if errors != nil {
@@ -76,10 +85,11 @@ func PutBodyResponseApiIntoStruct(url string, structure interface{}) {
 	}
 }
 
-func StartServer() {
+func StartServer(wg *sync.WaitGroup) {
+	defer wg.Done()
 	FileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static", FileServer))
-	http.HandleFunc("/", Accueil)
+	http.HandleFunc("/", Home)
 	http.HandleFunc("/libraryArtists", libraryArtists)
 	http.HandleFunc("/artistsDetails", ArtistsDetailsHandlerFunc)
 	http.HandleFunc("/about", AboutHandlerFunc)

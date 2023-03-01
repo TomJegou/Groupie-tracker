@@ -2,8 +2,12 @@ package main
 
 import (
 	"absolut-music/src"
+	"sync"
 )
 
 func main() {
-	src.StartServer()
+	var wg sync.WaitGroup
+	wg.Add(1)
+	src.StartServer(&wg)
+	wg.Wait()
 }
