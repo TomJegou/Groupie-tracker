@@ -6,7 +6,6 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
-	"text/template"
 )
 
 type Page struct {
@@ -132,11 +131,9 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 		IsStartServer = false
 	}
-	template, errors := template.ParseFiles("static/html/libraryArtists.html")
-	if errors != nil {
-		fmt.Println("Error Parsing Template")
-		fmt.Println(errors)
-	}
+	go ParseHtml("static/html/libraryArtists.html")
+	//template := <-ChanTemplates
+	fmt.Println(<-ChanTemplates)
 	if r.Method == "GET" {
 		setAllArtistVisibility(true)
 		needDispatch = true
@@ -147,7 +144,8 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		paginationRequest := r.FormValue("pagination")
 		numberOfElem := r.FormValue("nbrElem")
 		if len(numberOfElem) != 0 {
-			PageCapacity, errors = strconv.Atoi(numberOfElem)
+			pageCapacityTmp, errors := strconv.Atoi(numberOfElem)
+			PageCapacity = pageCapacityTmp
 			if errors != nil {
 				fmt.Println(errors)
 			}
@@ -191,5 +189,5 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		dispatchIntoPage()
 		LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 	}
-	template.Execute(w, LibArtists)
+	//template.Execute(w, LibArtists)
 }
