@@ -99,8 +99,8 @@ func StartServer(wg *sync.WaitGroup) {
 	http.HandleFunc("/artistsDetails", ArtistsDetailsHandlerFunc)
 	http.HandleFunc("/about", AboutHandlerFunc)
 	http.HandleFunc("/legalNotice", LegalNoticeHandlerFunc)
-	fmt.Println("http://localhost:8080")
-	err := http.ListenAndServe(":8080", nil)
+	fmt.Println("10.42.0.145:80")
+	err := http.ListenAndServe("10.42.0.145:80", nil)
 	if err != nil {
 		fmt.Println(err)
 		fmt.Println("Error starting the server")
