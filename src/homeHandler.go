@@ -1,17 +1,12 @@
 package src
 
 import (
-	"fmt"
 	"net/http"
-	"text/template"
 )
 
 func Home(w http.ResponseWriter, r *http.Request) {
 	OnLibraryArtists = false
-	template, errors := template.ParseFiles("static/html/index.html")
-	if errors != nil {
-		fmt.Println("Error Parsing Template")
-		fmt.Println(errors)
-	}
+	go ParseHtml("static/html/index.html")
+	template := <-ChanTemplates
 	template.Execute(w, nil)
 }

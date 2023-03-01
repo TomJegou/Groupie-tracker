@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"text/template"
 )
 
 type ArtistDetailled struct {
@@ -32,19 +31,16 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("Error converting string to integer")
 		fmt.Println(err)
 	} else {
-		template, err := template.ParseFiles("static/html/artistsDetails.html")
-		if err != nil {
-			fmt.Println("Error parsing template artistsDetails.html")
-			fmt.Println(err)
+		go ParseHtml("static/html/artistsDetails.html")
+		template := <-ChanTemplates
+		template.Execute(w, nil)
+		artist, errorId := findArtistById(Artists, idArtist)
+		if errorId != "" {
+			fmt.Println(errorId)
+			http.Redirect(w, r, "/libraryArtists", http.StatusFound)
 		} else {
-			artist, errorId := findArtistById(Artists, idArtist)
-			if errorId != "" {
-				fmt.Println(errorId)
-				http.Redirect(w, r, "/libraryArtists", http.StatusFound)
-			} else {
-				artistDetailled := ArtistDetailled{Artist: &artist, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
-				template.Execute(w, artistDetailled)
-			}
+			artistDetailled := ArtistDetailled{Artist: &artist, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
+			template.Execute(w, artistDetailled)
 		}
 	}
 }

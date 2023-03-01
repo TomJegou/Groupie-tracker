@@ -1,17 +1,12 @@
 package src
 
 import (
-	"fmt"
 	"net/http"
-	"text/template"
 )
 
 func LegalNoticeHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	OnLibraryArtists = false
-	template, errors := template.ParseFiles("static/html/legalNotice.html")
-	if errors != nil {
-		fmt.Println("Error Parsing Template")
-		fmt.Println(errors)
-	}
+	go ParseHtml("static/html/legalNotice.html")
+	template := <-ChanTemplates
 	template.Execute(w, nil)
 }
