@@ -7,7 +7,6 @@ import (
 	"strconv"
 	"strings"
 	"text/template"
-	"time"
 )
 
 type Page struct {
@@ -115,7 +114,8 @@ func sortArtists(sortingOption string, asc bool) {
 }
 
 func libraryArtists(w http.ResponseWriter, r *http.Request) {
-	start := time.Now()
+	needSort := false
+	needDispatch := false
 	if !OnLibraryArtists {
 		PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
 		OnLibraryArtists = true
@@ -139,9 +139,8 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	}
 	if r.Method == "GET" {
 		setAllArtistVisibility(true)
+		needDispatch = true
 	} else if r.Method == "POST" {
-		needSort := false
-		needDispatch := false
 		searchContent := r.FormValue("searchBar")
 		sortingOption := r.FormValue("sortFilter")
 		sortingOrder := r.FormValue("sortOrder")
@@ -172,6 +171,7 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		}
 		if len(searchContent) > 0 {
 			searchArtists(searchContent)
+			needSort = true
 			needDispatch = true
 		}
 		if len(sortingOrder) != 0 {
@@ -182,15 +182,14 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 			}
 			needSort = true
 		}
-		if needSort {
-			sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
-		}
-		if needDispatch {
-			dispatchIntoPage()
-			LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
-		}
+	}
+	if needSort {
+		sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
+		needDispatch = true
+	}
+	if needDispatch {
+		dispatchIntoPage()
+		LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 	}
 	template.Execute(w, LibArtists)
-	elapsed := time.Since(start)
-	fmt.Println(elapsed)
 }
