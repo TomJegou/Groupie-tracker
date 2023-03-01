@@ -6,7 +6,7 @@ import (
 	"text/template"
 )
 
-func Accueil(w http.ResponseWriter, r *http.Request) {
+func Home(w http.ResponseWriter, r *http.Request) {
 	OnLibraryArtists = false
 	template, errors := template.ParseFiles("static/html/index.html")
 	if errors != nil {
