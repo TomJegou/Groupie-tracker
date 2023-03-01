@@ -77,8 +77,10 @@ func dispatchIntoPage() {
 			page = Page{Index: pageCount, Capacity: PageCapacity, IsFirst: false, IsLast: false}
 			countArtist = 0
 		}
-		page.Content = append(page.Content, Artists[i])
-		countArtist++
+		if Artists[i].IsVisible {
+			page.Content = append(page.Content, Artists[i])
+			countArtist++
+		}
 	}
 	page.IsLast = true
 	ListPages = append(ListPages, page)
