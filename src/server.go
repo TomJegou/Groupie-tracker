@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"sync"
 	"text/template"
@@ -95,5 +94,9 @@ func StartServer(wg *sync.WaitGroup) {
 	http.HandleFunc("/about", AboutHandlerFunc)
 	http.HandleFunc("/legalNotice", LegalNoticeHandlerFunc)
 	fmt.Println("http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Println(err)
+		fmt.Println("Error starting the server")
+	}
 }
