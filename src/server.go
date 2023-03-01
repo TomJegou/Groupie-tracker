@@ -53,8 +53,8 @@ var Locations map[string][]Location
 var Relations map[string][]Relation
 
 /*Channels*/
-var ChanArtists chan (*[]Artist)
-var ChanTemplates chan (*template.Template)
+var ChanArtists = make(chan *[]Artist)
+var ChanTemplates = make(chan *template.Template)
 
 /*Functions*/
 func GetApi(url string) string {

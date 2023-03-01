@@ -132,8 +132,7 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		IsStartServer = false
 	}
 	go ParseHtml("static/html/libraryArtists.html")
-	//template := <-ChanTemplates
-	fmt.Println(<-ChanTemplates)
+	template := <-ChanTemplates
 	if r.Method == "GET" {
 		setAllArtistVisibility(true)
 		needDispatch = true
@@ -189,5 +188,5 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		dispatchIntoPage()
 		LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 	}
-	//template.Execute(w, LibArtists)
+	template.Execute(w, LibArtists)
 }
