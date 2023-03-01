@@ -10,6 +10,7 @@ import (
 )
 
 /*Structures*/
+
 type Artist struct {
 	Id           int
 	Image        string
@@ -39,12 +40,14 @@ type Relation struct {
 }
 
 /*Constances*/
+
 const URLARTISTS = "https://groupietrackers.herokuapp.com/api/artists"
 const URLDATES = "https://groupietrackers.herokuapp.com/api/dates"
 const URLLOCATIONS = "https://groupietrackers.herokuapp.com/api/locations"
 const URLRELATION = "https://groupietrackers.herokuapp.com/api/relation"
 
 /*Variables*/
+
 var IsStartServer = true
 var OnLibraryArtists = false
 var Artists []Artist
@@ -53,10 +56,13 @@ var Locations map[string][]Location
 var Relations map[string][]Relation
 
 /*Channels*/
+
 var ChanArtists = make(chan *[]Artist)
 var ChanTemplates = make(chan *template.Template)
 
 /*Functions*/
+
+/*Do an API call and return a string of the response*/
 func GetApi(url string) string {
 	req, errors := http.NewRequest("GET", url, nil)
 	if errors != nil {

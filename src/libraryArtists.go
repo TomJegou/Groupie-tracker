@@ -54,6 +54,7 @@ func searchArtists(searchContent string) {
 	}
 }
 
+/*Reverse a slice*/
 func reverseSliceArtist() {
 	for i := 0; i < len(Artists)/2; i++ {
 		Artists[i], Artists[len(Artists)-1-i] = Artists[len(Artists)-1-i], Artists[i]
