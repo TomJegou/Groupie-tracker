@@ -45,9 +45,11 @@
                     {{ range $city, $listDates := .ArtistConcertsDatesLocation }}
                         <div class="cardConcertDates">
                             <p>{{ $city }}:</p>
-                            {{ range $listDates }}
-                            <p>- {{.}} </p>
-                            {{ end }}
+                            <div>
+                                {{ range $listDates }}
+                                    <p>- {{.}} </p>
+                                {{ end }}
+                            </div>
                         </div>
                     {{ end }}
                 </fieldset>
