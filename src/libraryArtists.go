@@ -89,25 +89,31 @@ func dispatchIntoPage() {
 
 
 func SortFirstAlbum() {
-for i := 0; i < len(/*afaire*/); i++ {
+for i := 0; i < len(Artists); i++ {
 	x := i
-	for z := i + 1; z < len(/*a faire*/); z++ {
+	for z := i + 1; z < len(Artists); z++ {
 		splitx:= strings.Split(Artists[x].FirstAlbum, "-")
 		splitz:= strings.Split(Artists[z].FirstAlbum, "-")
-		if strconv.Atoi(splitz) < strconv.Atoi(splitx)  {
+		YearX, _ := strconv.Atoi(splitx[2])
+		YearZ, _ := strconv.Atoi(splitz[2])
+		MonthX, _ := strconv.Atoi(splitx[1])
+		MonthZ, _ := strconv.Atoi(splitx[1])
+		DayX, _ := strconv.Atoi(splitx[0])
+		DayZ, _ := strconv.Atoi(splitx[0])
+		if YearZ < YearX {
 			x = z
-		} else if strings.Split(Artists[x].FirstAlbum, "-")[2] == strings.Split(Artists[x].FirstAlbum, "-")[2] {
-			if strings.Split(Artists[x].FirstAlbum, "-")[1] < strings.Split(Artists[x].FirstAlbum, "-")[1] {
+		} else if YearZ == YearX {
+			if MonthZ < MonthX {
 				x = z
 		}
-		} else if strings.Split(Artists[x].FirstAlbum, "-")[1] < strings.Split(Artists[x].FirstAlbum, "-")[1] {
-			if strings.Split(Artists[x].FirstAlbum, "-")[0] < strings.Split(Artists[x].FirstAlbum, "-")[0] {
+		} else if MonthZ == MonthX {
+			if DayZ < DayX {
 				x = z
 		}
 	}
 }
-	t[i], t[x] = t[x], t[i]
-	}
+	Artists[i], Artists[x] = Artists[x], Artists[i]
+}
 }
 
 func sortArtists(sortingOption string, asc bool) {
@@ -127,7 +133,7 @@ func sortArtists(sortingOption string, asc bool) {
 					x = j
 				}
 			} else if sortingOption == "Firstalbumrelease" {
-				//	SortFirstAlbum()
+					SortFirstAlbum()
 			}
 		}
 		Artists[i], Artists[x] = Artists[x], Artists[i]
@@ -146,8 +152,6 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		go PutBodyResponseApiIntoStruct(URLARTISTS, &Artists, &wg)
 		wg.Wait()
 		OnLibraryArtists = true
-		zey := (strings.Split(Artists[4].FirstAlbum, "-")[2])
-		fmt.Println(strconv.Atoi(zey))
 	}
 	if IsStartServer {
 		LibArtists.Artistlist = &Artists
