@@ -39,14 +39,14 @@ type Relation struct {
 	DatesLocations map[string][]string
 }
 
-/*Constances*/
+/*Global constances*/
 
 const URLARTISTS = "https://groupietrackers.herokuapp.com/api/artists"
 const URLDATES = "https://groupietrackers.herokuapp.com/api/dates"
 const URLLOCATIONS = "https://groupietrackers.herokuapp.com/api/locations"
 const URLRELATION = "https://groupietrackers.herokuapp.com/api/relation"
 
-/*Variables*/
+/*Global variables*/
 
 var IsStartServer = true
 var OnLibraryArtists = false
@@ -55,7 +55,7 @@ var Dates map[string][]Date
 var Locations map[string][]Location
 var Relations map[string][]Relation
 
-/*Channels*/
+/*Global channels*/
 
 var ChanArtists = make(chan *[]Artist)
 var ChanTemplates = make(chan *template.Template)
