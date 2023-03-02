@@ -56,14 +56,11 @@ func searchArtists(searchContent string) {
 }
 
 /*Reverse a slice*/
-func reverseSliceArtist() {
+func reverseSliceArtist(wg *sync.WaitGroup) {
+	defer wg.Done()
 	for i := 0; i < len(Artists)/2; i++ {
 		Artists[i], Artists[len(Artists)-1-i] = Artists[len(Artists)-1-i], Artists[i]
 	}
-}
-
-func selectionSort() {
-
 }
 
 func dispatchIntoPage() {
@@ -140,7 +137,7 @@ func sortArtists(sortingOption string, asc bool) {
 		Artists[i], Artists[x] = Artists[x], Artists[i]
 	}
 	if !asc {
-		reverseSliceArtist()
+		RunParallel(reverseSliceArtist)
 	}
 }
 

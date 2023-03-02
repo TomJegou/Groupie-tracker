@@ -2,6 +2,7 @@ package src
 
 import (
 	"fmt"
+	"sync"
 	"text/template"
 )
 
@@ -12,4 +13,11 @@ func ParseHtml(fileToParse string) {
 		fmt.Println(errors)
 	}
 	ChanTemplates <- template
+}
+
+func RunParallel(f func(*sync.WaitGroup)) {
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go f(&wg)
+	wg.Wait()
 }
