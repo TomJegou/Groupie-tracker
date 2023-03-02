@@ -68,17 +68,20 @@ func GetApi(url string) string {
 	if errors != nil {
 		fmt.Println("Error Request")
 		fmt.Println(errors)
+		return ""
 	}
 	res, errors := http.DefaultClient.Do(req)
 	if errors != nil {
 		fmt.Println("Error default client")
 		fmt.Println(errors)
+		return ""
 	}
 	defer res.Body.Close()
 	body, errors := io.ReadAll(res.Body)
 	if errors != nil {
 		fmt.Println("Error during read body")
 		fmt.Println(errors)
+		return ""
 	}
 	return string(body)
 }
