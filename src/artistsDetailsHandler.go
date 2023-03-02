@@ -33,7 +33,6 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	} else {
 		go ParseHtml("static/html/artistsDetails.html")
 		template := <-ChanTemplates
-		template.Execute(w, nil)
 		artist, errorId := findArtistById(Artists, idArtist)
 		if errorId != "" {
 			fmt.Println(errorId)
