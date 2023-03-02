@@ -4,6 +4,7 @@ import (
 	"net/http"
 )
 
+/*legal notice's handler*/
 func LegalNoticeHandler(w http.ResponseWriter, r *http.Request) {
 	OnLibraryArtists = false
 	go ParseHtml("static/html/legalNotice.html")
