@@ -86,6 +86,29 @@ func dispatchIntoPage() {
 	ListPages = append(ListPages, page)
 }
 
+
+func SortFirstAlbum() {
+for i := 0; i < len(/*afaire*/); i++ {
+	x := i
+	for z := i + 1; z < len(/*a faire*/); z++ {
+		splitx:= strings.Split(Artists[x].FirstAlbum, "-")
+		splitz:= strings.Split(Artists[z].FirstAlbum, "-")
+		if strconv.Atoi(splitz) < strconv.Atoi(splitx)  {
+			x = z
+		} else if strings.Split(Artists[x].FirstAlbum, "-")[2] == strings.Split(Artists[x].FirstAlbum, "-")[2] {
+			if strings.Split(Artists[x].FirstAlbum, "-")[1] < strings.Split(Artists[x].FirstAlbum, "-")[1] {
+				x = z
+		}
+		} else if strings.Split(Artists[x].FirstAlbum, "-")[1] < strings.Split(Artists[x].FirstAlbum, "-")[1] {
+			if strings.Split(Artists[x].FirstAlbum, "-")[0] < strings.Split(Artists[x].FirstAlbum, "-")[0] {
+				x = z
+		}
+	}
+}
+	t[i], t[x] = t[x], t[i]
+	}
+}
+
 func sortArtists(sortingOption string, asc bool) {
 	for i := 0; i < len(Artists)-1; i++ {
 		x := i
@@ -103,7 +126,7 @@ func sortArtists(sortingOption string, asc bool) {
 					x = j
 				}
 			} else if sortingOption == "Firstalbumrelease" {
-				//SortFirstAlbum()
+				//	SortFirstAlbum()
 			}
 		}
 		Artists[i], Artists[x] = Artists[x], Artists[i]
@@ -119,6 +142,8 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	if !OnLibraryArtists {
 		PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
 		OnLibraryArtists = true
+		zey := (strings.Split(Artists[4].FirstAlbum, "-")[2])
+		fmt.Println(strconv.Atoi(zey))
 	}
 	if IsStartServer {
 		LibArtists.Artistlist = &Artists
