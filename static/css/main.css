@@ -24,9 +24,10 @@ body {
 }
 
 /*Header*/
-#navLogo {
-    width: 20vw;
+.navLogo {
+    width: 24vw;
     height: 12vh;
+    overflow: hidden;
 }
 
 .txt{
@@ -89,7 +90,7 @@ footer a{
 
 @media screen and (min-width: 768px) {
     /*Header*/
-#navLogo {
+.navLogo {
     width: 6vw;
     height: 12vh;
     margin-left: 3%;

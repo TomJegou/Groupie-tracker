@@ -125,7 +125,7 @@ gap: 2vw 2vh;
     
     .searchContainer button[type="submit"] {
       background-color: white;
-      background-image: url("http://localhost:8080/static/img/loupe.png");
+      background-image: url("http://localhost:80/static/img/loupe.png");
       background-repeat: no-repeat;
       background-position: center;
       background-size: contain;
