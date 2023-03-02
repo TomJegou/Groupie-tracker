@@ -187,6 +187,9 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	}
 	if needDispatch {
 		dispatchIntoPage()
+		if LibArtists.IdPageToDisplay > len(ListPages)-1 {
+			LibArtists.IdPageToDisplay = len(ListPages) - 1
+		}
 		LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 	}
 	template.Execute(w, LibArtists)
