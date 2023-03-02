@@ -59,6 +59,7 @@ var Relations map[string][]Relation
 
 var ChanArtists = make(chan *[]Artist)
 var ChanTemplates = make(chan *template.Template)
+var ChanArtDet = make(chan Artist)
 
 /*Functions*/
 

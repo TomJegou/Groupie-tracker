@@ -11,13 +11,14 @@ type ArtistDetailled struct {
 	ArtistConcertsDatesLocation map[string][]string
 }
 
-func findArtistById(listArtist []Artist, id int) (Artist, string) {
+func findArtistById(listArtist []Artist, id int) {
 	for _, artist := range listArtist {
 		if artist.Id == id {
-			return artist, ""
+			ChanArtDet <- artist
+			return
 		}
 	}
-	return listArtist[0], "Error id incorect"
+	ChanArtDet <- listArtist[0]
 }
 
 func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
@@ -33,13 +34,9 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	} else {
 		go ParseHtml("static/html/artistsDetails.html")
 		template := <-ChanTemplates
-		artist, errorId := findArtistById(Artists, idArtist)
-		if errorId != "" {
-			fmt.Println(errorId)
-			http.Redirect(w, r, "/libraryArtists", http.StatusFound)
-		} else {
-			artistDetailled := ArtistDetailled{Artist: &artist, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
-			template.Execute(w, artistDetailled)
-		}
+		go findArtistById(Artists, idArtist)
+		artist := <-ChanArtDet
+		artistDetailled := ArtistDetailled{Artist: &artist, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
+		template.Execute(w, artistDetailled)
 	}
 }
