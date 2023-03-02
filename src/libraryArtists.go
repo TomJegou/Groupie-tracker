@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 type Page struct {
@@ -140,7 +141,10 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 	needSort := false
 	needDispatch := false
 	if !OnLibraryArtists {
-		PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
+		var wg sync.WaitGroup
+		wg.Add(1)
+		go PutBodyResponseApiIntoStruct(URLARTISTS, &Artists, &wg)
+		wg.Wait()
 		OnLibraryArtists = true
 		zey := (strings.Split(Artists[4].FirstAlbum, "-")[2])
 		fmt.Println(strconv.Atoi(zey))

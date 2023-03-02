@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"sync"
 )
 
 type ArtistDetailled struct {
@@ -11,21 +12,28 @@ type ArtistDetailled struct {
 	ArtistConcertsDatesLocation map[string][]string
 }
 
-func findArtistById(listArtist []Artist, id int) (Artist, string) {
+func findArtistById(listArtist []Artist, id int) {
 	for _, artist := range listArtist {
 		if artist.Id == id {
-			return artist, ""
+			ChanArtDet <- artist
+			return
 		}
 	}
-	return listArtist[0], "Error id incorect"
+	ChanArtDet <- listArtist[0]
 }
 
 func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	OnLibraryArtists = false
 	if len(Artists) == 0 {
-		PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
+		var wg sync.WaitGroup
+		wg.Add(1)
+		go PutBodyResponseApiIntoStruct(URLARTISTS, &Artists, &wg)
+		wg.Wait()
 	}
-	PutBodyResponseApiIntoStruct(URLRELATION, &Relations)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go PutBodyResponseApiIntoStruct(URLRELATION, &Relations, &wg)
+	wg.Wait()
 	idArtist, err := strconv.Atoi(r.FormValue("artistCardId"))
 	if err != nil {
 		fmt.Println("Error converting string to integer")
@@ -33,13 +41,9 @@ func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	} else {
 		go ParseHtml("static/html/artistsDetails.html")
 		template := <-ChanTemplates
-		artist, errorId := findArtistById(Artists, idArtist)
-		if errorId != "" {
-			fmt.Println(errorId)
-			http.Redirect(w, r, "/libraryArtists", http.StatusFound)
-		} else {
-			artistDetailled := ArtistDetailled{Artist: &artist, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
-			template.Execute(w, artistDetailled)
-		}
+		go findArtistById(Artists, idArtist)
+		artist := <-ChanArtDet
+		artistDetailled := ArtistDetailled{Artist: &artist, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
+		template.Execute(w, artistDetailled)
 	}
 }
