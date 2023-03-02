@@ -166,7 +166,7 @@ func sortArtists(sortingOption string, asc bool) {
 }
 
 /*Handler func of the library artists*/
-func libraryArtists(w http.ResponseWriter, r *http.Request) {
+func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	needSort := false
 	needDispatch := false
 	if !OnLibraryArtists {

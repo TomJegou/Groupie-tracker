@@ -22,7 +22,7 @@ func findArtistById(listArtist []Artist, id int) {
 	ChanArtDet <- listArtist[0]
 }
 
-func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
+func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 	OnLibraryArtists = false
 	if len(Artists) == 0 {
 		var wg sync.WaitGroup
