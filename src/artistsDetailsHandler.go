@@ -23,11 +23,11 @@ from the Artists slice
 func findArtistById(id int) {
 	for _, artist := range Artists {
 		if artist.Id == id {
-			ChanArtDet <- artist
+			ChanArtDet <- &artist
 			return
 		}
 	}
-	ChanArtDet <- Artists[0]
+	ChanArtDet <- &Artists[0]
 }
 
 /*Artist detailled page's handler*/
@@ -51,8 +51,7 @@ func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 		go ParseHtml("static/html/artistsDetails.html")
 		template := <-ChanTemplates
 		go findArtistById(idArtist)
-		artist := <-ChanArtDet
-		artistDetailled := ArtistDetailled{Artist: &artist, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
+		artistDetailled := ArtistDetailled{Artist: <-ChanArtDet, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
 		template.Execute(w, artistDetailled)
 	}
 }
