@@ -87,6 +87,10 @@ func GetApi(url string) string {
 	return string(body)
 }
 
+/*
+Call the API using the url passed as a parameter
+and the func GetApi, and put the response into the structure passed as a parameter
+*/
 func PutBodyResponseApiIntoStruct(url string, structure interface{}, wg *sync.WaitGroup) {
 	defer wg.Done()
 	err := json.Unmarshal([]byte(GetApi(url)), &structure)
@@ -95,6 +99,10 @@ func PutBodyResponseApiIntoStruct(url string, structure interface{}, wg *sync.Wa
 	}
 }
 
+/*
+Establish the routing for the webApp and start the server
+on port 80
+*/
 func StartServer(wg *sync.WaitGroup) {
 	defer wg.Done()
 	FileServer := http.FileServer(http.Dir("./static"))
