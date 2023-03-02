@@ -63,7 +63,8 @@ func reverseSliceArtist(wg *sync.WaitGroup) {
 	}
 }
 
-func dispatchIntoPage() {
+func dispatchIntoPage(wg *sync.WaitGroup) {
+	defer wg.Done()
 	ListPages = []Page{}
 	pageCount := 0
 	countArtist := 0
@@ -159,7 +160,7 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
 		LibArtists.IdPageToDisplay = 0
 		PageCapacity = 10
-		dispatchIntoPage()
+		RunParallel(dispatchIntoPage)
 		LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 		IsStartServer = false
 	}
@@ -217,7 +218,7 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		needDispatch = true
 	}
 	if needDispatch {
-		dispatchIntoPage()
+		RunParallel(dispatchIntoPage)
 		if LibArtists.IdPageToDisplay > len(ListPages)-1 {
 			LibArtists.IdPageToDisplay = len(ListPages) - 1
 		}

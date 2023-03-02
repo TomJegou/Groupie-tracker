@@ -6,6 +6,10 @@ import (
 	"text/template"
 )
 
+/*
+Parse the html file passed as a parameter and send the
+template into  the ChanTemplates Channel
+*/
 func ParseHtml(fileToParse string) {
 	template, errors := template.ParseFiles(fileToParse)
 	if errors != nil {
@@ -15,6 +19,7 @@ func ParseHtml(fileToParse string) {
 	ChanTemplates <- template
 }
 
+/*Make the function passed as a parameter run in Parallel as a goroutine*/
 func RunParallel(f func(*sync.WaitGroup)) {
 	var wg sync.WaitGroup
 	wg.Add(1)
