@@ -87,7 +87,8 @@ func GetApi(url string) string {
 	return string(body)
 }
 
-func PutBodyResponseApiIntoStruct(url string, structure interface{}) {
+func PutBodyResponseApiIntoStruct(url string, structure interface{}, wg *sync.WaitGroup) {
+	defer wg.Done()
 	err := json.Unmarshal([]byte(GetApi(url)), &structure)
 	if err != nil {
 		fmt.Println("Erreur Unmarshal JSON\n", err)

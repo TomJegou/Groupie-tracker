@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
+	"sync"
 )
 
 type ArtistDetailled struct {
@@ -24,9 +25,15 @@ func findArtistById(listArtist []Artist, id int) {
 func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	OnLibraryArtists = false
 	if len(Artists) == 0 {
-		PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
+		var wg sync.WaitGroup
+		wg.Add(1)
+		go PutBodyResponseApiIntoStruct(URLARTISTS, &Artists, &wg)
+		wg.Wait()
 	}
-	PutBodyResponseApiIntoStruct(URLRELATION, &Relations)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go PutBodyResponseApiIntoStruct(URLRELATION, &Relations, &wg)
+	wg.Wait()
 	idArtist, err := strconv.Atoi(r.FormValue("artistCardId"))
 	if err != nil {
 		fmt.Println("Error converting string to integer")
