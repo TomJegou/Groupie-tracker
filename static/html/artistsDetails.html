@@ -46,7 +46,7 @@
                     {{ range $city, $listDates := .ArtistConcertsDatesLocation }}
                     <div class="cardConcertDates">
                         <div class="nav">   
-                            <button class="btn">{{ $city }}:</button>
+                            <button class="btn" id="btn">{{ $city }}:</button>
                             <div class="dropdown">
                                 {{ range $listDates }}
                                     <a href="#">- {{.}} </a>
