@@ -114,12 +114,15 @@ func SortFirstAlbum() {
 		for z := i + 1; z < len(Artists); z++ {
 			splitx := strings.Split(Artists[x].FirstAlbum, "-")
 			splitz := strings.Split(Artists[z].FirstAlbum, "-")
-			YearX, _ := strconv.Atoi(splitx[2])
-			YearZ, _ := strconv.Atoi(splitz[2])
-			MonthX, _ := strconv.Atoi(splitx[1])
-			MonthZ, _ := strconv.Atoi(splitx[1])
-			DayX, _ := strconv.Atoi(splitx[0])
-			DayZ, _ := strconv.Atoi(splitx[0])
+			YearX, err := strconv.Atoi(splitx[2])
+			YearZ, err := strconv.Atoi(splitz[2])
+			MonthX, err := strconv.Atoi(splitx[1])
+			MonthZ, err := strconv.Atoi(splitz[1])
+			DayX, err := strconv.Atoi(splitx[0])
+			DayZ, err := strconv.Atoi(splitz[0])
+			if err != nil {
+				fmt.Println(err)
+			}
 			if YearZ < YearX {
 				x = z
 			} else if YearZ == YearX {
