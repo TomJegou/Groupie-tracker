@@ -30,11 +30,11 @@
     </div>
     <div class="divButtonPagination">
         <form action="/libraryArtists">
-            {{ if ne .ThePage.IsFirst true}}
+            {{ if ne .Page.IsFirst true}}
                 <button class="buttonPagination" id="idButtonPrev" value="prev" name="pagination" formmethod="post">Prev</button>
             {{ end }}
             <p>{{ .IdPageToDisplay }}</p>
-            {{ if ne .ThePage.IsLast true }}
+            {{ if ne .Page.IsLast true }}
                 <button class="buttonPagination" id="idButtonNext" value="next" name="pagination" formmethod="post">Next</button>
             {{ end }}
         </form>
@@ -42,19 +42,19 @@
     <div class="divNbrElemDisplayed">
         <fieldset><legend>Nombre d'éléments</legend>
             <form action="/libraryArtists">
-                {{ if eq .ThePage.Capacity 10 }}
+                {{ if eq .Page.Capacity 10 }}
                     <input type="radio" name="nbrElem" value="10" checked>
                 {{ else }}
                     <input type="radio" name="nbrElem" value="10">
                 {{ end }}
                     <label>10</label>
-                {{ if eq .ThePage.Capacity 20 }}
+                {{ if eq .Page.Capacity 20 }}
                     <input type="radio" name="nbrElem" value="20" checked>
                 {{ else }}
                     <input type="radio" name="nbrElem" value="20">
                 {{ end }}
                     <label>20</label>
-                {{ if eq .ThePage.Capacity 30 }}
+                {{ if eq .Page.Capacity 30 }}
                     <input type="radio" name="nbrElem" value="30" checked>
                 {{ else }}
                     <input type="radio" name="nbrElem" value="30">
@@ -112,7 +112,7 @@
     </div>
     <div class="listcardArtist">
         <form class="formListcardArtist" action="/artistsDetails">
-        {{ range .ThePage.Content }}
+        {{ range .Page.Content }}
             {{ if .IsVisible }}
                 <button class="cardArtists" value="{{ .Id }}" name="artistCardId" formmethod="post">
                     <img class="imgArtists" src="{{ .Image }}" alt="{{ .Name }}">

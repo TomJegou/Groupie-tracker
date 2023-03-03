@@ -20,10 +20,10 @@ type Page struct {
 }
 
 type LibraryArtists struct {
-	Artistlist      *[]Artist
-	SortingFilter   string
-	Asc             bool
-	ThePage         *Page
+	Artistlist    *[]Artist
+	SortingFilter string
+	Asc           bool
+	*Page
 	IdPageToDisplay int
 	*ListenAddr
 }
@@ -188,7 +188,7 @@ func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		LibArtists.IdPageToDisplay = 0
 		PageCapacity = 10
 		RunParallel(dispatchIntoPage)
-		LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
+		LibArtists.Page = &ListPages[LibArtists.IdPageToDisplay]
 		IsStartServer = false
 	}
 	go ParseHtml("static/html/libraryArtists.html")
@@ -217,7 +217,7 @@ func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 				} else {
 					LibArtists.IdPageToDisplay = int(math.Max(float64(0), float64(LibArtists.IdPageToDisplay-1)))
 				}
-				LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
+				LibArtists.Page = &ListPages[LibArtists.IdPageToDisplay]
 			} else {
 				http.Redirect(w, r, "/libraryArtists", http.StatusFound)
 			}
@@ -249,7 +249,7 @@ func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		if LibArtists.IdPageToDisplay > len(ListPages)-1 {
 			LibArtists.IdPageToDisplay = len(ListPages) - 1
 		}
-		LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
+		LibArtists.Page = &ListPages[LibArtists.IdPageToDisplay]
 	}
 	template.Execute(w, LibArtists)
 }
