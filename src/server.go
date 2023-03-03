@@ -112,6 +112,7 @@ func StartServer(wg *sync.WaitGroup) {
 	http.HandleFunc("/artistsDetails", ArtistsDetailsHandler)
 	http.HandleFunc("/about", AboutHandler)
 	http.HandleFunc("/legalNotice", LegalNoticeHandler)
+	http.HandleFunc("/historic", HistoricHandler)
 	fmt.Println("http://localhost:80")
 	err := http.ListenAndServe(":80", nil)
 	if err != nil {
