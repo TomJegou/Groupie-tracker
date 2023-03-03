@@ -39,14 +39,14 @@ type Relation struct {
 	DatesLocations map[string][]string
 }
 
-/*Constances*/
+/*Global constances*/
 
 const URLARTISTS = "https://groupietrackers.herokuapp.com/api/artists"
 const URLDATES = "https://groupietrackers.herokuapp.com/api/dates"
 const URLLOCATIONS = "https://groupietrackers.herokuapp.com/api/locations"
 const URLRELATION = "https://groupietrackers.herokuapp.com/api/relation"
 
-/*Variables*/
+/*Global variables*/
 
 var IsStartServer = true
 var OnLibraryArtists = false
@@ -55,11 +55,11 @@ var Dates map[string][]Date
 var Locations map[string][]Location
 var Relations map[string][]Relation
 
-/*Channels*/
+/*Global channels*/
 
 var ChanArtists = make(chan *[]Artist)
 var ChanTemplates = make(chan *template.Template)
-var ChanArtDet = make(chan Artist)
+var ChanArtDet = make(chan *Artist)
 
 /*Functions*/
 
@@ -87,6 +87,10 @@ func GetApi(url string) string {
 	return string(body)
 }
 
+/*
+Call the API using the url passed as a parameter
+and the func GetApi, and put the response into the structure passed as a parameter
+*/
 func PutBodyResponseApiIntoStruct(url string, structure interface{}, wg *sync.WaitGroup) {
 	defer wg.Done()
 	err := json.Unmarshal([]byte(GetApi(url)), &structure)
@@ -95,15 +99,19 @@ func PutBodyResponseApiIntoStruct(url string, structure interface{}, wg *sync.Wa
 	}
 }
 
+/*
+Establish the routing for the webApp and start the server
+on port 80
+*/
 func StartServer(wg *sync.WaitGroup) {
 	defer wg.Done()
 	FileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static", FileServer))
-	http.HandleFunc("/", Home)
-	http.HandleFunc("/libraryArtists", libraryArtists)
-	http.HandleFunc("/artistsDetails", ArtistsDetailsHandlerFunc)
-	http.HandleFunc("/about", AboutHandlerFunc)
-	http.HandleFunc("/legalNotice", LegalNoticeHandlerFunc)
+	http.HandleFunc("/", HomeHandler)
+	http.HandleFunc("/libraryArtists", libraryArtistsHandler)
+	http.HandleFunc("/artistsDetails", ArtistsDetailsHandler)
+	http.HandleFunc("/about", AboutHandler)
+	http.HandleFunc("/legalNotice", LegalNoticeHandler)
 	fmt.Println("http://localhost:80")
 	err := http.ListenAndServe(":80", nil)
 	if err != nil {

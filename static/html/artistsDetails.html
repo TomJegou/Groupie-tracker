@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="http://localhost:80/static/scripts/animation.js"></script>
         <link rel="stylesheet" href="http://localhost:80/static/css/artistsDetails.css">
         <link rel="stylesheet" href="http://localhost:80/static/css/main.css">
         <link rel="shortcut icon" href="http://localhost:80/static/img/absolut_music.jpg">
@@ -43,12 +44,14 @@
                 <fieldset class="fieldsetTableCityDate">
                     <legend id="titleTableCardConcertDates">Lieux de Concert</legend>
                     {{ range $city, $listDates := .ArtistConcertsDatesLocation }}
-                        <div class="cardConcertDates">
-                            <p>{{ $city }}:</p>
+                    <div class="cardConcertDates">
+                        <button onclick="dropdownFunction()" class="dropbtn">{{ $city }}:</button>
+                        <div class="dropdown">
                             {{ range $listDates }}
-                            <p>- {{.}} </p>
+                                <p>- {{.}} </a>
                             {{ end }}
                         </div>
+                    </div>
                     {{ end }}
                 </fieldset>
             </div>

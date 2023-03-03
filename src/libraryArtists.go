@@ -9,6 +9,8 @@ import (
 	"sync"
 )
 
+/*Structures*/
+
 type Page struct {
 	Index    int
 	IsFirst  bool
@@ -25,20 +27,37 @@ type LibraryArtists struct {
 	IdPageToDisplay int
 }
 
+/*Global variables*/
+
 var PageCapacity int
 var LibArtists LibraryArtists
 var ListPages []Page
 
+/*Functions*/
+
+/*
+Set the artists's attribute IsVisible to the isVisible boolean
+passed as parameter
+*/
 func setArtistVisibility(a *Artist, isVisible bool) {
 	a.IsVisible = isVisible
 }
 
+/*
+Set all of the artists's attribute IsVisible from the slice Artists
+to the boolean isVisible passed as parameter
+*/
 func setAllArtistVisibility(isVisible bool) {
 	for i := 0; i < len(Artists); i++ {
 		setArtistVisibility(&Artists[i], isVisible)
 	}
 }
 
+/*
+Set all the artists visibility to false and search into the slice Artists
+all the artists's name wich start with the same patern as the string
+searchContent passed as parameter. Every artist found has his visibility set to true
+*/
 func searchArtists(searchContent string) {
 	setAllArtistVisibility(false)
 	for i := 0; i < len(Artists); i++ {
@@ -55,18 +74,20 @@ func searchArtists(searchContent string) {
 	}
 }
 
-/*Reverse a slice*/
-func reverseSliceArtist() {
+/*Reverse the Artists slice*/
+func reverseSliceArtist(wg *sync.WaitGroup) {
+	defer wg.Done()
 	for i := 0; i < len(Artists)/2; i++ {
 		Artists[i], Artists[len(Artists)-1-i] = Artists[len(Artists)-1-i], Artists[i]
 	}
 }
 
-func selectionSort() {
-
-}
-
-func dispatchIntoPage() {
+/*
+Display all the artists from the slice Artists into pages
+each page is put into the slice ListPages
+*/
+func dispatchIntoPage(wg *sync.WaitGroup) {
+	defer wg.Done()
 	ListPages = []Page{}
 	pageCount := 0
 	countArtist := 0
@@ -138,11 +159,12 @@ func sortArtists(sortingOption string, asc bool) {
 		Artists[i], Artists[x] = Artists[x], Artists[i]
 	}
 	if !asc {
-		reverseSliceArtist()
+		RunParallel(reverseSliceArtist)
 	}
 }
 
-func libraryArtists(w http.ResponseWriter, r *http.Request) {
+/*Handler func of the library artists*/
+func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	needSort := false
 	needDispatch := false
 	if !OnLibraryArtists {
@@ -160,7 +182,7 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
 		LibArtists.IdPageToDisplay = 0
 		PageCapacity = 10
-		dispatchIntoPage()
+		RunParallel(dispatchIntoPage)
 		LibArtists.ThePage = &ListPages[LibArtists.IdPageToDisplay]
 		IsStartServer = false
 	}
@@ -218,7 +240,7 @@ func libraryArtists(w http.ResponseWriter, r *http.Request) {
 		needDispatch = true
 	}
 	if needDispatch {
-		dispatchIntoPage()
+		RunParallel(dispatchIntoPage)
 		if LibArtists.IdPageToDisplay > len(ListPages)-1 {
 			LibArtists.IdPageToDisplay = len(ListPages) - 1
 		}
