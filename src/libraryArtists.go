@@ -25,6 +25,7 @@ type LibraryArtists struct {
 	Asc             bool
 	ThePage         *Page
 	IdPageToDisplay int
+	*ListenAddr
 }
 
 /*Global variables*/
@@ -178,6 +179,7 @@ func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		OnLibraryArtists = true
 	}
 	if IsStartServer {
+		LibArtists.ListenAddr = &ListeningAddr
 		LibArtists.Artistlist = &Artists
 		setAllArtistVisibility(true)
 		LibArtists.SortingFilter = "name"

@@ -53,7 +53,7 @@ const URLRELATION = "https://groupietrackers.herokuapp.com/api/relation"
 
 /*Global variables*/
 
-var ListeningAddr = ListenAddr{Ipv4: "172.20.0.10", Port: "80"}
+var ListeningAddr = ListenAddr{Ipv4: "localhost", Port: "80"}
 var IsStartServer = true
 var OnLibraryArtists = false
 var Artists []Artist
@@ -118,7 +118,7 @@ func StartServer(wg *sync.WaitGroup) {
 	http.HandleFunc("/artistsDetails", ArtistsDetailsHandler)
 	http.HandleFunc("/about", AboutHandler)
 	http.HandleFunc("/legalNotice", LegalNoticeHandler)
-	fmt.Println("http://"+ListeningAddr.Ipv4+":"+ListeningAddr.Port)
+	fmt.Println("http://" + ListeningAddr.Ipv4 + ":" + ListeningAddr.Port)
 	err := http.ListenAndServe(ListeningAddr.Ipv4+":"+ListeningAddr.Port, nil)
 	if err != nil {
 		fmt.Println(err)

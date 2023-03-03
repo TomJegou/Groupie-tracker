@@ -12,6 +12,7 @@ import (
 type ArtistDetailled struct {
 	*Artist
 	ArtistConcertsDatesLocation map[string][]string
+	*ListenAddr
 }
 
 /*Functions*/
@@ -51,7 +52,7 @@ func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 		go ParseHtml("static/html/artistsDetails.html")
 		template := <-ChanTemplates
 		go findArtistById(idArtist)
-		artistDetailled := ArtistDetailled{Artist: <-ChanArtDet, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
+		artistDetailled := ArtistDetailled{Artist: <-ChanArtDet, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations, ListenAddr: &ListeningAddr}
 		template.Execute(w, artistDetailled)
 	}
 }
