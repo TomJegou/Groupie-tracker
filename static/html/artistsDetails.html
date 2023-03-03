@@ -45,11 +45,13 @@
                     <legend id="titleTableCardConcertDates">Lieux de Concert</legend>
                     {{ range $city, $listDates := .ArtistConcertsDatesLocation }}
                     <div class="cardConcertDates">
-                        <button onclick="dropdownFunction()" class="dropbtn">{{ $city }}:</button>
-                        <div class="dropdown">
-                            {{ range $listDates }}
-                                <p>- {{.}} </a>
-                            {{ end }}
+                        <div class="nav">   
+                            <button class="btn" id="btn">{{ $city }}:</button>
+                            <div class="dropdown">
+                                {{ range $listDates }}
+                                    <a href="#">- {{.}} </a>
+                                {{ end }}
+                            </div>
                         </div>
                     </div>
                     {{ end }}

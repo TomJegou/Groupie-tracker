@@ -70,7 +70,7 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: gray;
+    background-color: #2d3436;;
     margin-top: auto;
 
     color: white;
@@ -105,7 +105,7 @@ footer a{
 }
 
 .txt:hover{
-    color: gray;
+    color: #2d3436;
 }
 
 header{
@@ -137,9 +137,8 @@ footer{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: gray;
+    background-color: #2d3436;
     margin-top: auto;
-
     color: white;
 }
 
