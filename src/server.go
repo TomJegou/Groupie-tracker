@@ -39,6 +39,11 @@ type Relation struct {
 	DatesLocations map[string][]string
 }
 
+type ListenAddr struct {
+	Ipv4 string
+	Port string
+}
+
 /*Global constances*/
 
 const URLARTISTS = "https://groupietrackers.herokuapp.com/api/artists"
@@ -48,6 +53,7 @@ const URLRELATION = "https://groupietrackers.herokuapp.com/api/relation"
 
 /*Global variables*/
 
+var ListeningAddr = ListenAddr{Ipv4: "172.20.0.10", Port: "80"}
 var IsStartServer = true
 var OnLibraryArtists = false
 var Artists []Artist
