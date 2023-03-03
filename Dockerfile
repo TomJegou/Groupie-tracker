@@ -1,13 +1,7 @@
-FROM golang:1.19.6-bullseye
+FROM golang:1.16-alpine
 
-WORKDIR /app
+ADD . /go/src/myapp
 
-COPY go.mod ./
-
-COPY * ./
-
-RUN go build -o /myapp main.go
-
-EXPOSE 80
-
-CMD [ "/myapp" ]
+WORKDIR /go/src/myapp
+RUN go build -o bin/myapp
+CMD [ "bin/myapp" ]
