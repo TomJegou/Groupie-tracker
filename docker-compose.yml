@@ -1,0 +1,6 @@
+version: "4.17.0"
+services:
+  absolut-music:
+    image: absolut-music:1.0.0
+    ports:
+      - "80:80"
