@@ -13,9 +13,9 @@
         <a href="http://{{ .Ipv4 }}:{{ .Port }}/static/html/index.html" class="navLogo"><img class="navLogo" src="http://{{ .Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg" alt="logo"></a>
         <nav>
             <ul>
-                <li><a class="txt" href="http://localhost:80">Accueil</a></i></li>
-                <li><a class="txt" href="http://localhost:80/libraryArtists">Artistes</a></li>
-                <li><a class="txt" href="http://localhost:80/about">À propos</a></li>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}">Accueil</a></i></li>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/about">À propos</a></li>
             </ul>
         </nav>
     </header>
