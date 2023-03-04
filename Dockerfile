@@ -1,4 +1,4 @@
-FROM golang:1.19.6-bullseye
+FROM golang:alpine3.17
 
 ADD . /go/src/myapp
 

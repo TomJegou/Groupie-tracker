@@ -1,6 +1,6 @@
 version: "4.17.0"
 services:
   absolut-music:
-    image: tomyj/absolut-music:1.0.1
+    image: tomyj/absolut-music:1.0.1-alpine3.17
     ports:
       - "80:80"
