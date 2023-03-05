@@ -2,31 +2,25 @@
     background-color: white;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    padding: 0.6rem;
+    justify-content: flex-start;    
     cursor: pointer;
-    }
-.dropdown {
-    position: absolute;
-    width: 250px;
-    margin-top: 0.3rem;
-    background: white;
-    visibility: hidden;
-    opacity: 0;
-    transform: translateY(0.5rem);
-    transition: all 0.1s cubic-bezier(0.16, 1, 0.5, 1);
 }
 .dropdown.show{
     visibility: visible;
     opacity:1;
     transform: translateY(0rem);
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
 }
 .dropdown a {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: red;
+    visibility: hidden;
+    opacity:0;
   }
   
 .btn:hover {
