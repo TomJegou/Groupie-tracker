@@ -1,6 +1,11 @@
+# Set the version of docker-compose to use
 version: "4.17.0"
+# Define the services absolut-music 
 services:
+  # Name of the service
   absolut-music:
+    # Tell docker-compose to use the image from Docker Hub
     image: tomyj/absolut-music:1.0.1-alpine3.17
+    # Expose the port 80 to the host
     ports:
       - "80:80"

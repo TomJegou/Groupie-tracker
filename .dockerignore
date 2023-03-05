@@ -1,3 +1,4 @@
+# Tell docker the file to be ignored when building the image
 .git
 .test
 Dockerfile
