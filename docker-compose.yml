@@ -4,12 +4,3 @@ services:
     image: tomyj/absolut-music:1.0.1-alpine3.17
     ports:
       - "80:80"
-    networks:
-      internalNetwork:
-        ipv4_address: 172.16.238.10
-networks:
-  internalNetwork:
-    ipam:
-      driver: default 
-      config:
-        - subnet: "172.16.238.0/24"
