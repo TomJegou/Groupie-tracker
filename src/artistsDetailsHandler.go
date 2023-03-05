@@ -33,7 +33,7 @@ func findArtistById(id int) {
 
 /*Artist detailled page's handler*/
 func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
-	ListeningAddr.Ipv4 = r.Host
+	ChangeListenAddr(r)
 	OnLibraryArtists = false
 	if len(Artists) == 0 {
 		var wg sync.WaitGroup

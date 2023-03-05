@@ -114,7 +114,7 @@ func StartServer(wg *sync.WaitGroup) {
 	FileServer := http.FileServer(http.Dir("./static"))
 	http.Handle("/static/", http.StripPrefix("/static", FileServer))
 	http.HandleFunc("/", HomeHandler)
-	http.HandleFunc("/libraryArtists", libraryArtistsHandler)
+	http.HandleFunc("/libraryArtists", LibraryArtistsHandler)
 	http.HandleFunc("/artistsDetails", ArtistsDetailsHandler)
 	http.HandleFunc("/about", AboutHandler)
 	http.HandleFunc("/legalNotice", LegalNoticeHandler)

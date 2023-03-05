@@ -2,6 +2,7 @@ package src
 
 import (
 	"fmt"
+	"net/http"
 	"sync"
 	"text/template"
 )
@@ -25,4 +26,10 @@ func RunParallel(f func(*sync.WaitGroup)) {
 	wg.Add(1)
 	go f(&wg)
 	wg.Wait()
+}
+
+func ChangeListenAddr(r *http.Request) {
+	if r.Host != ListeningAddr.Ipv4 {
+		ListeningAddr.Ipv4 = r.Host
+	}
 }

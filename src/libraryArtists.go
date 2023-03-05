@@ -168,8 +168,8 @@ func sortArtists(sortingOption string, asc bool) {
 }
 
 /*Handler func of the library artists*/
-func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
-	ListeningAddr.Ipv4 = r.Host
+func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
+	ChangeListenAddr(r)
 	needSort := false
 	needDispatch := false
 	if !OnLibraryArtists {
