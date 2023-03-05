@@ -28,6 +28,11 @@ func RunParallel(f func(*sync.WaitGroup)) {
 	wg.Wait()
 }
 
+/*
+Check if in the request if the host ipv4 is
+the same as the one to be used for the templates.
+If it's not the same, change the ListeningAddr.Ipv4 to the host requested
+*/
 func ChangeListenAddr(r *http.Request) {
 	if r.Host != ListeningAddr.Ipv4 {
 		ListeningAddr.Ipv4 = r.Host
