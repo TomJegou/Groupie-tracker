@@ -53,7 +53,7 @@ const URLRELATION = "https://groupietrackers.herokuapp.com/api/relation"
 
 /*Global variables*/
 
-var ListeningAddr = ListenAddr{Ipv4: "127.0.0.1", Port: "80"}
+var ListeningAddr = ListenAddr{Ipv4: "172.16.238.10", Port: "80"}
 var IsStartServer = true
 var OnLibraryArtists = false
 var Artists []Artist
