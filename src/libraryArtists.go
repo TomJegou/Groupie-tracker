@@ -170,6 +170,7 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		setAllArtistVisibility(true)
 		needDispatch = true
+		needSort = true
 	} else if r.Method == "POST" {
 		searchContent := r.FormValue("searchBar")
 		sortingOption := r.FormValue("sortFilter")
