@@ -5,7 +5,7 @@ import (
 )
 
 /*Home page's handler*/
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
+func homeHandler(w http.ResponseWriter, r *http.Request) {
 	ChangeListenAddr(r)
 	OnLibraryArtists = false
 	go ParseHtml("static/html/index.html")

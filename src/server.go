@@ -111,13 +111,13 @@ on port 80
 */
 func StartServer(wg *sync.WaitGroup) {
 	defer wg.Done()
-	FileServer := http.FileServer(http.Dir("./static"))
-	http.Handle("/static/", http.StripPrefix("/static", FileServer))
-	http.HandleFunc("/", HomeHandler)
-	http.HandleFunc("/libraryArtists", LibraryArtistsHandler)
-	http.HandleFunc("/artistsDetails", ArtistsDetailsHandler)
-	http.HandleFunc("/about", AboutHandler)
-	http.HandleFunc("/legalNotice", LegalNoticeHandler)
+	fileServer := http.FileServer(http.Dir("./static"))
+	http.Handle("/static/", http.StripPrefix("/static", fileServer))
+	http.HandleFunc("/", homeHandler)
+	http.HandleFunc("/libraryArtists", libraryArtistsHandler)
+	http.HandleFunc("/artistsDetails", artistsDetailsHandler)
+	http.HandleFunc("/about", aboutHandler)
+	http.HandleFunc("/legalNotice", legalNoticeHandler)
 	fmt.Println("http://127.0.0.1:80")
 	err := http.ListenAndServe(ListeningAddr.Ipv4+":"+ListeningAddr.Port, nil)
 	if err != nil {
