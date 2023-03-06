@@ -109,18 +109,7 @@ func dispatchIntoPage(wg *sync.WaitGroup) {
 	ListPages = append(ListPages, page)
 }
 
-/*Handler func of the library artists*/
-func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
-	ChangeListenAddr(r)
-	needSort := false
-	needDispatch := false
-	if !OnLibraryArtists {
-		var wg sync.WaitGroup
-		wg.Add(1)
-		go PutBodyResponseApiIntoStruct(URLARTISTS, &Artists, &wg)
-		wg.Wait()
-		OnLibraryArtists = true
-	}
+func initLib() {
 	if IsStartServer {
 		LibArtists.ListenAddr = &ListeningAddr
 		LibArtists.Artistlist = &Artists
@@ -134,6 +123,21 @@ func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		LibArtists.Page = &ListPages[LibArtists.IdPageToDisplay]
 		IsStartServer = false
 	}
+}
+
+/*Handler func of the library artists*/
+func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
+	ChangeListenAddr(r)
+	needSort := false
+	needDispatch := false
+	if !OnLibraryArtists {
+		var wg sync.WaitGroup
+		wg.Add(1)
+		go PutBodyResponseApiIntoStruct(URLARTISTS, &Artists, &wg)
+		wg.Wait()
+		OnLibraryArtists = true
+	}
+	initLib()
 	go ParseHtml("static/html/libraryArtists.html")
 	template := <-ChanTemplates
 	if r.Method == "GET" {
