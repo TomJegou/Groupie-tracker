@@ -8,27 +8,29 @@ func Partition(t []Artist, sortingOption string) ([]Artist, Artist, []Artist) {
 	sliceBefore := []Artist{}
 	sliceAfter := []Artist{}
 	for i := 0; i < len(slice); i++ {
-		if sortingOption == "name" {
+		switch sortingOption {
+		case "name":
 			if t[i].Name < pivot.Name {
-				sliceBefore = append(sliceBefore, slice[i])
+				sliceBefore = append(sliceBefore, t[i])
 			} else {
-				sliceAfter = append(sliceAfter, slice[i])
+				sliceAfter = append(sliceAfter, t[i])
 			}
-		} else if sortingOption == "creationDate" {
+		case "creationDate":
 			if t[i].CreationDate < pivot.CreationDate {
-				sliceBefore = append(sliceBefore, slice[i])
+				sliceBefore = append(sliceBefore, t[i])
 			} else {
-				sliceAfter = append(sliceAfter, slice[i])
+				sliceAfter = append(sliceAfter, t[i])
 			}
-		} else if sortingOption == "numberMembers" {
+		case "numberMembers":
 			if len(t[i].Members) < len(pivot.Members) {
-				sliceBefore = append(sliceBefore, slice[i])
+				sliceBefore = append(sliceBefore, t[i])
 			} else {
-				sliceAfter = append(sliceAfter, slice[i])
+				sliceAfter = append(sliceAfter, t[i])
 			}
-		} else if sortingOption == "Firstalbumrelease" {
+		case "Firstalbumrelease":
 			SortFirstAlbum()
 		}
+
 	}
 	return sliceBefore, pivot, sliceAfter
 }
