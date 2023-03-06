@@ -109,39 +109,8 @@ func dispatchIntoPage(wg *sync.WaitGroup) {
 	ListPages = append(ListPages, page)
 }
 
-func SortFirstAlbum() {
-	for i := 0; i < len(Artists); i++ {
-		x := i
-		for z := i + 1; z < len(Artists); z++ {
-			splitx := strings.Split(Artists[x].FirstAlbum, "-")
-			splitz := strings.Split(Artists[z].FirstAlbum, "-")
-			YearX, err := strconv.Atoi(splitx[2])
-			YearZ, err := strconv.Atoi(splitz[2])
-			MonthX, err := strconv.Atoi(splitx[1])
-			MonthZ, err := strconv.Atoi(splitz[1])
-			DayX, err := strconv.Atoi(splitx[0])
-			DayZ, err := strconv.Atoi(splitz[0])
-			if err != nil {
-				fmt.Println(err)
-			}
-			if YearZ < YearX {
-				x = z
-			} else if YearZ == YearX {
-				if MonthZ < MonthX {
-					x = z
-				} else if MonthZ == MonthX {
-					if DayZ < DayX {
-						x = z
-					}
-				}
-			}
-		}
-		Artists[i], Artists[x] = Artists[x], Artists[i]
-	}
-}
-
 /*Handler func of the library artists*/
-func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
+func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	ChangeListenAddr(r)
 	needSort := false
 	needDispatch := false

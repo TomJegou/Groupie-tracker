@@ -1,6 +1,36 @@
 package src
 
-func Partition(t []Artist, sortingOption string) ([]Artist, Artist, []Artist) {
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+type FormatDate struct {
+	Year  int
+	Month int
+	Day   int
+}
+
+func parseDate(date string) FormatDate {
+	t := strings.Split(date, "-")
+	yearInt, err := strconv.Atoi(t[2])
+	if err != nil {
+		fmt.Println(err)
+	}
+	monthInt, err := strconv.Atoi(t[1])
+	if err != nil {
+		fmt.Println(err)
+	}
+	dayInt, err := strconv.Atoi(t[0])
+	if err != nil {
+		fmt.Println(err)
+	}
+	parsedDate := FormatDate{Year: yearInt, Month: monthInt, Day: dayInt}
+	return parsedDate
+}
+
+func partition(t []Artist, sortingOption string) ([]Artist, Artist, []Artist) {
 	var index_middle int = len(t) / 2
 	pivot := t[index_middle]
 	slice := t[:index_middle]
@@ -28,30 +58,48 @@ func Partition(t []Artist, sortingOption string) ([]Artist, Artist, []Artist) {
 				sliceAfter = append(sliceAfter, t[i])
 			}
 		case "Firstalbumrelease":
-			SortFirstAlbum()
+			formatedPivot := parseDate(pivot.FirstAlbum)
+			formatedDateT := parseDate(t[i].FirstAlbum)
+			if formatedDateT.Year < formatedPivot.Year {
+				sliceBefore = append(sliceBefore, t[i])
+			} else if formatedDateT.Year == formatedPivot.Year {
+				if formatedDateT.Month < formatedPivot.Month {
+					sliceBefore = append(sliceBefore, t[i])
+				} else if formatedDateT.Month == formatedPivot.Month {
+					if formatedDateT.Day < formatedPivot.Day {
+						sliceBefore = append(sliceBefore, t[i])
+					} else {
+						sliceAfter = append(sliceAfter, t[i])
+					}
+				} else {
+					sliceAfter = append(sliceAfter, t[i])
+				}
+			} else {
+				sliceAfter = append(sliceAfter, t[i])
+			}
 		}
 
 	}
 	return sliceBefore, pivot, sliceAfter
 }
 
-func Merge(sB []Artist, p Artist, sA []Artist) []Artist {
+func merge(sB []Artist, p Artist, sA []Artist) []Artist {
 	sB = append(sB, p)
 	sB = append(sB, sA...)
 	return sB
 }
 
-func QuickSortControler(t []Artist, sortingOption string) []Artist {
+func quickSortControler(t []Artist, sortingOption string) []Artist {
 	if len(t) < 1 {
 		return t
 	}
-	s1, p, s2 := Partition(t, sortingOption)
-	a := Merge(QuickSortControler(s1, sortingOption), p, QuickSortControler(s2, sortingOption))
+	s1, p, s2 := partition(t, sortingOption)
+	a := merge(quickSortControler(s1, sortingOption), p, quickSortControler(s2, sortingOption))
 	return a
 }
 
 func QuickSort(sortingOption string, asc bool) {
-	z := QuickSortControler(Artists, sortingOption)
+	z := quickSortControler(Artists, sortingOption)
 	copy(Artists, z)
 	if !asc {
 		RunParallel(reverseSliceArtist)
