@@ -4,47 +4,56 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"text/template"
+	"sync"
 )
+
+/*Structures*/
 
 type ArtistDetailled struct {
 	*Artist
 	ArtistConcertsDatesLocation map[string][]string
+	*ListenAddr
 }
 
-func findArtistById(listArtist []Artist, id int) (Artist, string) {
-	for _, artist := range listArtist {
+/*Functions*/
+
+/*
+Find the artist who as the same id as the id passed as parameter
+from the Artists slice
+*/
+func findArtistById(id int) {
+	for _, artist := range Artists {
 		if artist.Id == id {
-			return artist, ""
+			ChanArtDet <- &artist
+			return
 		}
 	}
-	return listArtist[0], "Error id incorect"
+	ChanArtDet <- &Artists[0]
 }
 
-func ArtistsDetailsHandlerFunc(w http.ResponseWriter, r *http.Request) {
+/*Artist detailled page's handler*/
+func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
+	ChangeListenAddr(r)
 	OnLibraryArtists = false
 	if len(Artists) == 0 {
-		PutBodyResponseApiIntoStruct(URLARTISTS, &Artists)
+		var wg sync.WaitGroup
+		wg.Add(1)
+		go PutBodyResponseApiIntoStruct(URLARTISTS, &Artists, &wg)
+		wg.Wait()
 	}
-	PutBodyResponseApiIntoStruct(URLRELATION, &Relations)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go PutBodyResponseApiIntoStruct(URLRELATION, &Relations, &wg)
+	wg.Wait()
 	idArtist, err := strconv.Atoi(r.FormValue("artistCardId"))
 	if err != nil {
 		fmt.Println("Error converting string to integer")
 		fmt.Println(err)
 	} else {
-		template, err := template.ParseFiles("static/html/artistsDetails.html")
-		if err != nil {
-			fmt.Println("Error parsing template artistsDetails.html")
-			fmt.Println(err)
-		} else {
-			artist, errorId := findArtistById(Artists, idArtist)
-			if errorId != "" {
-				fmt.Println(errorId)
-				http.Redirect(w, r, "/libraryArtists", http.StatusFound)
-			} else {
-				artistDetailled := ArtistDetailled{Artist: &artist, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations}
-				template.Execute(w, artistDetailled)
-			}
-		}
+		go ParseHtml("static/html/artistsDetails.html")
+		template := <-ChanTemplates
+		go findArtistById(idArtist)
+		artistDetailled := ArtistDetailled{Artist: <-ChanArtDet, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations, ListenAddr: &ListeningAddr}
+		template.Execute(w, artistDetailled)
 	}
 }

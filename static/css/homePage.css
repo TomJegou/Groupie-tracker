@@ -1,6 +1,6 @@
 .containerone {
     overflow-y: hidden;
-    height: 90vh;
+    height: 100vh;
     width: 100vw;
     background: linear-gradient(to bottom,#0bf,#066aff);
     display: flex;
@@ -15,24 +15,23 @@
 }
 
 .containertwo {
-    overflow-y: hidden;
-    height: 19.8vh;
+    height: 10vh;
     width: 100vw;
+    padding-top: 1.5%;
+    padding-left: 0.5%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    background: #2d3436;
 }
 
 .spotify {
     display: flex;
     width: 145%;
+    overflow: hidden;
 }
 
 @media screen and (min-width: 768px) {
-
     .containerone {
-        height: 90vh;
+        height: 100vh;
         width: 100vw;
         background: linear-gradient(to bottom,#0bf,#066aff);
         display: flex;
@@ -47,22 +46,48 @@
     }
     
     .containertwo {
-        overflow-y: hidden;
-        height: 17.4vh;
+        height: 9vh;  
         width: 100vw;
         display: flex;
-        flex-wrap: wrap;
+        background: #2d3436;
+        padding-top: 1%;
+    }
+    
+    .spotify {
+        display: flex;
+        overflow: hidden;
+        width: 100vw;
+        padding-right: 1%;
+    }  
+}
+
+@media screen and (max-height: 667px) {
+    .containerone {
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        background: linear-gradient(to bottom,#0bf,#066aff);
+        display: flex;
         justify-content: center;
         align-items: center;
     }
-
-    #title {
+    
+    .menutextwelcome {
+        height: auto;
+        width: 50vw;
+        color: white;
+    }
+    
+    .containertwo {
+        height: 12vh;
+        width: 100vw;
         display: flex;
-        align-items: center;
+        background: #2d3436;
     }
     
     .spotify {
         display: flex;
         width: 145%;
-    }  
+        overflow: hidden;
+    }
 }

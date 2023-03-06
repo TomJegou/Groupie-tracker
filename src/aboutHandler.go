@@ -1,17 +1,14 @@
 package src
 
 import (
-	"fmt"
 	"net/http"
-	"text/template"
 )
 
-func AboutHandlerFunc(w http.ResponseWriter, r *http.Request) {
+/*About page's handler*/
+func AboutHandler(w http.ResponseWriter, r *http.Request) {
+	ChangeListenAddr(r)
 	OnLibraryArtists = false
-	template, errors := template.ParseFiles("static/html/about.html")
-	if errors != nil {
-		fmt.Println("Error Parsing Template")
-		fmt.Println(errors)
-	}
-	template.Execute(w, nil)
+	go ParseHtml("static/html/about.html")
+	template := <-ChanTemplates
+	template.Execute(w, ListeningAddr)
 }
