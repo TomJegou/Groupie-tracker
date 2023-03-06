@@ -109,19 +109,25 @@ func PutBodyResponseApiIntoStruct(url string, structure interface{}, wg *sync.Wa
 Establish the routing for the webApp and start the server
 on port 80
 */
-func StartServer(wg *sync.WaitGroup) {
-	defer wg.Done()
-	fileServer := http.FileServer(http.Dir("./static"))
-	http.Handle("/static/", http.StripPrefix("/static", fileServer))
-	http.HandleFunc("/", homeHandler)
-	http.HandleFunc("/libraryArtists", libraryArtistsHandler)
-	http.HandleFunc("/artistsDetails", artistsDetailsHandler)
-	http.HandleFunc("/about", aboutHandler)
-	http.HandleFunc("/legalNotice", legalNoticeHandler)
-	fmt.Println("http://127.0.0.1:80")
-	err := http.ListenAndServe(ListeningAddr.Ipv4+":"+ListeningAddr.Port, nil)
-	if err != nil {
-		fmt.Println(err)
-		fmt.Println("Error starting the server")
+func StartServer(wg *sync.WaitGroup, startAttempt int) {
+	if startAttempt <= 0 {
+		fmt.Printf("Error: tried start the serveur %v, but failed\n Need to restart the server manually.", startAttempt)
+	} else {
+		defer wg.Done()
+		fileServer := http.FileServer(http.Dir("./static"))
+		http.Handle("/static/", http.StripPrefix("/static", fileServer))
+		http.HandleFunc("/", homeHandler)
+		http.HandleFunc("/libraryArtists", libraryArtistsHandler)
+		http.HandleFunc("/artistsDetails", artistsDetailsHandler)
+		http.HandleFunc("/about", aboutHandler)
+		http.HandleFunc("/legalNotice", legalNoticeHandler)
+		fmt.Println("http://127.0.0.1:80")
+		err := http.ListenAndServe(ListeningAddr.Ipv4+":"+ListeningAddr.Port, nil)
+		if err != nil {
+			fmt.Println(err)
+			fmt.Println("Error starting the server")
+			StartServer(wg, startAttempt-1)
+		}
 	}
+
 }

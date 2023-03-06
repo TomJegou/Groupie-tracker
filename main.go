@@ -8,6 +8,6 @@ import (
 func main() {
 	var wg sync.WaitGroup
 	wg.Add(1)
-	go src.StartServer(&wg)
+	go src.StartServer(&wg, 3)
 	wg.Wait()
 }
