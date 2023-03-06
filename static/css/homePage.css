@@ -15,7 +15,7 @@
 }
 
 .containertwo {
-    height: 10vh;
+    height: 14vh;
     width: 100vw;
     padding-top: 1.5%;
     padding-left: 0.5%;
@@ -46,7 +46,7 @@
     }
     
     .containertwo {
-        height: 9vh;  
+        height: 18vh;  
         width: 100vw;
         display: flex;
         background: #2d3436;
