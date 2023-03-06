@@ -140,33 +140,6 @@ func SortFirstAlbum() {
 	}
 }
 
-func sortArtists(sortingOption string, asc bool) {
-	for i := 0; i < len(Artists)-1; i++ {
-		x := i
-		for j := i + 1; j < len(Artists); j++ {
-			if sortingOption == "name" {
-				if strings.ToLower(Artists[j].Name) < strings.ToLower(Artists[x].Name) {
-					x = j
-				}
-			} else if sortingOption == "creationDate" {
-				if Artists[j].CreationDate < Artists[x].CreationDate {
-					x = j
-				}
-			} else if sortingOption == "numberMembers" {
-				if len(Artists[j].Members) < len(Artists[x].Members) {
-					x = j
-				}
-			} else if sortingOption == "Firstalbumrelease" {
-				SortFirstAlbum()
-			}
-		}
-		Artists[i], Artists[x] = Artists[x], Artists[i]
-	}
-	if !asc {
-		RunParallel(reverseSliceArtist)
-	}
-}
-
 /*Handler func of the library artists*/
 func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	ChangeListenAddr(r)
@@ -185,7 +158,7 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		setAllArtistVisibility(true)
 		LibArtists.SortingFilter = "name"
 		LibArtists.Asc = true
-		sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
+		QuickSort(LibArtists.SortingFilter, LibArtists.Asc)
 		LibArtists.IdPageToDisplay = 0
 		PageCapacity = 10
 		RunParallel(dispatchIntoPage)
@@ -242,7 +215,7 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	if needSort {
-		sortArtists(LibArtists.SortingFilter, LibArtists.Asc)
+		QuickSort(LibArtists.SortingFilter, LibArtists.Asc)
 		needDispatch = true
 	}
 	if needDispatch {
