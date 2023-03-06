@@ -6,12 +6,17 @@ import (
 	"strings"
 )
 
+/*Structures*/
+
 type FormatDate struct {
 	Year  int
 	Month int
 	Day   int
 }
 
+/*Functions*/
+
+/*Parse the first album's date into a structure FormatDate*/
 func parseDate(date string) FormatDate {
 	t := strings.Split(date, "-")
 	yearInt, err := strconv.Atoi(t[2])
@@ -30,6 +35,13 @@ func parseDate(date string) FormatDate {
 	return parsedDate
 }
 
+/*
+Take the artist in the middle and use it as a pivot
+loop through the table t and check if the artist is under the pivot
+using the sortingOption as a condition. If the artist is under the pivot,
+it's appended to the sliceBefore, if not, it's appended to the slice after
+the sliceBefore, sliceAfter and the pivot are returned at the end
+*/
 func partition(t []Artist, sortingOption string) ([]Artist, Artist, []Artist) {
 	var index_middle int = len(t) / 2
 	pivot := t[index_middle]
@@ -83,12 +95,17 @@ func partition(t []Artist, sortingOption string) ([]Artist, Artist, []Artist) {
 	return sliceBefore, pivot, sliceAfter
 }
 
+/*Merge the sliceBefore to the pivot to the sliceAfter*/
 func merge(sB []Artist, p Artist, sA []Artist) []Artist {
 	sB = append(sB, p)
 	sB = append(sB, sA...)
 	return sB
 }
 
+/*
+Handle the recursiv calls for the sort using the
+Divide and rule policy
+*/
 func quickSortControler(t []Artist, sortingOption string) []Artist {
 	if len(t) < 1 {
 		return t
@@ -98,9 +115,12 @@ func quickSortControler(t []Artist, sortingOption string) []Artist {
 	return a
 }
 
+/*
+Call the quickSortControler function and copy
+the result to the slice Artist wich will be overwritten by the result
+*/
 func QuickSort(sortingOption string, asc bool) {
-	z := quickSortControler(Artists, sortingOption)
-	copy(Artists, z)
+	copy(Artists, quickSortControler(Artists, sortingOption))
 	if !asc {
 		RunParallel(reverseSliceArtist)
 	}
