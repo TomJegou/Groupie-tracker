@@ -118,6 +118,7 @@ func StartServer(wg *sync.WaitGroup) {
 	http.HandleFunc("/artistsDetails", ArtistsDetailsHandler)
 	http.HandleFunc("/about", AboutHandler)
 	http.HandleFunc("/legalNotice", LegalNoticeHandler)
+	fmt.Println("http://127.0.0.1:80")
 	err := http.ListenAndServe(ListeningAddr.Ipv4+":"+ListeningAddr.Port, nil)
 	if err != nil {
 		fmt.Println(err)
