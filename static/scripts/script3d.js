@@ -28,17 +28,11 @@ scene.add(camera)
 const renderer = new THREE.WebGL1Renderer({
     canvas: canvas
 })
-    camera.position.set(-50, 40, 350);
-    renderer = new THREE.WebGLRenderer({antialias:true, alpha: true});
-    renderer.setSize(container.clientWidth,container.clientHeight);
-    renderer.setPixelRatio(window.devicePixelRatio)
-    container.appendChild(renderer.domElement);
-
-renderer.setSize(size.width,size.height)
-renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
-renderer.shadowMap.enable = true
-renderer.gammaOuput = true
-
+camera.position.set(-50, 40, 350);
+renderer = new THREE.WebGLRenderer({antialias:true, alpha: true});
+renderer.setSize(container.clientWidth,container.clientHeight);
+renderer.setPixelRatio(window.devicePixelRatio)
+container.appendChild(renderer.domElement);
 renderer.render(scene.camera)
 function animate(){
 }
