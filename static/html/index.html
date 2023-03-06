@@ -21,10 +21,8 @@
     </header>
 <body>
     <div class="containerone">
-        <div class="scene"></div>
-        <script src="https://cdn.jsdelivr.net/npm/three"></script>
-        <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>    
-        <script src="http://{{ .Ipv4 }}:{{ .Port }}/src/scripts/script3d.js"></script>
+        <canvas class="webgl"></canvas>
+        <script type="javascript" src="http://{{ .Ipv4 }}:{{ .Port }}/src/scripts/script3d.js"></script>
         <div class="menutextwelcome">
             <h1>Welcome To Absolut Music</h1>
             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos eaque consequuntur, assumenda necessitatibus voluptatum deserunt voluptatem consequatur iste quis repellendus dolore fugit minus adipisci odit aut omnis autem excepturi quod?</p>
