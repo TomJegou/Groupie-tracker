@@ -49,15 +49,15 @@ func getLocations() {
 }
 
 func locationHandler(w http.ResponseWriter, r *http.Request) {
-	ChangeListenAddr(r)
+	go ChangeListenAddr(r)
 	libLocations.ListenAddr = &ListeningAddr
 	OnLibraryArtists = false
 	var wg sync.WaitGroup
 	wg.Add(1)
 	PutBodyResponseApiIntoStruct(URLRELATION, &Relations, &wg)
 	wg.Wait()
-	getLocations()
 	go ParseHtml("static/html/locations.html")
 	template := <-ChanTemplates
+	getLocations()
 	template.Execute(w, libLocations)
 }

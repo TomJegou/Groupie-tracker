@@ -127,7 +127,7 @@ func initLib() {
 
 /*Handler func of the library artists*/
 func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
-	ChangeListenAddr(r)
+	go ChangeListenAddr(r)
 	needSort := false
 	needDispatch := false
 	if !OnLibraryArtists {

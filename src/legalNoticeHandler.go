@@ -6,7 +6,7 @@ import (
 
 /*legal notice's handler*/
 func legalNoticeHandler(w http.ResponseWriter, r *http.Request) {
-	ChangeListenAddr(r)
+	go ChangeListenAddr(r)
 	OnLibraryArtists = false
 	go ParseHtml("static/html/legalNotice.html")
 	template := <-ChanTemplates

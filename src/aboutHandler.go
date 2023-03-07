@@ -6,7 +6,7 @@ import (
 
 /*About page's handler*/
 func aboutHandler(w http.ResponseWriter, r *http.Request) {
-	ChangeListenAddr(r)
+	go ChangeListenAddr(r)
 	OnLibraryArtists = false
 	go ParseHtml("static/html/about.html")
 	template := <-ChanTemplates
