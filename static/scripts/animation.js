@@ -6,10 +6,10 @@ function show() {
   } else {
     container.style.display = "block";
   }
-}
+
 window.onclick = function (event) {
-  if (!event.target.matches('#dropdown-btn')) {
-      document.getElementById('dropdown-container')
-          .style.display = "none";
+  if (!event.target.matches('.dropdown-btn')) {
+      document.getElementById('dropdown-container').style.display = "none";
   }
-}   
+}  
+} 
