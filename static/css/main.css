@@ -21,6 +21,9 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    gap: 1vh;
 }
 
 /*Header*/
