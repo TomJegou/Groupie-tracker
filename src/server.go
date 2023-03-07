@@ -65,7 +65,7 @@ var Relations map[string][]Relation
 /*Global channels*/
 
 var ChanArtists = make(chan *[]Artist)
-var ChanTemplates = make(chan *template.Template)
+var ChanTemplates = make(chan *template.Template, 1)
 var ChanArtDet = make(chan *Artist)
 
 /*Functions*/

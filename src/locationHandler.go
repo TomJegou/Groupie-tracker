@@ -19,8 +19,9 @@ func (lib LibLocations) Locations() []string {
 }
 
 func (lib LibLocations) InLocations(location string) bool {
-	for i := 0; i < len(lib.Locations()); i++ {
-		if location == lib.Locations()[i] {
+	allLocation := lib.Locations()
+	for i := 0; i < len(allLocation); i++ {
+		if location == allLocation[i] {
 			return true
 		}
 	}
@@ -54,7 +55,7 @@ func locationHandler(w http.ResponseWriter, r *http.Request) {
 	OnLibraryArtists = false
 	var wg sync.WaitGroup
 	wg.Add(1)
-	PutBodyResponseApiIntoStruct(URLRELATION, &Relations, &wg)
+	go PutBodyResponseApiIntoStruct(URLRELATION, &Relations, &wg)
 	wg.Wait()
 	go ParseHtml("static/html/locations.html")
 	template := <-ChanTemplates
