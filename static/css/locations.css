@@ -1,0 +1,21 @@
+.libLocations{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1vh;
+}
+
+.cityName{
+    display: flex;
+    flex-direction: column;
+    background: #141313;
+    border-radius: 5px;
+    width: 50vw;
+}
+
+.cityNameTxt{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
