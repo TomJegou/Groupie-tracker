@@ -53,7 +53,7 @@ func artistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 		go ParseHtml("static/html/artistsDetails.html")
 		template := <-ChanTemplates
 		go findArtistById(idArtist)
-		artistDetailled := ArtistDetailled{Artist: <-ChanArtDet, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations, ListenAddr: &ListeningAddr}
+		artistDetailled := &ArtistDetailled{Artist: <-ChanArtDet, ArtistConcertsDatesLocation: Relations["index"][idArtist-1].DatesLocations, ListenAddr: &ListeningAddr}
 		template.Execute(w, artistDetailled)
 	}
 }

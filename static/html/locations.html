@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/libraryArtists.css">
+    <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/main.css">
+    <link rel="shortcut icon" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg">
+    <title>Absolut Music</title>
+</head>
+<header>
+    <a href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/html/index.html" class="navLogo"><img class="navLogo" src="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg" alt="logo"></a>
+    <nav>
+        <ul>
+            <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}">Accueil</a></li>
+            <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
+            <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/location">Location</a></li>
+            <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/about">À propos</a></li>
+        </ul>
+    </nav>
+</header>
+<body>
+    <div class="libLocations">
+        {{ range $cityName, $listDate := .LocationsList }}
+        <div>{{ $cityName }}</div>
+        {{ end }}
+    </div>
+</body>
+<footer>
+    <p>© 2023 Absolut Music</p>
+    <ul>
+        <li><a id="ftxt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/legalNotice">Mentions légales</a></li>
+    </ul>
+</footer>

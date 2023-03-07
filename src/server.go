@@ -27,6 +27,7 @@ type Artist struct {
 type Location struct {
 	Id        int
 	Locations []string
+	Dates     string
 }
 
 type Date struct {
@@ -121,6 +122,7 @@ func StartServer(wg *sync.WaitGroup, startAttempt int) {
 		http.HandleFunc("/artistsDetails", artistsDetailsHandler)
 		http.HandleFunc("/about", aboutHandler)
 		http.HandleFunc("/legalNotice", legalNoticeHandler)
+		http.HandleFunc("/location", locationHandler)
 		fmt.Println("http://127.0.0.1:80")
 		err := http.ListenAndServe(ListeningAddr.Ipv4+":"+ListeningAddr.Port, nil)
 		if err != nil {
