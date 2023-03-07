@@ -44,18 +44,16 @@
             <div class="divtableCardConcertDates">
                 <fieldset class="fieldsetTableCityDate">
                     <legend id="titleTableCardConcertDates">Lieux de Concert</legend>
-                    <div class="drpnav" data-dropdown>
                     {{ range $city, $listDates := .ArtistConcertsDatesLocation }}
                     <div class="cardConcertDates">
-                        <button onclick="drp" class="dropdown-btn" data-dropdown-button>{{ $city }}:</button>
-                        <div class="dropdown-container">
+                        <button onclick="show()" class="dropdown-btn">{{ $city }}:</button>
+                        <div class="dropdown-container" id="dropdown-container">
                             {{ range $listDates }}
                                 <a href="#">- {{.}} </a>
                                 {{ end }}
                          </div>
                     </div>
-                    {{ end }}
-                </div>  
+                    {{ end }}  
                 </fieldset>
             </div>
         </div>
