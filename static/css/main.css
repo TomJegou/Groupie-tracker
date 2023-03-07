@@ -157,3 +157,9 @@ footer a{
     color: rgb(222, 222, 222);
     }
 }
+
+@media screen and (min-width: 975px){
+    .navLogo {
+        max-width: 153px;
+    }
+}

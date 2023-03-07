@@ -63,7 +63,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     background: white;
-    /* gap: 1vh; */
+    gap: 2vh;
 }
 
 .divInfoTxtArtist{
@@ -128,7 +128,7 @@ body {
     flex-direction: column;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 4vw;
+    margin: 2vh;
 }
 
 .divMembersArtistName{
@@ -155,9 +155,9 @@ body {
 .fieldsetTableCityDate{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     flex-wrap: wrap;
-    margin: 2vw;
+    justify-content: center;
+    margin: 2vh;
 }
 
 #titleTableCardConcertDates{
@@ -170,12 +170,12 @@ body {
 
 .divtableCardConcertDates{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    flex-direction: column;
     background: linear-gradient(to bottom, #090438, #01162F);
     border-radius: 5px;
-    width: 90vw;
-    padding-bottom: 2vh;
+    gap: 2vw 1vh;
 }
 
 .cardConcertDates{
@@ -222,6 +222,21 @@ body {
 }
 
 @media only screen and (min-width: 800px) {
+    .divImgArtistDetailled{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        align-self: flex-start;
+    }
+
+    #idImgArtistDetailled{
+        width: 18vw;
+        height: 80%;
+        max-width: 200px;
+    }
+
     .allInfo{
         flex-direction: row;
         align-items: flex-end;
@@ -239,7 +254,6 @@ body {
     .divMembersArtist{
         padding: 0;
         margin: 0;
-        width: 25vw;
     }
 
     .divMembersArtistName{
@@ -251,21 +265,13 @@ body {
         margin: 0;
         justify-content: center;
         flex-direction: column;
-        width: 25vw;
     }
+}
 
-    .divImgArtistDetailled{
-        margin: 0;
-        padding: 1vw;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        align-self: flex-start;
-    }
-
+@media only screen and (min-width: 890px) {
     #idImgArtistDetailled{
-        width: 20vw;
-        height: 14vh;
-        max-width: 200px;
+        width: 15vw;
+        max-width: 140px;
+        height: 80%;
     }
 }
