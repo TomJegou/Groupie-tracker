@@ -91,7 +91,7 @@ footer a{
 @media screen and (min-width: 768px) {
     /*Header*/
 .navLogo {
-    width: 6vw;
+    width: 15vw;
     height: 12vh;
     margin-left: 3%;
 }

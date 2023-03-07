@@ -5,6 +5,7 @@
     justify-content: flex-start;    
     cursor: pointer;
 }
+
 .dropdown.show{
     visibility: visible;
     opacity:1;
@@ -14,6 +15,7 @@
     align-items: center;
     margin-top: 50px;
 }
+
 .dropdown a {
     display: flex;
     align-items: center;
@@ -21,17 +23,19 @@
     color: red;
     visibility: hidden;
     opacity:0;
-  }
+}
   
 .btn:hover {
     background-color:gray;
     color: white;
-  }
+}
+
 .show {
     visibility: visible;
     opacity:1;
     transform: translateY(0rem);
-  }
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -59,7 +63,8 @@ body {
 
 .allInfo{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     background: white;
     gap: 1vh;
@@ -79,13 +84,14 @@ body {
 
 .divImgArtistDetailled{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     height: 12vh;
     width: 90vw;
     align-items: center;
     background: linear-gradient(to bottom, #292929, #0B0B0B);
     border-radius: 5px;
-    margin: 5vw;
     overflow: hidden;
 }
 
@@ -166,7 +172,6 @@ body {
     background: linear-gradient(to bottom, #090438, #01162F);
     border-radius: 5px;
     width: 90vw;
-    margin: 5vw;
     padding-bottom: 2vh;
 }
 
