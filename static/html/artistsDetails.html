@@ -12,12 +12,12 @@
     </head>
     <header>
         <a href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}" class="navLogo"><img class="navLogo" src="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg" alt="logo"></a>
-        <nav class="navTxtArtistDetailled">
+        <nav>
             <ul>
-                <li><a href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}">Accueil</a></li>
-                <li><a href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
+                <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}">Accueil</a></li>
+                <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
                 <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/location">Lieux</a></li>
-                <li><a href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/about">À propos</a></li>
+                <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/about">À propos</a></li>
             </ul>
         </nav>
     </header>

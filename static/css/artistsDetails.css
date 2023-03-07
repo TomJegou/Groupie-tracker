@@ -84,6 +84,7 @@ body {
     justify-content: center;
     width: 100%;
     color: black;
+    overflow: hidden;
 }
 
 .divImgArtistDetailled{
@@ -101,8 +102,7 @@ body {
 
 #idImgArtistDetailled{
     width: 20vw;
-    height: 10vh;
-    max-width: 200px;
+    height: 80%;
     max-height: 151px;
     border-radius: 5%;
 }
@@ -200,24 +200,15 @@ body {
 
 @media only screen and (min-width: 500px) {
     #idImgArtistDetailled{
-        width: 17vw;
-        height: 10vh;
+        max-width: 100px;
+        max-height: 95px;
     }
 }
 
 @media only screen and (min-width: 650px) {
     #idImgArtistDetailled{
-        width: 17vw;
-        height: 12vh;
-    }
-
-    .divImgArtistDetailled{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 5px;
-        height: 14vh;
-        overflow: hidden;
+        max-width: 119px;
+        max-height: 100px;
     }
 }
 
@@ -233,8 +224,7 @@ body {
 
     #idImgArtistDetailled{
         width: 18vw;
-        height: 80%;
-        max-width: 200px;
+        max-width: 144px;
     }
 
     .allInfo{
@@ -265,13 +255,5 @@ body {
         margin: 0;
         justify-content: center;
         flex-direction: column;
-    }
-}
-
-@media only screen and (min-width: 890px) {
-    #idImgArtistDetailled{
-        width: 15vw;
-        max-width: 140px;
-        height: 80%;
     }
 }
