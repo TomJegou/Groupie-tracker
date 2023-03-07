@@ -21,7 +21,11 @@
     </nav>
 </header>
 <body>
-    
+    <div class="libLocations">
+        {{ range $cityName, $listDate := .LocationsList }}
+        <div>{{ $cityName }}</div>
+        {{ end }}
+    </div>
 </body>
 <footer>
     <p>© 2023 Absolut Music</p>
