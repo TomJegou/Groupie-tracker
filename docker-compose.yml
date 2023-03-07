@@ -1,5 +1,5 @@
 # Set the version of docker-compose to use
-version: "4.17.0"
+version: 2.16.0
 # Define the services absolut-music 
 services:
   # Name of the service
