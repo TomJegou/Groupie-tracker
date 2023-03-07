@@ -1,7 +1,6 @@
 package src
 
 import (
-	"fmt"
 	"net/http"
 	"sync"
 )
@@ -58,7 +57,6 @@ func locationHandler(w http.ResponseWriter, r *http.Request) {
 	PutBodyResponseApiIntoStruct(URLRELATION, &Relations, &wg)
 	wg.Wait()
 	getLocations()
-	fmt.Println(libLocations.LocationsList)
 	go ParseHtml("static/html/locations.html")
 	template := <-ChanTemplates
 	template.Execute(w, libLocations)
