@@ -3,7 +3,7 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    background: #2d3436;
+    background: linear-gradient(#2b1055, #7597de);
     background-attachment: fixed;
     background-repeat: no-repeat;
     }
@@ -21,7 +21,7 @@ body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    background: #2d3436;
+    background: linear-gradient(#2b1055, #7597de);
     background-attachment: fixed;
     background-repeat: no-repeat;
     }

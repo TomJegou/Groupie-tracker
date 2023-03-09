@@ -7,14 +7,14 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  background: #2d3436;
+  background: linear-gradient(#2b1055, #7597de);
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
 .searchContainer {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   margin-top: 3%;
   padding-bottom: 3%;
   padding-right: 3%;
@@ -24,20 +24,22 @@ body {
   display: flex;
   align-items: center;
   background-color: white;
+  border-radius: 20px;
   overflow: hidden;
-  width: 50%;
+  width: 40%;
 }
 
 .searchContainer input[type="text"] {
   border: solid 1px black;
   font-size: 16px;
+  border-radius: 20px;
   padding: 10px;
   width: 100%;
 }
 
 .searchContainer button[type="submit"] {
   background-color: white;
-  background-image: url("http://localhost:8080/static/img/loupe.png");
+  background-image: url("http://localhost:80/static/img/loupe.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -46,6 +48,15 @@ body {
   font-size: 16px;
   padding: 10px 15px;
   cursor: pointer;
+}
+
+.filter {
+  width: 100%;
+  color: white;
+}
+
+.divButtonPagination {
+  color: white;
 }
 
 .listcardArtist{
@@ -85,14 +96,15 @@ gap: 2vw 2vh;
   border-radius: 5%;
 }
 
-@media screen and (min-width: 768px) {   
+@media screen and (min-width: 768px) {    
     body {
     margin: 0;
     padding: 0;
+    height: 110vh;
     display: flex;
     flex-direction: column;
-    background-image: linear-gradient(324deg, transparent 0%, transparent 45%,rgba(186, 186, 186,0.04) 45%, rgba(186, 186, 186,0.04) 47%,transparent 47%, transparent 100%),linear-gradient(208deg, transparent 0%, transparent 40%,rgba(186, 186, 186,0.04) 40%, rgba(186, 186, 186,0.04) 80%,transparent 80%, transparent 100%),linear-gradient(202deg, transparent 0%, transparent 20%,rgba(186, 186, 186,0.04) 20%, rgba(186, 186, 186,0.04) 40%,transparent 40%, transparent 100%),linear-gradient(338deg, transparent 0%, transparent 10%,rgba(186, 186, 186,0.04) 10%, rgba(186, 186, 186,0.04) 72%,transparent 72%, transparent 100%),linear-gradient(90deg, rgb(0,0,0),rgb(0,0,0));
     background-attachment: fixed;
+    background: linear-gradient(#2b1055, #7597de);
     background-repeat: no-repeat;
     }
     
@@ -150,6 +162,7 @@ gap: 2vw 2vh;
       justify-content: center;
       align-items: flex-end;
       gap: 2%;
+      color: white;
     }
 
     .divButtonPagination {
@@ -159,12 +172,10 @@ gap: 2vw 2vh;
     .divNbrElemDisplayed {
       height: 8%;
       width: 18%;
-      background: white;
     }
 
     .sortingFilter {
       width: 18%;
-      background: white;
     }
 
     .listcardArtist{
@@ -173,7 +184,6 @@ gap: 2vw 2vh;
       width: 96vw;
       padding-bottom: 0.8%;
       flex-direction: column;
-      background-color: #fff;
     }
     
     .formListcardArtist{
@@ -188,7 +198,6 @@ gap: 2vw 2vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background-color: white;
       border-radius: 1vh;
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  
       transition: 1s;
