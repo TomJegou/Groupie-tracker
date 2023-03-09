@@ -9,13 +9,37 @@
 .cityName{
     display: flex;
     flex-direction: column;
-    background: #141313;
+    background: linear-gradient(to bottom, #6E01FC 20%, #260156);
     border-radius: 5px;
     width: 50vw;
+    height: 12vh;
+}
+
+.cityName:hover{
+    background: linear-gradient(to bottom, #6E01FC, #260156);
+
 }
 
 .cityNameTxt{
     display: flex;
     justify-content: center;
     color: white;
+}
+
+@media only screen and (min-width: 600px){
+    .cityName{
+        width: 40vw;
+    }
+}
+
+@media only screen and (min-width: 700px){
+    .cityName{
+        width: 30vw;
+    }
+}
+
+@media only screen and (min-width: 800px){
+    .cityName{
+        width: 20vw;
+    }
 }
