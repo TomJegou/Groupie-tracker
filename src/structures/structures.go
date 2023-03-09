@@ -35,3 +35,9 @@ type ListenAddr struct {
 	Ipv4 string
 	Port string
 }
+
+type ArtistDetailled struct {
+	*Artist
+	ArtistConcertsDatesLocation map[string][]string
+	*ListenAddr
+}

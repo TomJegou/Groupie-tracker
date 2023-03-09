@@ -39,3 +39,17 @@ func ChangeListenAddr(r *http.Request) {
 		constances.ListeningAddr.Ipv4 = r.Host
 	}
 }
+
+/*
+Find the artist who as the same id as the id passed as parameter
+from the Artists slice
+*/
+func FindArtistById(id int) {
+	for _, artist := range constances.Artists {
+		if artist.Id == id {
+			constances.ChanArtDet <- &artist
+			return
+		}
+	}
+	constances.ChanArtDet <- &constances.Artists[0]
+}

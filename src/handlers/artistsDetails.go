@@ -12,27 +12,7 @@ import (
 
 /*Structures*/
 
-type ArtistDetailled struct {
-	*structures.Artist
-	ArtistConcertsDatesLocation map[string][]string
-	*structures.ListenAddr
-}
-
 /*Functions*/
-
-/*
-Find the artist who as the same id as the id passed as parameter
-from the Artists slice
-*/
-func findArtistById(id int) {
-	for _, artist := range constances.Artists {
-		if artist.Id == id {
-			constances.ChanArtDet <- &artist
-			return
-		}
-	}
-	constances.ChanArtDet <- &constances.Artists[0]
-}
 
 /*Artist detailled page's handler*/
 func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
@@ -55,8 +35,8 @@ func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 	} else {
 		go tools.ParseHtml("static/html/artistsDetails.html")
 		template := <-constances.ChanTemplates
-		go findArtistById(idArtist)
-		artistDetailled := &ArtistDetailled{Artist: <-constances.ChanArtDet, ArtistConcertsDatesLocation: constances.Relations["index"][idArtist-1].DatesLocations, ListenAddr: &constances.ListeningAddr}
+		go tools.FindArtistById(idArtist)
+		artistDetailled := &structures.ArtistDetailled{Artist: <-constances.ChanArtDet, ArtistConcertsDatesLocation: constances.Relations["index"][idArtist-1].DatesLocations, ListenAddr: &constances.ListeningAddr}
 		template.Execute(w, artistDetailled)
 	}
 }
