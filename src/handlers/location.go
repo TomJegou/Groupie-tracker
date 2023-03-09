@@ -7,8 +7,10 @@ import (
 	"sync"
 )
 
+/*Create new object Liblocation using the func NewLibLocations()*/
 var LibLocations = tools.NewLibLocations()
 
+/*handles the Locations library*/
 func LocationHandler(w http.ResponseWriter, r *http.Request) {
 	go tools.ChangeListenAddr(r)
 	LibLocations.ListenAddr = &globalDataStructures.ListeningAddr

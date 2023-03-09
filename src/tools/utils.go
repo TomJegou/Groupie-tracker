@@ -121,6 +121,7 @@ func DispatchIntoPage(wg *sync.WaitGroup) {
 	globalDataStructures.ListPages = append(globalDataStructures.ListPages, page)
 }
 
+/*Initialize the artists library*/
 func InitLibArt() {
 	if globalDataStructures.IsStartServer {
 		globalDataStructures.LibArtists.ListenAddr = &globalDataStructures.ListeningAddr
@@ -137,11 +138,14 @@ func InitLibArt() {
 	}
 }
 
+/*Creates a new LibLocations object and returns it's pointer*/
 func NewLibLocations() *structures.LibLocations {
 	locationList := make(map[string][]string)
 	return &structures.LibLocations{LocationsList: locationList}
 }
 
+/*Grabs in the Relations object all the cities and their concert dates in order to put them
+into the libloca's attribute LocationsList wich is a map*/
 func GetLocations(libloca *structures.LibLocations) {
 	for i := 0; i < len(globalDataStructures.Relations["index"]); i++ {
 		for j := 0; j < len(globalDataStructures.Relations["index"][i].DatesLocations); j++ {

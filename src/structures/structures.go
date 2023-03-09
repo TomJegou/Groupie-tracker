@@ -1,7 +1,6 @@
 package structures
 
-/*Structures*/
-
+/*Struct used to store the data from the api*/
 type Artist struct {
 	Id           int
 	Image        string
@@ -31,17 +30,20 @@ type Relation struct {
 	DatesLocations map[string][]string
 }
 
+/*Struct used to store the listening address*/
 type ListenAddr struct {
 	Ipv4 string
 	Port string
 }
 
+/*Struct used for the pageg Artists detailled*/
 type ArtistDetailled struct {
 	*Artist
 	ArtistConcertsDatesLocation map[string][]string
 	*ListenAddr
 }
 
+/*Structs used for the Artists library*/
 type Page struct {
 	Index    int
 	IsFirst  bool

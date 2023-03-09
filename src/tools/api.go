@@ -8,8 +8,6 @@ import (
 	"sync"
 )
 
-/*Functions*/
-
 /*Do an API call and return a string of the response*/
 func GetApi(url string) string {
 	req, errors := http.NewRequest("GET", url, nil)

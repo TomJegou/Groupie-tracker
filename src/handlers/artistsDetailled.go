@@ -10,10 +10,6 @@ import (
 	"sync"
 )
 
-/*Structures*/
-
-/*Functions*/
-
 /*Artist detailled page's handler*/
 func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 	go tools.ChangeListenAddr(r)

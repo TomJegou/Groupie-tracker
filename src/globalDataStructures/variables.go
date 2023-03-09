@@ -5,7 +5,6 @@ import (
 )
 
 /*Global variables*/
-
 var ListeningAddr = structures.ListenAddr{Ipv4: "0.0.0.0", Port: "80"}
 var IsStartServer = true
 var OnLibraryArtists = false
