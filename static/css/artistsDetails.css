@@ -55,8 +55,9 @@ body {
 
 #idImgArtistDetailled{
     width: 20vw;
-    height: 80%;
+    height: 20vw;
     max-height: 151px;
+    max-width: 151px;
     border-radius: 5%;
 }
 
@@ -147,14 +148,14 @@ body {
 @media only screen and (min-width: 500px) {
     #idImgArtistDetailled{
         max-width: 100px;
-        max-height: 95px;
+        max-height: 100px;
     }
 }
 
 @media only screen and (min-width: 650px) {
     #idImgArtistDetailled{
         max-width: 119px;
-        max-height: 100px;
+        max-height: 119px;
     }
 }
 
@@ -169,6 +170,7 @@ body {
 
     #idImgArtistDetailled{
         width: 18vw;
+        height: 18vw;
     }
 
     .divInfoTxtArtist{
