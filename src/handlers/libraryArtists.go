@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"absolut-music/src/constances"
+	"absolut-music/src/globalDataStructures"
 	"absolut-music/src/tools"
 	"fmt"
 	"math"
@@ -17,16 +17,16 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	go tools.ChangeListenAddr(r)
 	needSort := false
 	needDispatch := false
-	if !constances.OnLibraryArtists {
+	if !globalDataStructures.OnLibraryArtists {
 		var wg sync.WaitGroup
 		wg.Add(1)
-		go tools.PutBodyResponseApiIntoStruct(constances.URLARTISTS, &constances.Artists, &wg)
+		go tools.PutBodyResponseApiIntoStruct(globalDataStructures.URLARTISTS, &globalDataStructures.Artists, &wg)
 		wg.Wait()
-		constances.OnLibraryArtists = true
+		globalDataStructures.OnLibraryArtists = true
 	}
 	tools.InitLibArt()
 	go tools.ParseHtml("static/html/libraryArtists.html")
-	template := <-constances.ChanTemplates
+	template := <-globalDataStructures.ChanTemplates
 	if r.Method == "GET" {
 		tools.SetAllArtistVisibility(true)
 		needDispatch = true
@@ -39,26 +39,26 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		numberOfElem := r.FormValue("nbrElem")
 		if len(numberOfElem) != 0 {
 			pageCapacityTmp, errors := strconv.Atoi(numberOfElem)
-			constances.PageCapacity = pageCapacityTmp
+			globalDataStructures.PageCapacity = pageCapacityTmp
 			if errors != nil {
 				fmt.Println(errors)
 			}
 			needDispatch = true
 		}
 		if len(paginationRequest) != 0 {
-			if len(constances.ListPages) > 0 {
+			if len(globalDataStructures.ListPages) > 0 {
 				if paginationRequest == "next" {
-					constances.LibArtists.IdPageToDisplay = int(math.Min(float64(len(constances.ListPages)-1), float64(constances.LibArtists.IdPageToDisplay+1)))
+					globalDataStructures.LibArtists.IdPageToDisplay = int(math.Min(float64(len(globalDataStructures.ListPages)-1), float64(globalDataStructures.LibArtists.IdPageToDisplay+1)))
 				} else {
-					constances.LibArtists.IdPageToDisplay = int(math.Max(float64(0), float64(constances.LibArtists.IdPageToDisplay-1)))
+					globalDataStructures.LibArtists.IdPageToDisplay = int(math.Max(float64(0), float64(globalDataStructures.LibArtists.IdPageToDisplay-1)))
 				}
-				constances.LibArtists.Page = &constances.ListPages[constances.LibArtists.IdPageToDisplay]
+				globalDataStructures.LibArtists.Page = &globalDataStructures.ListPages[globalDataStructures.LibArtists.IdPageToDisplay]
 			} else {
 				http.Redirect(w, r, "/libraryArtists", http.StatusFound)
 			}
 		}
 		if len(sortingOption) != 0 {
-			constances.LibArtists.SortingFilter = sortingOption
+			globalDataStructures.LibArtists.SortingFilter = sortingOption
 			needSort = true
 		}
 		if len(searchContent) > 0 {
@@ -68,23 +68,23 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		if len(sortingOrder) != 0 {
 			if sortingOrder == "asc" {
-				constances.LibArtists.Asc = true
+				globalDataStructures.LibArtists.Asc = true
 			} else if sortingOrder == "desc" {
-				constances.LibArtists.Asc = false
+				globalDataStructures.LibArtists.Asc = false
 			}
 			needSort = true
 		}
 	}
 	if needSort {
-		tools.QuickSort(constances.LibArtists.SortingFilter, constances.LibArtists.Asc)
+		tools.QuickSort(globalDataStructures.LibArtists.SortingFilter, globalDataStructures.LibArtists.Asc)
 		needDispatch = true
 	}
 	if needDispatch {
 		tools.RunParallel(tools.DispatchIntoPage)
-		if constances.LibArtists.IdPageToDisplay > len(constances.ListPages)-1 {
-			constances.LibArtists.IdPageToDisplay = len(constances.ListPages) - 1
+		if globalDataStructures.LibArtists.IdPageToDisplay > len(globalDataStructures.ListPages)-1 {
+			globalDataStructures.LibArtists.IdPageToDisplay = len(globalDataStructures.ListPages) - 1
 		}
-		constances.LibArtists.Page = &constances.ListPages[constances.LibArtists.IdPageToDisplay]
+		globalDataStructures.LibArtists.Page = &globalDataStructures.ListPages[globalDataStructures.LibArtists.IdPageToDisplay]
 	}
-	template.Execute(w, constances.LibArtists)
+	template.Execute(w, globalDataStructures.LibArtists)
 }

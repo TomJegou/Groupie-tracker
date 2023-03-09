@@ -1,7 +1,7 @@
 package handlers
 
 import (
-	"absolut-music/src/constances"
+	"absolut-music/src/globalDataStructures"
 	"absolut-music/src/tools"
 	"net/http"
 )
@@ -9,8 +9,8 @@ import (
 /*Home page's handler*/
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	go tools.ChangeListenAddr(r)
-	constances.OnLibraryArtists = false
+	globalDataStructures.OnLibraryArtists = false
 	go tools.ParseHtml("static/html/index.html")
-	template := <-constances.ChanTemplates
-	template.Execute(w, constances.ListeningAddr)
+	template := <-globalDataStructures.ChanTemplates
+	template.Execute(w, globalDataStructures.ListeningAddr)
 }

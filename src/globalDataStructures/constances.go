@@ -1,4 +1,4 @@
-package constances
+package globalDataStructures
 
 import (
 	"absolut-music/src/structures"

@@ -1,7 +1,7 @@
 package tools
 
 import (
-	"absolut-music/src/constances"
+	"absolut-music/src/globalDataStructures"
 	"absolut-music/src/structures"
 	"fmt"
 	"net/http"
@@ -20,7 +20,7 @@ func ParseHtml(fileToParse string) {
 		fmt.Println("Error Parsing Template")
 		fmt.Println(errors)
 	}
-	constances.ChanTemplates <- template
+	globalDataStructures.ChanTemplates <- template
 }
 
 /*Make the function passed as a parameter run in Parallel as a goroutine*/
@@ -37,8 +37,8 @@ the same as the one to be used for the templates.
 If it's not the same, change the ListeningAddr.Ipv4 to the host requested
 */
 func ChangeListenAddr(r *http.Request) {
-	if r.Host != constances.ListeningAddr.Ipv4 {
-		constances.ListeningAddr.Ipv4 = r.Host
+	if r.Host != globalDataStructures.ListeningAddr.Ipv4 {
+		globalDataStructures.ListeningAddr.Ipv4 = r.Host
 	}
 }
 
@@ -47,13 +47,13 @@ Find the artist who as the same id as the id passed as parameter
 from the Artists slice
 */
 func FindArtistById(id int) {
-	for _, artist := range constances.Artists {
+	for _, artist := range globalDataStructures.Artists {
 		if artist.Id == id {
-			constances.ChanArtDet <- &artist
+			globalDataStructures.ChanArtDet <- &artist
 			return
 		}
 	}
-	constances.ChanArtDet <- &constances.Artists[0]
+	globalDataStructures.ChanArtDet <- &globalDataStructures.Artists[0]
 }
 
 /*
@@ -69,8 +69,8 @@ Set all of the artists's attribute IsVisible from the slice Artists
 to the boolean isVisible passed as parameter
 */
 func SetAllArtistVisibility(isVisible bool) {
-	for i := 0; i < len(constances.Artists); i++ {
-		SetArtistVisibility(&constances.Artists[i], isVisible)
+	for i := 0; i < len(globalDataStructures.Artists); i++ {
+		SetArtistVisibility(&globalDataStructures.Artists[i], isVisible)
 	}
 }
 
@@ -81,16 +81,16 @@ searchContent passed as parameter. Every artist found has his visibility set to 
 */
 func SearchArtists(searchContent string) {
 	SetAllArtistVisibility(false)
-	for i := 0; i < len(constances.Artists); i++ {
+	for i := 0; i < len(globalDataStructures.Artists); i++ {
 		isOk := true
 		for indexChar, char := range searchContent {
-			if !strings.EqualFold(string(constances.Artists[i].Name[indexChar]), string(char)) {
+			if !strings.EqualFold(string(globalDataStructures.Artists[i].Name[indexChar]), string(char)) {
 				isOk = false
 				break
 			}
 		}
 		if isOk {
-			SetArtistVisibility(&constances.Artists[i], true)
+			SetArtistVisibility(&globalDataStructures.Artists[i], true)
 		}
 	}
 }
@@ -101,38 +101,57 @@ each page is put into the slice ListPages
 */
 func DispatchIntoPage(wg *sync.WaitGroup) {
 	defer wg.Done()
-	constances.ListPages = []structures.Page{}
+	globalDataStructures.ListPages = []structures.Page{}
 	pageCount := 0
 	countArtist := 0
-	page := structures.Page{Index: pageCount, Capacity: constances.PageCapacity, IsFirst: true}
-	for i := 0; i < len(constances.Artists); i++ {
-		if countArtist == constances.PageCapacity {
-			constances.ListPages = append(constances.ListPages, page)
+	page := structures.Page{Index: pageCount, Capacity: globalDataStructures.PageCapacity, IsFirst: true}
+	for i := 0; i < len(globalDataStructures.Artists); i++ {
+		if countArtist == globalDataStructures.PageCapacity {
+			globalDataStructures.ListPages = append(globalDataStructures.ListPages, page)
 			pageCount++
-			page = structures.Page{Index: pageCount, Capacity: constances.PageCapacity, IsFirst: false, IsLast: false}
+			page = structures.Page{Index: pageCount, Capacity: globalDataStructures.PageCapacity, IsFirst: false, IsLast: false}
 			countArtist = 0
 		}
-		if constances.Artists[i].IsVisible {
-			page.Content = append(page.Content, constances.Artists[i])
+		if globalDataStructures.Artists[i].IsVisible {
+			page.Content = append(page.Content, globalDataStructures.Artists[i])
 			countArtist++
 		}
 	}
 	page.IsLast = true
-	constances.ListPages = append(constances.ListPages, page)
+	globalDataStructures.ListPages = append(globalDataStructures.ListPages, page)
 }
 
 func InitLibArt() {
-	if constances.IsStartServer {
-		constances.LibArtists.ListenAddr = &constances.ListeningAddr
-		constances.LibArtists.Artistlist = &constances.Artists
+	if globalDataStructures.IsStartServer {
+		globalDataStructures.LibArtists.ListenAddr = &globalDataStructures.ListeningAddr
+		globalDataStructures.LibArtists.Artistlist = &globalDataStructures.Artists
 		SetAllArtistVisibility(true)
-		constances.LibArtists.SortingFilter = "name"
-		constances.LibArtists.Asc = true
-		QuickSort(constances.LibArtists.SortingFilter, constances.LibArtists.Asc)
-		constances.LibArtists.IdPageToDisplay = 0
-		constances.PageCapacity = 10
+		globalDataStructures.LibArtists.SortingFilter = "name"
+		globalDataStructures.LibArtists.Asc = true
+		QuickSort(globalDataStructures.LibArtists.SortingFilter, globalDataStructures.LibArtists.Asc)
+		globalDataStructures.LibArtists.IdPageToDisplay = 0
+		globalDataStructures.PageCapacity = 10
 		RunParallel(DispatchIntoPage)
-		constances.LibArtists.Page = &constances.ListPages[constances.LibArtists.IdPageToDisplay]
-		constances.IsStartServer = false
+		globalDataStructures.LibArtists.Page = &globalDataStructures.ListPages[globalDataStructures.LibArtists.IdPageToDisplay]
+		globalDataStructures.IsStartServer = false
+	}
+}
+
+func NewLibLocations() *structures.LibLocations {
+	locationList := make(map[string][]string)
+	return &structures.LibLocations{LocationsList: locationList}
+}
+
+func GetLocations(libloca *structures.LibLocations) {
+	for i := 0; i < len(globalDataStructures.Relations["index"]); i++ {
+		for j := 0; j < len(globalDataStructures.Relations["index"][i].DatesLocations); j++ {
+			for cityName, listDate := range globalDataStructures.Relations["index"][i].DatesLocations {
+				if !libloca.InLocations(cityName) {
+					libloca.LocationsList[cityName] = listDate
+				} else {
+					libloca.LocationsList[cityName] = append(libloca.LocationsList[cityName], listDate...)
+				}
+			}
+		}
 	}
 }
