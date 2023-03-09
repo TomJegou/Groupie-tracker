@@ -46,9 +46,11 @@ body {
     height: 12vh;
     width: 90%;
     align-items: center;
+    align-content: center;
     background: linear-gradient(to bottom, #292929, #0B0B0B);
     border-radius: 5px;
     overflow: hidden;
+    gap: 3vh; 
 }
 
 #idImgArtistDetailled{
@@ -91,7 +93,7 @@ body {
 .divMembersArtist p{
     display: flex;
     justify-content: center;
-    height: 5vh;
+    height: 4vh;
     color: white;
 }
 
@@ -157,13 +159,16 @@ body {
 }
 
 @media only screen and (min-width: 800px) {
+    .allInfo{
+        align-items: flex-start;
+    }
+
     .divImgArtistDetailled{
         width: 98%;
     }
 
     #idImgArtistDetailled{
         width: 18vw;
-        max-width: 144px;
     }
 
     .divInfoTxtArtist{
