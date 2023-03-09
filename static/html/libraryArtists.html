@@ -119,7 +119,7 @@
             <form class="formListcardArtist" action="/artistsDetails">
             {{ range .Page.Content }}
                 {{ if .IsVisible }}
-                    <button class="cardArtists" value="{{ .Id }}" name="artistCardId" formmethod="post">
+                    <button class="cardArtists" value="{{ .Id }}" name="artistCardId">
                         <img class="imgArtists" src="{{ .Image }}" alt="{{ .Name }}">
                         <p id="artistNameBtn">{{ .Name }}</p>
                     </button>
