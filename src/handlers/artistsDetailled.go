@@ -14,6 +14,7 @@ import (
 func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 	go tools.ChangeListenAddr(r)
 	globalDataStructures.OnLibraryArtists = false
+	// in case of restart server, check if the artist list is empty, if yes call the api
 	if len(globalDataStructures.Artists) == 0 {
 		var wg sync.WaitGroup
 		wg.Add(1)
@@ -24,11 +25,13 @@ func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 	wg.Add(1)
 	go tools.PutBodyResponseApiIntoStruct(globalDataStructures.URLRELATION, &globalDataStructures.Relations, &wg)
 	wg.Wait()
+	// get the artist's id and convert it into an int
 	idArtist, err := strconv.Atoi(r.FormValue("artistCardId"))
 	if err != nil {
 		fmt.Println("Error converting string to integer")
 		fmt.Println(err)
 	} else {
+		// Display the correct artist's information
 		go tools.ParseHtml("static/html/artistsDetails.html")
 		template := <-globalDataStructures.ChanTemplates
 		go tools.FindArtistById(idArtist)
