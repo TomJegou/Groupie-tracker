@@ -26,16 +26,20 @@ func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 	go tools.PutBodyResponseApiIntoStruct(globalDataStructures.URLRELATION, &globalDataStructures.Relations, &wg)
 	wg.Wait()
 	// get the artist's id and convert it into an int
-	idArtist, err := strconv.Atoi(r.FormValue("artistCardId"))
-	if err != nil {
-		fmt.Println("Error converting string to integer")
-		fmt.Println(err)
+	if len(r.FormValue("artistCardId")) > 0 {
+		idArtist, err := strconv.Atoi(r.FormValue("artistCardId"))
+		if err != nil {
+			fmt.Println("Error converting string to integer")
+			fmt.Println(err)
+		} else {
+			// Display the correct artist's information
+			go tools.ParseHtml("static/html/artistsDetails.html")
+			template := <-globalDataStructures.ChanTemplates
+			go tools.FindArtistById(idArtist)
+			artistDetailled := &structures.ArtistDetailled{Artist: <-globalDataStructures.ChanArtDet, ArtistConcertsDatesLocation: globalDataStructures.Relations["index"][idArtist-1].DatesLocations, ListenAddr: &globalDataStructures.ListeningAddr}
+			template.Execute(w, artistDetailled)
+		}
 	} else {
-		// Display the correct artist's information
-		go tools.ParseHtml("static/html/artistsDetails.html")
-		template := <-globalDataStructures.ChanTemplates
-		go tools.FindArtistById(idArtist)
-		artistDetailled := &structures.ArtistDetailled{Artist: <-globalDataStructures.ChanArtDet, ArtistConcertsDatesLocation: globalDataStructures.Relations["index"][idArtist-1].DatesLocations, ListenAddr: &globalDataStructures.ListeningAddr}
-		template.Execute(w, artistDetailled)
+		http.Redirect(w, r, "/libraryArtists", http.StatusFound)
 	}
 }
