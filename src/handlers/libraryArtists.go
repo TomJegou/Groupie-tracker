@@ -1,4 +1,4 @@
-package src
+package handlers
 
 import (
 	"fmt"
@@ -7,6 +7,9 @@ import (
 	"strconv"
 	"strings"
 	"sync"
+	"absolut-music/src/structures"
+	"absolut-music/src/constances"
+	"absolut-music/src/tools"
 )
 
 /*Structures*/
@@ -16,16 +19,16 @@ type Page struct {
 	IsFirst  bool
 	IsLast   bool
 	Capacity int
-	Content  []Artist
+	Content  []structures.Artist
 }
 
 type LibraryArtists struct {
-	Artistlist    *[]Artist
+	Artistlist    *[]structures.Artist
 	SortingFilter string
 	Asc           bool
 	*Page
 	IdPageToDisplay int
-	*ListenAddr
+	*structures.ListenAddr
 }
 
 /*Global variables*/
@@ -40,7 +43,7 @@ var ListPages []Page
 Set the artists's attribute IsVisible to the isVisible boolean
 passed as parameter
 */
-func setArtistVisibility(a *Artist, isVisible bool) {
+func setArtistVisibility(a *structures.Artist, isVisible bool) {
 	a.IsVisible = isVisible
 }
 
@@ -49,8 +52,8 @@ Set all of the artists's attribute IsVisible from the slice Artists
 to the boolean isVisible passed as parameter
 */
 func setAllArtistVisibility(isVisible bool) {
-	for i := 0; i < len(Artists); i++ {
-		setArtistVisibility(&Artists[i], isVisible)
+	for i := 0; i < len(constances.Artists); i++ {
+		setArtistVisibility(&constances.Artists[i], isVisible)
 	}
 }
 
@@ -61,25 +64,17 @@ searchContent passed as parameter. Every artist found has his visibility set to 
 */
 func searchArtists(searchContent string) {
 	setAllArtistVisibility(false)
-	for i := 0; i < len(Artists); i++ {
+	for i := 0; i < len(constances.Artists); i++ {
 		isOk := true
 		for indexChar, char := range searchContent {
-			if !strings.EqualFold(string(Artists[i].Name[indexChar]), string(char)) {
+			if !strings.EqualFold(string(constances.Artists[i].Name[indexChar]), string(char)) {
 				isOk = false
 				break
 			}
 		}
 		if isOk {
-			setArtistVisibility(&Artists[i], true)
+			setArtistVisibility(&constances.Artists[i], true)
 		}
-	}
-}
-
-/*Reverse the Artists slice*/
-func reverseSliceArtist(wg *sync.WaitGroup) {
-	defer wg.Done()
-	for i := 0; i < len(Artists)/2; i++ {
-		Artists[i], Artists[len(Artists)-1-i] = Artists[len(Artists)-1-i], Artists[i]
 	}
 }
 
@@ -93,15 +88,15 @@ func dispatchIntoPage(wg *sync.WaitGroup) {
 	pageCount := 0
 	countArtist := 0
 	page := Page{Index: pageCount, Capacity: PageCapacity, IsFirst: true}
-	for i := 0; i < len(Artists); i++ {
+	for i := 0; i < len(constances.Artists); i++ {
 		if countArtist == PageCapacity {
 			ListPages = append(ListPages, page)
 			pageCount++
 			page = Page{Index: pageCount, Capacity: PageCapacity, IsFirst: false, IsLast: false}
 			countArtist = 0
 		}
-		if Artists[i].IsVisible {
-			page.Content = append(page.Content, Artists[i])
+		if constances.Artists[i].IsVisible {
+			page.Content = append(page.Content, constances.Artists[i])
 			countArtist++
 		}
 	}
@@ -110,36 +105,36 @@ func dispatchIntoPage(wg *sync.WaitGroup) {
 }
 
 func initLib() {
-	if IsStartServer {
-		LibArtists.ListenAddr = &ListeningAddr
-		LibArtists.Artistlist = &Artists
+	if constances.IsStartServer {
+		LibArtists.ListenAddr = &constances.ListeningAddr
+		LibArtists.Artistlist = &constances.Artists
 		setAllArtistVisibility(true)
 		LibArtists.SortingFilter = "name"
 		LibArtists.Asc = true
-		QuickSort(LibArtists.SortingFilter, LibArtists.Asc)
+		tools.QuickSort(LibArtists.SortingFilter, LibArtists.Asc)
 		LibArtists.IdPageToDisplay = 0
 		PageCapacity = 10
-		RunParallel(dispatchIntoPage)
+		tools.RunParallel(dispatchIntoPage)
 		LibArtists.Page = &ListPages[LibArtists.IdPageToDisplay]
-		IsStartServer = false
+		constances.IsStartServer = false
 	}
 }
 
 /*Handler func of the library artists*/
-func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
-	go ChangeListenAddr(r)
+func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
+	go tools.ChangeListenAddr(r)
 	needSort := false
 	needDispatch := false
-	if !OnLibraryArtists {
+	if !constances.OnLibraryArtists {
 		var wg sync.WaitGroup
 		wg.Add(1)
-		go PutBodyResponseApiIntoStruct(URLARTISTS, &Artists, &wg)
+		go tools.PutBodyResponseApiIntoStruct(constances.URLARTISTS, &constances.Artists, &wg)
 		wg.Wait()
-		OnLibraryArtists = true
+		constances.OnLibraryArtists = true
 	}
 	initLib()
-	go ParseHtml("static/html/libraryArtists.html")
-	template := <-ChanTemplates
+	go tools.ParseHtml("static/html/libraryArtists.html")
+	template := <-constances.ChanTemplates
 	if r.Method == "GET" {
 		setAllArtistVisibility(true)
 		needDispatch = true
@@ -189,11 +184,11 @@ func libraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	if needSort {
-		QuickSort(LibArtists.SortingFilter, LibArtists.Asc)
+		tools.QuickSort(LibArtists.SortingFilter, LibArtists.Asc)
 		needDispatch = true
 	}
 	if needDispatch {
-		RunParallel(dispatchIntoPage)
+		tools.RunParallel(dispatchIntoPage)
 		if LibArtists.IdPageToDisplay > len(ListPages)-1 {
 			LibArtists.IdPageToDisplay = len(ListPages) - 1
 		}

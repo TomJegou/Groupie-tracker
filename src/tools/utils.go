@@ -1,6 +1,7 @@
-package src
+package tools
 
 import (
+	"absolut-music/src/constances"
 	"fmt"
 	"net/http"
 	"sync"
@@ -17,7 +18,7 @@ func ParseHtml(fileToParse string) {
 		fmt.Println("Error Parsing Template")
 		fmt.Println(errors)
 	}
-	ChanTemplates <- template
+	constances.ChanTemplates <- template
 }
 
 /*Make the function passed as a parameter run in Parallel as a goroutine*/
@@ -34,7 +35,7 @@ the same as the one to be used for the templates.
 If it's not the same, change the ListeningAddr.Ipv4 to the host requested
 */
 func ChangeListenAddr(r *http.Request) {
-	if r.Host != ListeningAddr.Ipv4 {
-		ListeningAddr.Ipv4 = r.Host
+	if r.Host != constances.ListeningAddr.Ipv4 {
+		constances.ListeningAddr.Ipv4 = r.Host
 	}
 }

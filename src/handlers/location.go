@@ -1,13 +1,16 @@
-package src
+package handlers
 
 import (
+	"absolut-music/src/constances"
+	"absolut-music/src/structures"
+	"absolut-music/src/tools"
 	"net/http"
 	"sync"
 )
 
 type LibLocations struct {
 	LocationsList map[string][]string
-	*ListenAddr
+	*structures.ListenAddr
 }
 
 func (lib LibLocations) Locations() []string {
@@ -36,9 +39,9 @@ func NewLibLocations() *LibLocations {
 var libLocations = NewLibLocations()
 
 func getLocations() {
-	for i := 0; i < len(Relations["index"]); i++ {
-		for j := 0; j < len(Relations["index"][i].DatesLocations); j++ {
-			for cityName, listDate := range Relations["index"][i].DatesLocations {
+	for i := 0; i < len(constances.Relations["index"]); i++ {
+		for j := 0; j < len(constances.Relations["index"][i].DatesLocations); j++ {
+			for cityName, listDate := range constances.Relations["index"][i].DatesLocations {
 				if !libLocations.InLocations(cityName) {
 					libLocations.LocationsList[cityName] = listDate
 				} else {
@@ -49,16 +52,16 @@ func getLocations() {
 	}
 }
 
-func locationHandler(w http.ResponseWriter, r *http.Request) {
-	go ChangeListenAddr(r)
-	libLocations.ListenAddr = &ListeningAddr
-	OnLibraryArtists = false
+func LocationHandler(w http.ResponseWriter, r *http.Request) {
+	go tools.ChangeListenAddr(r)
+	libLocations.ListenAddr = &constances.ListeningAddr
+	constances.OnLibraryArtists = false
 	var wg sync.WaitGroup
 	wg.Add(1)
-	go PutBodyResponseApiIntoStruct(URLRELATION, &Relations, &wg)
+	go tools.PutBodyResponseApiIntoStruct(constances.URLRELATION, &constances.Relations, &wg)
 	wg.Wait()
-	go ParseHtml("static/html/locations.html")
-	template := <-ChanTemplates
+	go tools.ParseHtml("static/html/locations.html")
+	template := <-constances.ChanTemplates
 	getLocations()
 	template.Execute(w, libLocations)
 }
