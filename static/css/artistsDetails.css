@@ -21,7 +21,6 @@ body {
 
 .dropdown-container {
     display: none;
-    position: absolute;
     min-width: 200px;
     text-decoration: none;
     color: white;
