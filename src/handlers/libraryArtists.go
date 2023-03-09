@@ -26,18 +26,14 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	tools.InitLibArt()
 	go tools.ParseHtml("static/html/libraryArtists.html")
 	template := <-globalDataStructures.ChanTemplates
-	globalDataStructures.SearchContent = r.FormValue("searchBar")
-	globalDataStructures.SortingOption = r.FormValue("sortFilter")
-	globalDataStructures.SortingOrder = r.FormValue("sortOrder")
-	globalDataStructures.PaginationRequest = r.FormValue("pagination")
-	globalDataStructures.NumberOfElem = r.FormValue("nbrElem")
-	if len(globalDataStructures.SearchContent) == 0 && len(globalDataStructures.SortingOption) == 0 && len(globalDataStructures.SortingOrder) == 0 && len(globalDataStructures.PaginationRequest) == 0 && len(globalDataStructures.NumberOfElem) == 0 {
+	if len(r.FormValue("searchBar")) == 0 && len(r.FormValue("sortFilter")) == 0 && len(r.FormValue("sortOrder")) == 0 && len(r.FormValue("pagination")) == 0 && len(r.FormValue("nbrElem")) == 0 {
 		tools.SetAllArtistVisibility(true)
 		needDispatch = true
 		needSort = true
 	} else {
 		// change the number of elem to display
-		if len(globalDataStructures.NumberOfElem) != 0 {
+		if len(r.FormValue("nbrElem")) > 0 && r.FormValue("nbrElem") != globalDataStructures.NumberOfElem {
+			globalDataStructures.NumberOfElem = r.FormValue("nbrElem")
 			pageCapacityTmp, errors := strconv.Atoi(globalDataStructures.NumberOfElem)
 			globalDataStructures.PageCapacity = pageCapacityTmp
 			if errors != nil {
@@ -46,7 +42,8 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 			needDispatch = true
 		}
 		// change the page to display
-		if len(globalDataStructures.PaginationRequest) != 0 {
+		if len(r.FormValue("pagination")) > 0 && r.FormValue("pagination") != globalDataStructures.PaginationRequest {
+			globalDataStructures.PaginationRequest = r.FormValue("pagination")
 			if len(globalDataStructures.ListPages) > 0 {
 				if globalDataStructures.PaginationRequest == "next" {
 					globalDataStructures.LibArtists.IdPageToDisplay = int(math.Min(float64(len(globalDataStructures.ListPages)-1), float64(globalDataStructures.LibArtists.IdPageToDisplay+1)))
@@ -59,18 +56,21 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 			}
 		}
 		// change the artists sort
-		if len(globalDataStructures.SortingOption) != 0 {
+		if len(r.FormValue("sortFilter")) > 0 && r.FormValue("sortFilter") != globalDataStructures.SortingOption {
+			globalDataStructures.SortingOption = r.FormValue("sortFilter")
 			globalDataStructures.LibArtists.SortingFilter = globalDataStructures.SortingOption
 			needSort = true
 		}
 		// search the same artist's name patern as the string passed in the searching bar
-		if len(globalDataStructures.SearchContent) > 0 {
+		if len(r.FormValue("searchBar")) > 0 && r.FormValue("searchBar") != globalDataStructures.SearchContent {
+			globalDataStructures.SearchContent = r.FormValue("searchBar")
 			tools.SearchArtists(globalDataStructures.SearchContent)
 			needSort = true
 			needDispatch = true
 		}
 		// change the artists order
-		if len(globalDataStructures.SortingOrder) != 0 {
+		if len(r.FormValue("sortOrder")) > 0 && r.FormValue("sortOrder") != globalDataStructures.SortingOrder {
+			globalDataStructures.SortingOrder = r.FormValue("sortOrder")
 			if globalDataStructures.SortingOrder == "asc" {
 				globalDataStructures.LibArtists.Asc = true
 			} else if globalDataStructures.SortingOrder == "desc" {
