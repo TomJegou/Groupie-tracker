@@ -15,3 +15,8 @@ var Relations map[string][]structures.Relation
 var PageCapacity int
 var LibArtists structures.LibraryArtists
 var ListPages []structures.Page
+var SearchContent string
+var SortingOption string
+var SortingOrder string
+var PaginationRequest string
+var NumberOfElem string
