@@ -121,7 +121,7 @@ func DispatchIntoPage(wg *sync.WaitGroup) {
 	constances.ListPages = append(constances.ListPages, page)
 }
 
-func InitLib() {
+func InitLibArt() {
 	if constances.IsStartServer {
 		constances.LibArtists.ListenAddr = &constances.ListeningAddr
 		constances.LibArtists.Artistlist = &constances.Artists

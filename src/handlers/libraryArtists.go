@@ -24,7 +24,7 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		wg.Wait()
 		constances.OnLibraryArtists = true
 	}
-	tools.InitLib()
+	tools.InitLibArt()
 	go tools.ParseHtml("static/html/libraryArtists.html")
 	template := <-constances.ChanTemplates
 	if r.Method == "GET" {
