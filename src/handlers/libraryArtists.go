@@ -26,18 +26,16 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	tools.InitLibArt()
 	go tools.ParseHtml("static/html/libraryArtists.html")
 	template := <-globalDataStructures.ChanTemplates
-	if r.Method == "GET" {
-		//if the request's method is GET, set all the artist visible
+	searchContent := r.FormValue("searchBar")
+	sortingOption := r.FormValue("sortFilter")
+	sortingOrder := r.FormValue("sortOrder")
+	paginationRequest := r.FormValue("pagination")
+	numberOfElem := r.FormValue("nbrElem")
+	if len(searchContent) == 0 && len(sortingOption) == 0 && len(sortingOrder) == 0 && len(paginationRequest) == 0 && len(numberOfElem) == 0 {
 		tools.SetAllArtistVisibility(true)
 		needDispatch = true
 		needSort = true
-	} else if r.Method == "POST" {
-		// if the request's method is POST, get all the values from the forms
-		searchContent := r.FormValue("searchBar")
-		sortingOption := r.FormValue("sortFilter")
-		sortingOrder := r.FormValue("sortOrder")
-		paginationRequest := r.FormValue("pagination")
-		numberOfElem := r.FormValue("nbrElem")
+	} else {
 		// change the number of elem to display
 		if len(numberOfElem) != 0 {
 			pageCapacityTmp, errors := strconv.Atoi(numberOfElem)
