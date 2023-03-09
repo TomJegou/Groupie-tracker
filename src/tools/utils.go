@@ -2,8 +2,10 @@ package tools
 
 import (
 	"absolut-music/src/constances"
+	"absolut-music/src/structures"
 	"fmt"
 	"net/http"
+	"strings"
 	"sync"
 	"text/template"
 )
@@ -52,4 +54,85 @@ func FindArtistById(id int) {
 		}
 	}
 	constances.ChanArtDet <- &constances.Artists[0]
+}
+
+/*
+Set the artists's attribute IsVisible to the isVisible boolean
+passed as parameter
+*/
+func SetArtistVisibility(a *structures.Artist, isVisible bool) {
+	a.IsVisible = isVisible
+}
+
+/*
+Set all of the artists's attribute IsVisible from the slice Artists
+to the boolean isVisible passed as parameter
+*/
+func SetAllArtistVisibility(isVisible bool) {
+	for i := 0; i < len(constances.Artists); i++ {
+		SetArtistVisibility(&constances.Artists[i], isVisible)
+	}
+}
+
+/*
+Set all the artists visibility to false and search into the slice Artists
+all the artists's name wich start with the same patern as the string
+searchContent passed as parameter. Every artist found has his visibility set to true
+*/
+func SearchArtists(searchContent string) {
+	SetAllArtistVisibility(false)
+	for i := 0; i < len(constances.Artists); i++ {
+		isOk := true
+		for indexChar, char := range searchContent {
+			if !strings.EqualFold(string(constances.Artists[i].Name[indexChar]), string(char)) {
+				isOk = false
+				break
+			}
+		}
+		if isOk {
+			SetArtistVisibility(&constances.Artists[i], true)
+		}
+	}
+}
+
+/*
+Display all the artists from the slice Artists into pages
+each page is put into the slice ListPages
+*/
+func DispatchIntoPage(wg *sync.WaitGroup) {
+	defer wg.Done()
+	constances.ListPages = []structures.Page{}
+	pageCount := 0
+	countArtist := 0
+	page := structures.Page{Index: pageCount, Capacity: constances.PageCapacity, IsFirst: true}
+	for i := 0; i < len(constances.Artists); i++ {
+		if countArtist == constances.PageCapacity {
+			constances.ListPages = append(constances.ListPages, page)
+			pageCount++
+			page = structures.Page{Index: pageCount, Capacity: constances.PageCapacity, IsFirst: false, IsLast: false}
+			countArtist = 0
+		}
+		if constances.Artists[i].IsVisible {
+			page.Content = append(page.Content, constances.Artists[i])
+			countArtist++
+		}
+	}
+	page.IsLast = true
+	constances.ListPages = append(constances.ListPages, page)
+}
+
+func InitLib() {
+	if constances.IsStartServer {
+		constances.LibArtists.ListenAddr = &constances.ListeningAddr
+		constances.LibArtists.Artistlist = &constances.Artists
+		SetAllArtistVisibility(true)
+		constances.LibArtists.SortingFilter = "name"
+		constances.LibArtists.Asc = true
+		QuickSort(constances.LibArtists.SortingFilter, constances.LibArtists.Asc)
+		constances.LibArtists.IdPageToDisplay = 0
+		constances.PageCapacity = 10
+		RunParallel(DispatchIntoPage)
+		constances.LibArtists.Page = &constances.ListPages[constances.LibArtists.IdPageToDisplay]
+		constances.IsStartServer = false
+	}
 }

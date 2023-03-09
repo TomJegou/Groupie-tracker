@@ -41,3 +41,20 @@ type ArtistDetailled struct {
 	ArtistConcertsDatesLocation map[string][]string
 	*ListenAddr
 }
+
+type Page struct {
+	Index    int
+	IsFirst  bool
+	IsLast   bool
+	Capacity int
+	Content  []Artist
+}
+
+type LibraryArtists struct {
+	Artistlist    *[]Artist
+	SortingFilter string
+	Asc           bool
+	*Page
+	IdPageToDisplay int
+	*ListenAddr
+}
