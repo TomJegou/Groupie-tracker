@@ -47,7 +47,18 @@ body {
           background-color: green;
           color: white;   
       }  
-
+.dropdown-menu {
+        position: relative;
+        }
+.dropdown-open {
+    display: block;
+}
+.dropdown-menu.dropdown-active {
+    display: block;
+}
+      
+    
+    
 
 
 .allInfo{
