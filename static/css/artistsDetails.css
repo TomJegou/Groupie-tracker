@@ -20,7 +20,7 @@ body {
 }
 
 .dropdown-container {
-    display: none;
+    display: block;
     min-width: 200px;
     text-decoration: none;
     color: white;
