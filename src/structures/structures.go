@@ -41,6 +41,7 @@ type ArtistDetailled struct {
 	*Artist
 	ArtistConcertsDatesLocation map[string][]string
 	*ListenAddr
+	*SpotifySearchArtist
 }
 
 /*Structs used for the Artists library*/

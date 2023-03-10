@@ -21,15 +21,6 @@ body {
     color: white;
 }
 
-.containertwo {
-    height: 18.5vh;
-    width: 100vw;
-    padding-top: 1.5%;
-    padding-left: 0.5%;
-    display: flex;
-    background: #2d3436;
-}
-
 .spotify {
     display: flex;
     width: 145%;
