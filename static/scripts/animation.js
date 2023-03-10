@@ -1,7 +1,6 @@
 
 // Get all the dropdown from document
-document.querySelectorAll('.dropdown-container').forEach(dropDownFunc);
-
+document.querySelectorAll('.dropdown-toggle').forEach(dropDownFunc);
 // Dropdown Open and Close function
 function dropDownFunc(dropDown) {
     console.log(dropDown.classList.contains('click-dropdown'));
@@ -51,12 +50,9 @@ function dropDownFunc(dropDown) {
 };
 
 
-// Listen to the doc click
+// Close the menu if click happen outside menu
 window.addEventListener('click', function (e) {
-
-    // Close the menu if click happen outside menu
     if (e.target.closest('.dropdown-container') === null) {
-        // Close the opend dropdown
         closeDropdown();
     }
 
