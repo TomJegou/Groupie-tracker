@@ -1,9 +1,12 @@
-package src
+package tools
 
 import (
+	"absolut-music/src/globalDataStructures"
+	"absolut-music/src/structures"
 	"fmt"
 	"strconv"
 	"strings"
+	"sync"
 )
 
 /*Structures*/
@@ -15,6 +18,14 @@ type FormatDate struct {
 }
 
 /*Functions*/
+
+/*Reverse the Artists slice*/
+func ReverseSliceArtist(wg *sync.WaitGroup) {
+	defer wg.Done()
+	for i := 0; i < len(globalDataStructures.Artists)/2; i++ {
+		globalDataStructures.Artists[i], globalDataStructures.Artists[len(globalDataStructures.Artists)-1-i] = globalDataStructures.Artists[len(globalDataStructures.Artists)-1-i], globalDataStructures.Artists[i]
+	}
+}
 
 /*Parse the first album's date into a structure FormatDate*/
 func parseDate(date string) FormatDate {
@@ -42,13 +53,13 @@ using the sortingOption as a condition. If the artist is under the pivot,
 it's appended to the sliceBefore, if not, it's appended to the slice after
 the sliceBefore, sliceAfter and the pivot are returned at the end
 */
-func partition(t []Artist, sortingOption string) ([]Artist, Artist, []Artist) {
+func partition(t []structures.Artist, sortingOption string) ([]structures.Artist, structures.Artist, []structures.Artist) {
 	var index_middle int = len(t) / 2
 	pivot := t[index_middle]
 	slice := t[:index_middle]
 	slice = append(slice, t[index_middle+1:]...)
-	sliceBefore := []Artist{}
-	sliceAfter := []Artist{}
+	sliceBefore := []structures.Artist{}
+	sliceAfter := []structures.Artist{}
 	for i := 0; i < len(slice); i++ {
 		switch sortingOption {
 		case "name":
@@ -96,7 +107,7 @@ func partition(t []Artist, sortingOption string) ([]Artist, Artist, []Artist) {
 }
 
 /*Merge the sliceBefore to the pivot to the sliceAfter*/
-func merge(sB []Artist, p Artist, sA []Artist) []Artist {
+func merge(sB []structures.Artist, p structures.Artist, sA []structures.Artist) []structures.Artist {
 	sB = append(sB, p)
 	sB = append(sB, sA...)
 	return sB
@@ -106,7 +117,7 @@ func merge(sB []Artist, p Artist, sA []Artist) []Artist {
 Handle the recursiv calls for the sort using the
 Divide and rule policy
 */
-func quickSortControler(t []Artist, sortingOption string) []Artist {
+func quickSortControler(t []structures.Artist, sortingOption string) []structures.Artist {
 	if len(t) < 1 {
 		return t
 	}
@@ -120,8 +131,8 @@ Call the quickSortControler function and copy
 the result to the slice Artist wich will be overwritten by the result
 */
 func QuickSort(sortingOption string, asc bool) {
-	copy(Artists, quickSortControler(Artists, sortingOption))
+	copy(globalDataStructures.Artists, quickSortControler(globalDataStructures.Artists, sortingOption))
 	if !asc {
-		RunParallel(reverseSliceArtist)
+		RunParallel(ReverseSliceArtist)
 	}
 }

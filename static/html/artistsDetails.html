@@ -35,9 +35,7 @@
                 <fieldset class="fieldsetArtistsMembers">
                     <legend id="titleMembersGrp">Membres du Groupe</legend>
                     {{ range .Members }}
-                    <div class="divMembersArtistName">
-                        <p> {{.}}</p>
-                    </div>
+                    <p> {{.}}</p>
                     {{ end }}
                 </fieldset>
             </div>
@@ -52,8 +50,13 @@
                         <div class="dropdown-menu">
                           <ul>
                             {{ range $listDates }}
+<<<<<<< HEAD
                             <li><a href="#">- {{.}}</a></li>
                             {{ end }}
+=======
+                                <li><a href="#">- {{.}} </a></li>
+                                {{ end }}
+>>>>>>> main
                          </div>
                     </div>
                     {{ end }}  

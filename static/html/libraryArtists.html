@@ -21,101 +21,98 @@
         </nav>
     </header>
     <body>
-        <div class="searchContainer">
-            <form action="/libraryArtists">
-            <input type="text" placeholder="Rechercher..." name="searchBar">
-                <button type="submit" formmethod="post">
-                    <i class="fa fa-search"></i>
-                </button>
-            </form>
-        </div>
-        <div class="divButtonPagination">
-            <form action="/libraryArtists">
-                {{ if ne .Page.IsFirst true}}
-                    <button class="buttonPagination" id="idButtonPrev" value="prev" name="pagination" formmethod="post">Prev</button>
-                {{ end }}
-                <p>{{ .IdPageToDisplay }}</p>
-                {{ if ne .Page.IsLast true }}
-                    <button class="buttonPagination" id="idButtonNext" value="next" name="pagination" formmethod="post">Next</button>
-                {{ end }}
-            </form>
-        </div>
-        <div class="divNbrElemDisplayed">
-            <fieldset><legend>Nombre d'éléments</legend>
-                <form action="/libraryArtists">
-                    {{ if eq .Page.Capacity 10 }}
-                        <input type="radio" name="nbrElem" value="10" checked>
-                    {{ else }}
-                        <input type="radio" name="nbrElem" value="10">
+        <form action="/libraryArtists">
+            <div class="search-filter">
+                <div class="searchContainer">
+                    <input type="text" placeholder="Rechercher..." name="searchBar">
+                        <button type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                </div>
+            </div>
+            <div class="filter">
+                <div class="divButtonPagination">
+                    {{ if ne .Page.IsFirst true}}
+                        <button class="buttonPagination" id="idButtonPrev" value="prev" name="pagination">Prev</button>
                     {{ end }}
-                        <label>10</label>
-                    {{ if eq .Page.Capacity 20 }}
-                        <input type="radio" name="nbrElem" value="20" checked>
-                    {{ else }}
-                        <input type="radio" name="nbrElem" value="20">
+                    <p>{{ .IdPageToDisplay }}</p>
+                    {{ if ne .Page.IsLast true }}
+                        <button class="buttonPagination" id="idButtonNext" value="next" name="pagination">Next</button>
                     {{ end }}
-                        <label>20</label>
-                    {{ if eq .Page.Capacity 30 }}
-                        <input type="radio" name="nbrElem" value="30" checked>
-                    {{ else }}
-                        <input type="radio" name="nbrElem" value="30">
-                    {{ end }}
-                    <label>30</label>
-                    <input type="submit" formmethod="post" value=">">
-                </form>
-            </fieldset>
-        </div>
-        <div class="sortingFilter">
-            <fieldset><legend>Trier par</legend>
-                <form action="/libraryArtists">
-                    <div class="sortingFilterDiv">
-                        {{ if eq .SortingFilter "name" }} 
-                            <input id="radioSortingName" type="radio" name="sortFilter" value="name" checked>
-                        {{ else }}
-                            <input id="radioSortingName" type="radio" name="sortFilter" value="name">
-                        {{ end }}
-                        <label>Name</label>
-                        {{ if eq .SortingFilter "creationDate" }}
-                            <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate" checked>
-                        {{ else }}
-                            <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate">
-                        {{ end }}
-                        <label>Date de Création</label>
-                        {{ if eq .SortingFilter "numberMembers" }}
-                            <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers" checked>
-                        {{ else }}
-                            <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
-                        {{ end }}
-                        <label>Nombre de membres</label>
-                        {{ if eq .SortingFilter "Firstalbumrelease" }} 
-                            <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease" checked>
-                        {{ else }}
-                            <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease">
-                        {{ end }}
-                        <label>Date du premier Album</label>
-                    </div>
-                    <div class="sortingOrderDiv">
-                        {{ if .Asc }}
-                        <input id="radioSortingOrder" type="radio" name="sortOrder" value="asc" checked>
-                        <label>Croissant</label>
-                        <input id="radioSortingOrder" type="radio" name="sortOrder" value="desc">
-                        <label>Décroissant</label>
-                        {{ else }}
-                        <input id="radioSortingOrder" type="radio" name="sortOrder" value="asc">
-                        <label>Croissant</label>
-                        <input id="radioSortingOrder" type="radio" name="sortOrder" value="desc" checked>
-                        <label>Décroissant</label>
-                        {{ end }}
-                    </div>
-                    <input id="submitInputSort" type="submit" formmethod="post" value="Appliquer">
-                </form>
-            </fieldset>
-        </div>
+                </div>
+                <div class="divNbrElemDisplayed">
+                    <fieldset><legend>Nombre d'éléments</legend>
+                            {{ if eq .Page.Capacity 10 }}
+                                <input type="radio" name="nbrElem" value="10" checked>
+                            {{ else }}
+                                <input type="radio" name="nbrElem" value="10">
+                            {{ end }}
+                                <label>10</label>
+                            {{ if eq .Page.Capacity 20 }}
+                                <input type="radio" name="nbrElem" value="20" checked>
+                            {{ else }}
+                                <input type="radio" name="nbrElem" value="20">
+                            {{ end }}
+                                <label>20</label>
+                            {{ if eq .Page.Capacity 30 }}
+                                <input type="radio" name="nbrElem" value="30" checked>
+                            {{ else }}
+                                <input type="radio" name="nbrElem" value="30">
+                            {{ end }}
+                            <label>30</label>
+                    </fieldset>
+                </div>
+                <div class="sortingFilter">
+                    <fieldset><legend>Trier par</legend>
+                        <div class="sortingFilterDiv">
+                            {{ if eq .SortingFilter "name" }} 
+                                <input id="radioSortingName" type="radio" name="sortFilter" value="name" checked>
+                            {{ else }}
+                                <input id="radioSortingName" type="radio" name="sortFilter" value="name">
+                            {{ end }}
+                            <label>Name</label>
+                            {{ if eq .SortingFilter "creationDate" }}
+                                <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate" checked>
+                            {{ else }}
+                                <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate">
+                            {{ end }}
+                            <label>Date de Création</label>
+                            {{ if eq .SortingFilter "numberMembers" }}
+                                <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers" checked>
+                            {{ else }}
+                                <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
+                            {{ end }}
+                            <label>Nombre de membres</label>
+                            {{ if eq .SortingFilter "Firstalbumrelease" }} 
+                                <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease" checked>
+                            {{ else }}
+                                <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease">
+                            {{ end }}
+                            <label>Date du premier Album</label>
+                        </div>
+                        <div class="sortingOrderDiv">
+                            {{ if .Asc }}
+                            <input id="radioSortingOrder" type="radio" name="sortOrder" value="asc" checked>
+                            <label>Croissant</label>
+                            <input id="radioSortingOrder" type="radio" name="sortOrder" value="desc">
+                            <label>Décroissant</label>
+                            {{ else }}
+                            <input id="radioSortingOrder" type="radio" name="sortOrder" value="asc">
+                            <label>Croissant</label>
+                            <input id="radioSortingOrder" type="radio" name="sortOrder" value="desc" checked>
+                            <label>Décroissant</label>
+                            {{ end }}
+                        </div>
+                        <input id="submitInputSort" type="submit" value="Appliquer">
+                    </fieldset>
+                </div>
+            </div>
+        </form>
         <div class="listcardArtist">
             <form class="formListcardArtist" action="/artistsDetails">
             {{ range .Page.Content }}
                 {{ if .IsVisible }}
-                    <button class="cardArtists" value="{{ .Id }}" name="artistCardId" formmethod="post">
+                    <button class="cardArtists" value="{{ .Id }}" name="artistCardId">
                         <img class="imgArtists" src="{{ .Image }}" alt="{{ .Name }}">
                         <p id="artistNameBtn">{{ .Name }}</p>
                     </button>

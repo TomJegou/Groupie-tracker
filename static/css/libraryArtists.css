@@ -7,14 +7,14 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  background: #2d3436;
+  background: linear-gradient(#2b1055, #7597de);
   background-attachment: fixed;
   background-repeat: no-repeat;
 }
 
 .searchContainer {
   display: flex;
-  justify-content: right;
+  justify-content: center;
   margin-top: 3%;
   padding-bottom: 3%;
   padding-right: 3%;
@@ -24,20 +24,22 @@ body {
   display: flex;
   align-items: center;
   background-color: white;
+  border-radius: 20px;
   overflow: hidden;
-  width: 50%;
+  width: 40%;
 }
 
 .searchContainer input[type="text"] {
   border: solid 1px black;
   font-size: 16px;
+  border-radius: 20px;
   padding: 10px;
   width: 100%;
 }
 
 .searchContainer button[type="submit"] {
   background-color: white;
-  background-image: url("http://localhost:8080/static/img/loupe.png");
+  background-image: url("http://localhost:80/static/img/loupe.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -46,6 +48,15 @@ body {
   font-size: 16px;
   padding: 10px 15px;
   cursor: pointer;
+}
+
+.filter {
+  width: 100%;
+  color: white;
+}
+
+.divButtonPagination {
+  color: white;
 }
 
 .listcardArtist{
@@ -89,16 +100,17 @@ gap: 2vw 2vh;
     body {
     margin: 0;
     padding: 0;
+    height: 110vh;
     display: flex;
     flex-direction: column;
-    background: #2d3436;
     background-attachment: fixed;
+    background: linear-gradient(#2b1055, #7597de);
     background-repeat: no-repeat;
     }
     
     .searchContainer {
       display: flex;
-      justify-content: right;
+      justify-content: center;
       margin-top: 3%;
       padding-bottom: 3%;
       padding-right: 3%;
@@ -108,6 +120,7 @@ gap: 2vw 2vh;
       display: flex;
       align-items: center;
       background-color: white;
+      border-radius: 20px;
       overflow: hidden;
       width: 20%;
     }
@@ -115,6 +128,7 @@ gap: 2vw 2vh;
     .searchContainer input[type="text"] {
       border: solid 1px black;
       font-size: 16px;
+      border-radius: 20px;
       padding: 10px;
       width: 100%;
     }
@@ -131,19 +145,52 @@ gap: 2vw 2vh;
       padding: 10px 15px;
       cursor: pointer;
     }
+
+    input {
+      border-radius: 20px;
+      width: 5vw;
+    }
     
-    .listcardArtist{
-      margin-left: 5vw;
+    .buttonPagination {
+      border-radius: 20px;
+      height: 3vh;
+      width: 6vw;
+    }
+
+    .filter {
       display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 2%;
+      color: white;
+    }
+
+    .divButtonPagination {
+      color: white;
+    }
+    
+    .divNbrElemDisplayed {
+      height: 8%;
+      width: 18%;
+    }
+
+    .sortingFilter {
+      width: 18%;
+    }
+
+    .listcardArtist{
+      border-radius: 20px;
+      display: flex;
+      width: 96vw;
+      padding-bottom: 0.8%;
       flex-direction: column;
     }
     
     .formListcardArtist{
-    padding-top: 1.5vh;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 2vw 2vh;
     }
     
@@ -151,7 +198,6 @@ gap: 2vw 2vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      background-color: white;
       border-radius: 1vh;
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  
       transition: 1s;
