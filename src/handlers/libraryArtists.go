@@ -42,7 +42,7 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 			needDispatch = true
 		}
 		// change the page to display
-		if len(r.FormValue("pagination")) > 0 && r.FormValue("pagination") != globalDataStructures.PaginationRequest {
+		if len(r.FormValue("pagination")) > 0 {
 			globalDataStructures.PaginationRequest = r.FormValue("pagination")
 			if len(globalDataStructures.ListPages) > 0 {
 				if globalDataStructures.PaginationRequest == "next" {
