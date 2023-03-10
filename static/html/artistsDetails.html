@@ -42,10 +42,10 @@
             <div class="divtableCardConcertDates">
                 <fieldset class="fieldsetTableCityDate">
                     <legend id="titleTableCardConcertDates">Lieux de Concert</legend>
+                    <div class="dropdown-container">
                     {{ range $city, $listDates := .ArtistConcertsDatesLocation }}
-                    <div class="cardConcertDates">
-                    <button onclick="dropdown()" class="dropdown-btn">{{ $city }}:</button>
-                        <div class="dropdown-container" id="dropdown-container">
+                        <div class="dropdown-toggle click-dropdown">{{ $city }}:</div>
+                        <div class="dropdown-menu">
                             <ul>
                             {{ range $listDates }}
                             <li><a href="#">- {{.}} </a></li>
