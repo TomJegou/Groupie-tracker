@@ -22,3 +22,5 @@ var SortingOrder = ""
 var PaginationRequest = ""
 var NumberOfElem = ""
 var EncodedAuth = b64.StdEncoding.EncodeToString([]byte(SPOTIFY_CLIENT_ID + ":" + SPOTIFY_CLIENT_SECRET))
+var OAuthSpotifyToken = &structures.SpotifyToken{}
+var ResultSpotifySearchArtist = &structures.SpotifySearchArtist{}

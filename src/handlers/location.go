@@ -17,7 +17,7 @@ func LocationHandler(w http.ResponseWriter, r *http.Request) {
 	globalDataStructures.OnLibraryArtists = false
 	var wg sync.WaitGroup
 	wg.Add(1)
-	go tools.PutBodyResponseApiIntoStruct(globalDataStructures.URLRELATION, &globalDataStructures.Relations, &wg)
+	go tools.PutBodyResponseApiIntoStruct(tools.RequestApi(tools.MakeReqHerokuapp(globalDataStructures.URLRELATION)), &globalDataStructures.Relations, &wg)
 	wg.Wait()
 	go tools.ParseHtml("static/html/locations.html")
 	template := <-globalDataStructures.ChanTemplates

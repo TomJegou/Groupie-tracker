@@ -18,12 +18,12 @@ func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 	if len(globalDataStructures.Artists) == 0 {
 		var wg sync.WaitGroup
 		wg.Add(1)
-		go tools.PutBodyResponseApiIntoStruct(globalDataStructures.URLARTISTS, &globalDataStructures.Artists, &wg)
+		go tools.PutBodyResponseApiIntoStruct(tools.RequestApi(tools.MakeReqHerokuapp(globalDataStructures.URLARTISTS)), &globalDataStructures.Artists, &wg)
 		wg.Wait()
 	}
 	var wg sync.WaitGroup
 	wg.Add(1)
-	go tools.PutBodyResponseApiIntoStruct(globalDataStructures.URLRELATION, &globalDataStructures.Relations, &wg)
+	go tools.PutBodyResponseApiIntoStruct(tools.RequestApi(tools.MakeReqHerokuapp(globalDataStructures.URLRELATION)), &globalDataStructures.Relations, &wg)
 	wg.Wait()
 	// get the artist's id and convert it into an int
 	if len(r.FormValue("artistCardId")) > 0 {
@@ -37,7 +37,11 @@ func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 			template := <-globalDataStructures.ChanTemplates
 			go tools.FindArtistById(idArtist)
 			artistDetailled := &structures.ArtistDetailled{Artist: <-globalDataStructures.ChanArtDet, ArtistConcertsDatesLocation: globalDataStructures.Relations["index"][idArtist-1].DatesLocations, ListenAddr: &globalDataStructures.ListeningAddr}
-			artistDetailled.SpotifySearchArtist = tools.PutRespAPISpotifyIntoStruct(tools.SearchAPISportify(artistDetailled.Name))
+			var wg sync.WaitGroup
+			wg.Add(1)
+			tools.PutBodyResponseApiIntoStruct(tools.RequestApi(tools.MakeReqSearchAPISportify(artistDetailled.Name)), globalDataStructures.ResultSpotifySearchArtist, &wg)
+			wg.Wait()
+			artistDetailled.SpotifySearchArtist = globalDataStructures.ResultSpotifySearchArtist
 			template.Execute(w, artistDetailled)
 		}
 	} else {

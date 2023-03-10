@@ -2,13 +2,11 @@ package tools
 
 import (
 	"absolut-music/src/globalDataStructures"
-	"absolut-music/src/structures"
-	"encoding/json"
 	"fmt"
-	"io"
 	"net/http"
 	"net/url"
 	"strings"
+	"sync"
 )
 
 func PreprocessArtNameSearchSpotify(artistName string) string {
@@ -23,26 +21,21 @@ func PreprocessArtNameSearchSpotify(artistName string) string {
 	return result
 }
 
-func SearchAPISportify(artistName string) []byte {
+func MakeReqSearchAPISportify(artistName string) *http.Request {
 	url := "https://api.spotify.com/v1/search?q=" + PreprocessArtNameSearchSpotify(artistName) + "&type=artist&offset=0&limit=1"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Println(err)
 	}
-	req.Header.Set("Authorization", "Bearer "+GetTokenSpotify())
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer res.Body.Close()
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-	}
-	return body
+	var wg sync.WaitGroup
+	wg.Add(1)
+	PutBodyResponseApiIntoStruct(RequestApi(MakeReqTokenSpotify()), &globalDataStructures.OAuthSpotifyToken, &wg)
+	wg.Wait()
+	req.Header.Set("Authorization", "Bearer "+globalDataStructures.OAuthSpotifyToken.Access_token)
+	return req
 }
 
-func GetTokenSpotify() string {
+func MakeReqTokenSpotify() *http.Request {
 	data := url.Values{"grant_type": {"client_credentials"}}
 	req, err := http.NewRequest("POST", "https://accounts.spotify.com/api/token", strings.NewReader(data.Encode()))
 	if err != nil {
@@ -51,28 +44,5 @@ func GetTokenSpotify() string {
 	req.Header.Set("Authorization", "Basic "+globalDataStructures.EncodedAuth)
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.PostForm = data
-	res, err := http.DefaultClient.Do(req)
-	if err != nil {
-		fmt.Println(err)
-	}
-	defer res.Body.Close()
-	body, err := io.ReadAll(res.Body)
-	if err != nil {
-		fmt.Println(err)
-	}
-	var token = &structures.SpotifyToken{}
-	err = json.Unmarshal(body, token)
-	if err != nil {
-		fmt.Println("Erreur Unmarshal JSON\n", err)
-	}
-	return token.Access_token
-}
-
-func PutRespAPISpotifyIntoStruct(res []byte) *structures.SpotifySearchArtist {
-	var t = &structures.SpotifySearchArtist{}
-	err := json.Unmarshal(res, t)
-	if err != nil {
-		fmt.Println(err)
-	}
-	return t
+	return req
 }

@@ -19,7 +19,7 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	if !globalDataStructures.OnLibraryArtists {
 		var wg sync.WaitGroup
 		wg.Add(1)
-		go tools.PutBodyResponseApiIntoStruct(globalDataStructures.URLARTISTS, &globalDataStructures.Artists, &wg)
+		go tools.PutBodyResponseApiIntoStruct(tools.RequestApi(tools.MakeReqHerokuapp(globalDataStructures.URLARTISTS)), &globalDataStructures.Artists, &wg)
 		wg.Wait()
 		globalDataStructures.OnLibraryArtists = true
 	}
