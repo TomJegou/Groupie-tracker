@@ -9,20 +9,18 @@ body {
 .dropdown-container {
     position: relative;
     max-width: 15vw;
-  }
+}
 .dropdown-toggle {
-      color: #000000;
+      color:white;
       font-size: 17px;
       padding: 20px 20px;
       font-weight: 600;
       cursor: pointer;
       position: relative;
       transition: all ease-in-out 0.3s;}
-.dropdown-toggle:hover,.dropdown-toggle:active,.dropdown-toggle:focus {
-        background-color: red;
-        color: #ffffff;
-    }
-
+.dropdown-toggle:hover{
+        color: rgb(204, 203, 203);
+}
 .dropdown-menu {
       width: 100%;
       position: absolute;
@@ -46,10 +44,10 @@ body {
 .dropdown-menu a:hover,.dropdown-menu a:active,.dropdown-menu a:focus {
           background-color: green;
           color: white;   
-      }  
+}  
 .dropdown-menu {
         position: relative;
-        }
+}
 .dropdown-open {
     display: block;
 }

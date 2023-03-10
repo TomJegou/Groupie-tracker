@@ -1,6 +1,6 @@
 
 // Get all the dropdown from document
-document.querySelectorAll('.dropdown-toggle').forEach(dropDownFunc);
+document.querySelectorAll('.dropdown-container').forEach(dropDownFunc);
 
 // Dropdown Open and Close function
 function dropDownFunc(dropDown) {
