@@ -39,7 +39,6 @@ func SearchAPISportify(artistName string) []byte {
 	if err != nil {
 		fmt.Println(err)
 	}
-	//fmt.Println(string(body))
 	return body
 }
 
@@ -69,12 +68,11 @@ func GetTokenSpotify() string {
 	return token.Access_token
 }
 
-func PutRespAPISpotifyIntoStruct(res []byte) {
-	//var t = map[string]structures.SpotifyArtist{}
-	var t = structures.SpotifySearchArtist{}
-	err := json.Unmarshal(res, &t)
+func PutRespAPISpotifyIntoStruct(res []byte) *structures.SpotifySearchArtist {
+	var t = &structures.SpotifySearchArtist{}
+	err := json.Unmarshal(res, t)
 	if err != nil {
 		fmt.Println(err)
 	}
-	fmt.Println(t)
+	return t
 }
