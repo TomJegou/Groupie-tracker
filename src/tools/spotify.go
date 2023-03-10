@@ -23,7 +23,7 @@ func PreprocessArtNameSearchSpotify(artistName string) string {
 	return result
 }
 
-func SearchAPISportify(artistName string) string {
+func SearchAPISportify(artistName string) []byte {
 	url := "https://api.spotify.com/v1/search?q=" + PreprocessArtNameSearchSpotify(artistName) + "&type=artist&offset=0&limit=1"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
@@ -40,7 +40,7 @@ func SearchAPISportify(artistName string) string {
 		fmt.Println(err)
 	}
 	//fmt.Println(string(body))
-	return string(body)
+	return body
 }
 
 func GetTokenSpotify() string {
@@ -67,4 +67,14 @@ func GetTokenSpotify() string {
 		fmt.Println("Erreur Unmarshal JSON\n", err)
 	}
 	return token.Access_token
+}
+
+func PutRespAPISpotifyIntoStruct(res []byte) {
+	//var t = map[string]structures.SpotifyArtist{}
+	var t = structures.SpotifySearchArtist{}
+	err := json.Unmarshal(res, &t)
+	if err != nil {
+		fmt.Println(err)
+	}
+	fmt.Println(t)
 }

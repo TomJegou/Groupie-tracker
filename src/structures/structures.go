@@ -68,3 +68,15 @@ type SpotifyToken struct {
 	Token_type   string
 	Expires_in   int
 }
+
+type SpotifySearchArtist struct {
+	Artists SpotifyArtist
+}
+
+type SpotifyArtist struct {
+	Hrefs  string
+	Limit  int
+	Next   string
+	Offset int
+	Total  int
+}
