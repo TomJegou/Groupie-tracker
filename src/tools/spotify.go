@@ -11,8 +11,21 @@ import (
 	"strings"
 )
 
+func PreprocessArtNameSearchSpotify(artistName string) string {
+	result := ""
+	l := strings.Split(artistName, " ")
+	for index, kword := range l {
+		if index != len(l)-1 {
+			kword += "%20"
+		}
+		result += kword
+	}
+	return result
+}
+
 func SearchAPISportify(artistName string) string {
-	req, err := http.NewRequest("GET", "https://api.spotify.com/v1/search?q="+artistName+"&type=artist", nil)
+	url := "https://api.spotify.com/v1/search?q=" + PreprocessArtNameSearchSpotify(artistName) + "&type=artist&offset=0&limit=1"
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -26,6 +39,7 @@ func SearchAPISportify(artistName string) string {
 	if err != nil {
 		fmt.Println(err)
 	}
+	//fmt.Println(string(body))
 	return string(body)
 }
 
