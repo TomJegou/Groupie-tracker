@@ -47,7 +47,7 @@
                         <button onclick="dropdown()" class="dropdown-btn">{{ $city }}:</button>
                         <div class="dropdown-container" id="dropdown-container">
                             {{ range $listDates }}
-                                <a href="#">- {{.}} </a>
+                                <li><a href="#">- {{.}} </a></li>
                                 {{ end }}
                          </div>
                     </div>
