@@ -2,6 +2,7 @@ package globalDataStructures
 
 import (
 	"absolut-music/src/structures"
+	b64 "encoding/base64"
 )
 
 /*Global variables*/
@@ -20,3 +21,4 @@ var SortingOption = ""
 var SortingOrder = ""
 var PaginationRequest = ""
 var NumberOfElem = ""
+var EncodedAuth = b64.StdEncoding.EncodeToString([]byte(SPOTIFY_CLIENT_ID + ":" + SPOTIFY_CLIENT_SECRET))

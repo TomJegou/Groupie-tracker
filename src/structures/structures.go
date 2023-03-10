@@ -60,3 +60,11 @@ type LibraryArtists struct {
 	IdPageToDisplay int
 	*ListenAddr
 }
+
+/*Spotify struct*/
+
+type SpotifyToken struct {
+	Access_token string
+	Token_type   string
+	Expires_in   int
+}
