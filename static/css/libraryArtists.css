@@ -12,6 +12,12 @@ body {
   background-repeat: no-repeat;
 }
 
+.search-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .searchContainer {
   display: flex;
   justify-content: center;
@@ -24,7 +30,6 @@ body {
   display: flex;
   align-items: center;
   background-color: white;
-  border-radius: 20px;
   overflow: hidden;
   width: 40%;
 }
@@ -32,7 +37,6 @@ body {
 .searchContainer input[type="text"] {
   border: solid 1px black;
   font-size: 16px;
-  border-radius: 20px;
   padding: 10px;
   width: 100%;
 }
@@ -46,8 +50,13 @@ body {
   border: none;
   color: #fff;
   font-size: 16px;
+  border-radius: 0 20px 20px 0;
   padding: 10px 15px;
   cursor: pointer;
+}
+
+input {
+  border-radius: 20px 0 0 20px;
 }
 
 .filter {
@@ -96,18 +105,18 @@ gap: 2vw 2vh;
   border-radius: 5%;
 }
 
-@media screen and (min-width: 768px) {    
-    body {
+@media screen and (min-width: 768px) {  
+      body {
     margin: 0;
     padding: 0;
-    height: 110vh;
+    height: 180vh;
     display: flex;
     flex-direction: column;
     background-attachment: fixed;
     background: linear-gradient(#2b1055, #7597de);
     background-repeat: no-repeat;
     }
-    
+
     .searchContainer {
       display: flex;
       justify-content: center;
@@ -120,17 +129,14 @@ gap: 2vw 2vh;
       display: flex;
       align-items: center;
       background-color: white;
-      border-radius: 20px;
       overflow: hidden;
-      width: 20%;
     }
     
     .searchContainer input[type="text"] {
       border: solid 1px black;
       font-size: 16px;
-      border-radius: 20px;
       padding: 10px;
-      width: 100%;
+      width: 20%;
     }
     
     .searchContainer button[type="submit"] {
@@ -140,6 +146,7 @@ gap: 2vw 2vh;
       background-position: center;
       background-size: contain;
       border: none;
+      border-radius: 0 20px 20px 0;
       color: #fff;
       font-size: 16px;
       padding: 10px 15px;
@@ -147,7 +154,7 @@ gap: 2vw 2vh;
     }
 
     input {
-      border-radius: 20px;
+      border-radius: 20px 0 0 20px;
       width: 5vw;
     }
     
@@ -187,6 +194,7 @@ gap: 2vw 2vh;
     }
     
     .formListcardArtist{
+      overflow-y: hidden; 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
