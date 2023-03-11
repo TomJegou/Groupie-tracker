@@ -30,16 +30,18 @@ func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 		} else {
 			// Display the correct artist's information
 			var wg sync.WaitGroup
-			wg.Add(4)
+			wg.Add(2)
 			go tools.ChangeListenAddr(r, &wg)
 			go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqHerokuapp(gds.URLRELATION)), &gds.Relations, &wg)
+			wg.Wait()
+			wg.Add(1)
 			go tools.ParseHtml("static/html/artistsDetails.html")
 			template := <-gds.ChanTemplates
-			go tools.FindArtistById(idArtist, &wg)
+			go tools.FindArtistById(idArtist)
 			artistDetailled := &structures.ArtistDetailled{Artist: <-gds.ChanArtDet, ArtistConcertsDatesLocation: gds.Relations["index"][idArtist-1].DatesLocations, ListenAddr: &gds.ListeningAddr}
-			api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqSearchArtAPISportify(artistDetailled.Name)), gds.ResultSpotifySearchArtist, &wg)
-			wg.Wait()
+			go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqSearchArtAPISportify(artistDetailled.Name)), gds.ResultSpotifySearchArtist, &wg)
 			artistDetailled.SpotifySearchArtist = gds.ResultSpotifySearchArtist
+			wg.Wait()
 			template.Execute(w, artistDetailled)
 		}
 	} else {
