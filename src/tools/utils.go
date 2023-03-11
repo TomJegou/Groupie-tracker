@@ -164,3 +164,15 @@ func GetLocations(libloca *structures.LibLocations, wg *sync.WaitGroup) {
 		}
 	}
 }
+
+func PreprocessArtNameSearchSpotify(artistName string) string {
+	result := ""
+	l := strings.Split(artistName, " ")
+	for index, kword := range l {
+		if index != len(l)-1 {
+			kword += "%20"
+		}
+		result += kword
+	}
+	return result
+}

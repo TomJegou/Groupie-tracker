@@ -2,6 +2,7 @@ package api
 
 import (
 	gds "absolut-music/src/globalDataStructures"
+	"absolut-music/src/tools"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -9,20 +10,8 @@ import (
 	"sync"
 )
 
-func PreprocessArtNameSearchSpotify(artistName string) string {
-	result := ""
-	l := strings.Split(artistName, " ")
-	for index, kword := range l {
-		if index != len(l)-1 {
-			kword += "%20"
-		}
-		result += kword
-	}
-	return result
-}
-
 func MakeReqSearchAPISportify(artistName string) *http.Request {
-	url := "https://api.spotify.com/v1/search?q=" + PreprocessArtNameSearchSpotify(artistName) + "&type=artist&offset=0&limit=1"
+	url := "https://api.spotify.com/v1/search?q=" + tools.PreprocessArtNameSearchSpotify(artistName) + "&type=artist&offset=0&limit=1"
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		fmt.Println(err)
