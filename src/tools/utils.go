@@ -47,8 +47,7 @@ func ChangeListenAddr(r *http.Request, wg *sync.WaitGroup) {
 Find the artist who as the same id as the id passed as parameter
 from the Artists slice
 */
-func FindArtistById(id int, wg *sync.WaitGroup) {
-	defer wg.Done()
+func FindArtistById(id int,) {
 	for _, artist := range gds.Artists {
 		if artist.Id == id {
 			gds.ChanArtDet <- &artist
