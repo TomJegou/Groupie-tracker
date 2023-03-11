@@ -43,15 +43,17 @@
                 <fieldset class="fieldsetTableCityDate">
                     <legend id="titleTableCardConcertDates">Lieux de Concert</legend>
                     {{ range $city, $listDates := .ArtistConcertsDatesLocation }}
-                    <div class="cardConcertDates">
-                        <button onclick="dropdown()" class="dropdown-btn">{{ $city }}:</button>
-                        <div class="dropdown-container" id="dropdown-container">
-                            {{ range $listDates }}
+                        <div class="dropdown-container">
+                            <div class="dropdown-toggle click-dropdown">{{ $city }}:</div>
+                            <div class="dropdown-menu">
+                                <ul>
+                                {{ range $listDates }}
                                 <li><a href="#">- {{.}} </a></li>
                                 {{ end }}
-                         </div>
+                            </ul>
+                        </div>
                     </div>
-                    {{ end }}  
+                {{ end }}  
                 </fieldset>
             </div>
             <div class="spotify">

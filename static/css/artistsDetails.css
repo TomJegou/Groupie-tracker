@@ -1,40 +1,77 @@
 body {
     justify-content: center;
-    background: white;
+
   }
 
 *{
     font-weight: bold;
 }
-.dropdown-btn {
-    border: none;
-    background-color:transparent;
-    color: white;
-    padding: 8px;
-    font-size: 16px;
-    cursor: pointer;
-    width: 200px;
-}
-.dropdown-btn:hover{
-    color: grey;
-}
-
 .dropdown-container {
-    display: none;
-    min-width: 200px;
-    text-decoration: none;
-    color: white;
-    padding: 10px;
+    display: contents;
+    position: relative;
+    max-width: 15vw;
+}
+.dropdown-toggle {
+      color:white;
+      font-size: 17px;
+      padding: 20px 20px;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      transition: all ease-in-out 0.3s;}
+.dropdown-toggle:hover{
+        color: rgb(126, 126, 126);
+}
+.dropdown-menu {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      display: block;
+      position: relative;
+}
+.dropdown-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+}
+.dropdown-menu a {
+        text-decoration: none;
+        display: block;
+        color: #000000;
+        font-size: 15px;
+        padding: 10px 15px;
+        font-weight: 600;
+}
+/* .dropdown-menu a:hover,.dropdown-menu a:active,.dropdown-menu a:focus {
+          background-color: green;
+          color: red;   
+}  
+.dropdown-menu {
+        position: relative;
+}
+.dropdown-open {
+    display: block;
 }
 
+.dropdown-menu.dropdown-active {
+    display: block;
+} */
+      
+    
+    
 
 
 .allInfo{
+    width: 100vw;
+    min-height: 92vh;
+    height: auto;
     display: flex;
     flex-direction: row;    
     flex-wrap: wrap;
     justify-content: center;
-    background: white;
+    background-image: linear-gradient(360deg, rgb(160, 222, 219),rgb(3, 165, 209));
+
     gap: 2vh;
 }
 
@@ -47,17 +84,17 @@ body {
     width: 90%;
     align-items: center;
     align-content: center;
-    background: linear-gradient(to bottom, #292929, #0B0B0B);
+    /* background: linear-gradient(to bottom, #292929, #0B0B0B); */
     border-radius: 5px;
     overflow: hidden;
     gap: 3vh; 
 }
 
 #idImgArtistDetailled{
-    width: 20vw;
-    height: 20vw;
-    max-height: 151px;
-    max-width: 151px;
+    width: 30vw;
+    height: 30vw;
+    max-height: 251px;
+    max-width: 251px;
     border-radius: 5%;
 }
 
@@ -113,9 +150,11 @@ body {
 }
 
 .divtableCardConcertDates{
+    margin-bottom: 2vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
+    position: relative;
     justify-content: center;
     background: linear-gradient(to bottom,#0bf,#066aff);
     border-radius: 5px;
@@ -131,8 +170,8 @@ body {
 #titleTableCardConcertDates{
     font-size: 1.5em;
     display: flex;
-    flex-direction: column;
     color: white;
+    flex-direction: column;
     overflow: hidden;
 }
 
@@ -175,5 +214,13 @@ body {
 
     .divInfoTxtArtist{
         width: auto;
+        height: auto;
     }
 }
+
+
+
+
+
+  
+ 
