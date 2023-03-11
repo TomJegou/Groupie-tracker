@@ -165,6 +165,7 @@ func GetLocations(libloca *structures.LibLocations, wg *sync.WaitGroup) {
 	}
 }
 
+/*Replace spaces to %20 for the spotify research querry*/
 func PreprocessArtNameSearchSpotify(artistName string) string {
 	result := ""
 	l := strings.Split(artistName, " ")

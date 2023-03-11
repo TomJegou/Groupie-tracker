@@ -10,6 +10,7 @@ import (
 	"sync"
 )
 
+/*Create a request with the headers and the forms and return the request's pointers*/
 func MakeReq(url string, headers map[string]string, forms map[string]string) *http.Request {
 	if forms != nil {
 		data := u.Values{}
@@ -37,10 +38,15 @@ func MakeReq(url string, headers map[string]string, forms map[string]string) *ht
 	}
 }
 
+/*Create a request for the Herokuapp api and return the request's pointer*/
 func MakeReqHerokuapp(url string) *http.Request {
 	return MakeReq(url, nil, nil)
 }
 
+/*
+Create a request to get the result of Spotify research of the artist name
+and return the request's pointer
+*/
 func MakeReqSearchArtAPISportify(artistName string) *http.Request {
 	url := "https://api.spotify.com/v1/search?q=" + tools.PreprocessArtNameSearchSpotify(artistName) + "&type=artist&offset=0&limit=1"
 	var wg sync.WaitGroup
@@ -50,6 +56,7 @@ func MakeReqSearchArtAPISportify(artistName string) *http.Request {
 	return MakeReq(url, map[string]string{"Authorization": "Bearer " + gds.OAuthSpotifyToken.Access_token}, nil)
 }
 
+/*Create a request to get the Spotify Authorisation token and return the request's pointer*/
 func MakeReqTokenSpotify() *http.Request {
 	headers := map[string]string{"Authorization": "Basic " + gds.EncodedAuth, "Content-Type": "application/x-www-form-urlencoded"}
 	forms := map[string]string{"grant_type": "client_credentials"}
