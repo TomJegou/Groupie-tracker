@@ -41,7 +41,7 @@ func MakeReqHerokuapp(url string) *http.Request {
 	return MakeReq(url, nil, nil)
 }
 
-func MakeReqSearchAPISportify(artistName string) *http.Request {
+func MakeReqSearchArtAPISportify(artistName string) *http.Request {
 	url := "https://api.spotify.com/v1/search?q=" + tools.PreprocessArtNameSearchSpotify(artistName) + "&type=artist&offset=0&limit=1"
 	var wg sync.WaitGroup
 	wg.Add(1)
