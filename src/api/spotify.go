@@ -1,7 +1,7 @@
 package api
 
 import (
-	"absolut-music/src/globalDataStructures"
+	gds "absolut-music/src/globalDataStructures"
 	"fmt"
 	"net/http"
 	"net/url"
@@ -29,9 +29,9 @@ func MakeReqSearchAPISportify(artistName string) *http.Request {
 	}
 	var wg sync.WaitGroup
 	wg.Add(1)
-	PutBodyResponseApiIntoStruct(RequestApi(MakeReqTokenSpotify()), &globalDataStructures.OAuthSpotifyToken, &wg)
+	PutBodyResponseApiIntoStruct(RequestApi(MakeReqTokenSpotify()), &gds.OAuthSpotifyToken, &wg)
 	wg.Wait()
-	req.Header.Set("Authorization", "Bearer "+globalDataStructures.OAuthSpotifyToken.Access_token)
+	req.Header.Set("Authorization", "Bearer "+gds.OAuthSpotifyToken.Access_token)
 	return req
 }
 
@@ -41,7 +41,7 @@ func MakeReqTokenSpotify() *http.Request {
 	if err != nil {
 		fmt.Println(err)
 	}
-	req.Header.Set("Authorization", "Basic "+globalDataStructures.EncodedAuth)
+	req.Header.Set("Authorization", "Basic "+gds.EncodedAuth)
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.PostForm = data
 	return req
