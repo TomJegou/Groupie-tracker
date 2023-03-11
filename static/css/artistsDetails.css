@@ -12,7 +12,7 @@ body {
     max-width: 15vw;
 }
 .dropdown-toggle {
-      color:red;
+      color:white;
       font-size: 17px;
       padding: 20px 20px;
       font-weight: 600;
@@ -20,13 +20,14 @@ body {
       position: relative;
       transition: all ease-in-out 0.3s;}
 .dropdown-toggle:hover{
-        color: rgb(255, 0, 0);
+        color: rgb(126, 126, 126);
 }
 .dropdown-menu {
       width: 100%;
       position: absolute;
       left: 0;
-      display: none;
+      display: block;
+      position: relative;
 }
 .dropdown-menu ul {
         list-style: none;
@@ -42,9 +43,9 @@ body {
         padding: 10px 15px;
         font-weight: 600;
 }
-.dropdown-menu a:hover,.dropdown-menu a:active,.dropdown-menu a:focus {
+/* .dropdown-menu a:hover,.dropdown-menu a:active,.dropdown-menu a:focus {
           background-color: green;
-          color: rgb(255, 0, 0);   
+          color: red;   
 }  
 .dropdown-menu {
         position: relative;
@@ -52,9 +53,10 @@ body {
 .dropdown-open {
     display: block;
 }
+
 .dropdown-menu.dropdown-active {
     display: block;
-}
+} */
       
     
     
@@ -144,9 +146,9 @@ body {
 }
 
 .divtableCardConcertDates{
-    /* display: flex;
+    display: flex;
     flex-direction: row;
-    flex-wrap: wrap; */
+    flex-wrap: wrap;
     position: relative;
     justify-content: center;
     background: linear-gradient(to bottom,#0bf,#066aff);
@@ -155,14 +157,15 @@ body {
 }
 
 .fieldsetTableCityDate{
-    /* display: flex;
-    flex-direction: column; */
+    display: flex;
+    flex-direction: column;
     margin: 2vh;
 }
 
 #titleTableCardConcertDates{
     font-size: 1.5em;
-    /* display: flex; */
+    display: flex;
+    color: white;
     flex-direction: column;
     overflow: hidden;
 }
