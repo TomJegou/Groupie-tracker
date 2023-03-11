@@ -62,6 +62,14 @@ type LibraryArtists struct {
 	*ListenAddr
 }
 
+/*tools*/
+
+type FormatDate struct {
+	Year  int
+	Month int
+	Day   int
+}
+
 /*Spotify struct*/
 
 type SpotifyToken struct {

@@ -9,16 +9,6 @@ import (
 	"sync"
 )
 
-/*Structures*/
-
-type FormatDate struct {
-	Year  int
-	Month int
-	Day   int
-}
-
-/*Functions*/
-
 /*Reverse the Artists slice*/
 func ReverseSliceArtist(wg *sync.WaitGroup) {
 	defer wg.Done()
@@ -28,7 +18,7 @@ func ReverseSliceArtist(wg *sync.WaitGroup) {
 }
 
 /*Parse the first album's date into a structure FormatDate*/
-func parseDate(date string) FormatDate {
+func parseDate(date string) structures.FormatDate {
 	t := strings.Split(date, "-")
 	yearInt, err := strconv.Atoi(t[2])
 	if err != nil {
@@ -42,7 +32,7 @@ func parseDate(date string) FormatDate {
 	if err != nil {
 		fmt.Println(err)
 	}
-	parsedDate := FormatDate{Year: yearInt, Month: monthInt, Day: dayInt}
+	parsedDate := structures.FormatDate{Year: yearInt, Month: monthInt, Day: dayInt}
 	return parsedDate
 }
 
