@@ -177,6 +177,7 @@ func PreprocessArtNameSearchSpotify(artistName string) string {
 	return result
 }
 
+/*Check if all the artist from HeroKuapp are invisible*/
 func CheckAllArtInvisible() bool {
 	for _, art := range gds.Artists {
 		if art.IsVisible {
