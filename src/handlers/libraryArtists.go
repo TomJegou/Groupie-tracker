@@ -3,6 +3,7 @@ package handlers
 import (
 	"absolut-music/src/globalDataStructures"
 	"absolut-music/src/tools"
+	"absolut-music/src/api"
 	"fmt"
 	"math"
 	"net/http"
@@ -19,7 +20,7 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	if !globalDataStructures.OnLibraryArtists {
 		var wg sync.WaitGroup
 		wg.Add(1)
-		go tools.PutBodyResponseApiIntoStruct(tools.RequestApi(tools.MakeReqHerokuapp(globalDataStructures.URLARTISTS)), &globalDataStructures.Artists, &wg)
+		go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqHerokuapp(globalDataStructures.URLARTISTS)), &globalDataStructures.Artists, &wg)
 		wg.Wait()
 		globalDataStructures.OnLibraryArtists = true
 	}

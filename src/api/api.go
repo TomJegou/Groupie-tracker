@@ -1,4 +1,4 @@
-package tools
+package api
 
 import (
 	"encoding/json"
@@ -23,8 +23,7 @@ func RequestApi(req *http.Request) []byte {
 }
 
 /*
-Call the API using the url passed as a parameter
-and the func GetApi, and put the response into the structure passed as a parameter
+Put the response into the structure passed as a parameter
 */
 func PutBodyResponseApiIntoStruct(body []byte, structure interface{}, wg *sync.WaitGroup) {
 	defer wg.Done()

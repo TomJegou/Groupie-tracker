@@ -1,4 +1,4 @@
-package tools
+package api
 
 import (
 	"absolut-music/src/globalDataStructures"
