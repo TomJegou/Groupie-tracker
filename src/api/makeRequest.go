@@ -62,3 +62,16 @@ func MakeReqTokenSpotify() *http.Request {
 	forms := map[string]string{"grant_type": "client_credentials"}
 	return MakeReq("https://accounts.spotify.com/api/token", headers, forms)
 }
+
+/*
+Create a request to get the result of Spotify research of the artist name
+and return the request's pointer
+*/
+func MakeReqSearchAlbumArtAPISportify(artistName string) *http.Request {
+	url := "https://api.spotify.com/v1/search?q=" + tools.PreprocessArtNameSearchSpotify(artistName) + "&type=album&offset=0&limit=1"
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go PutBodyResponseApiIntoStruct(RequestApi(MakeReqTokenSpotify()), &gds.OAuthSpotifyToken, &wg)
+	wg.Wait()
+	return MakeReq(url, map[string]string{"Authorization": "Bearer " + gds.OAuthSpotifyToken.Access_token}, nil)
+}

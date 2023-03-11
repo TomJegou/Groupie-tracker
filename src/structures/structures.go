@@ -79,21 +79,21 @@ type SpotifyToken struct {
 }
 
 type SpotifySearchArtist struct {
-	Artists SpotifyArtist
+	Artists SpotifyResultSearchArtist
 }
 
-type SpotifyArtist struct {
+type SpotifyResultSearchArtist struct {
 	Hrefs  string
-	Items  []SpotifyArtItem
+	Items  []SpotifyResultSearchArtItem
 	Limit  int
 	Next   string
 	Offset int
 	Total  int
 }
 
-type SpotifyArtItem struct {
+type SpotifyResultSearchArtItem struct {
 	External_urls map[string]string
-	Followers     SpotifyArtFollowers
+	Followers     SpotifyResultSearchArtFollowers
 	Genres        []string
 	Href          string
 	Id            string
@@ -104,7 +104,7 @@ type SpotifyArtItem struct {
 	Uri           string
 }
 
-type SpotifyArtFollowers struct {
+type SpotifyResultSearchArtFollowers struct {
 	Href  string
 	Total int
 }
@@ -113,4 +113,16 @@ type SpotifyArtImage struct {
 	Height int
 	Url    string
 	Width  int
+}
+
+type SpotifySearchAlbum struct {
+	Albums SpotifyResultSearchAlbum
+}
+
+type SpotifyResultSearchAlbum struct {
+	Items []SpotifyResultSearchAlbumItem
+}
+
+type SpotifyResultSearchAlbumItem struct {
+	Id string
 }
