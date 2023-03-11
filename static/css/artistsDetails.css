@@ -84,7 +84,7 @@ body {
     align-items: center;
     align-content: center;
     /* background: linear-gradient(to bottom, #292929, #0B0B0B); */
-    border-radius: 5px;
+    border-radius:12px;
     overflow: hidden;
     gap: 3vh; 
 }
@@ -92,9 +92,31 @@ body {
 #idImgArtistDetailled{
     width: 30vw;
     height: 30vw;
-    max-height: 251px;
-    max-width: 251px;
-    border-radius: 5%;
+    max-height: 99px;
+    max-width: 99px;
+    border-radius:12px;
+}
+
+.divSpotify{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 15vh;
+    width: 100%;
+}
+
+.iframeSpotify{
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius:12px;
+    align-items: center;
+    width: 80%;
+    height: 100%;
 }
 
 .divInfoTxtArtist{
@@ -103,7 +125,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     background: #ECE9E9;
-    border-radius: 5px;
+    border-radius:12px;
     width: 90%;
 }
 
@@ -124,7 +146,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     background: linear-gradient(to bottom, #292929, #0B0B0B);
-    border-radius: 5px;
+    border-radius:12px;
 }
 
 .divMembersArtist p{
@@ -156,7 +178,7 @@ body {
     position: relative;
     justify-content: center;
     background: linear-gradient(to bottom,#0bf,#066aff);
-    border-radius: 5px;
+    border-radius:12px;
     gap: 2vw 1vh;
 }
 
@@ -183,20 +205,38 @@ body {
     display: flex;
 }
 
+#titleAlbumArt{
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100vw;
+}
+
 .artistAlbums{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    gap: 1vw 1vh;
+    gap: 2vw 1vh;
 }
 
 .album{
     display: flex;
-    flex-direction: column;
-    background: #000000;
-    border-radius: 5px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: linear-gradient(to bottom, #797676, #E6E1E1);
+    border-radius:12px;
+    width: 60vw;
+    gap: 1vh;
+}
+
+.album img{
+    width: 100%;
+    border-radius:12px;
 }
 
 .album p{
@@ -204,13 +244,27 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    width: 90%;
     color: white;
 }
 
 @media only screen and (min-width: 500px) {
+    .allInfo{
+        align-items: flex-start;
+    }
+
     #idImgArtistDetailled{
         max-width: 100px;
         max-height: 100px;
+    }
+
+    .album{
+        max-width: 200px;
+        max-height: 350px;
+    }
+
+    .album img{
+        max-height: 150px;
     }
 }
 
@@ -222,10 +276,6 @@ body {
 }
 
 @media only screen and (min-width: 800px) {
-    .allInfo{
-        align-items: flex-start;
-    }
-
     .divImgArtistDetailled{
         width: 98%;
     }

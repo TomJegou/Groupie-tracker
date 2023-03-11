@@ -26,6 +26,10 @@
             <div class="divImgArtistDetailled">
                 <img id="idImgArtistDetailled" src="{{.Image}}" alt="{{.Name}}">
             </div>
+            <div class="divSpotify">
+                {{ $i := index .SpotifySearchArtist.Artists.Items 0 }}
+                <iframe class="iframeSpotify" src="https://open.spotify.com/embed/artist/{{ $i.Id }}?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>    
+            </div>
             <div class="divInfoTxtArtist">
                 <p id="nameArtist">{{ .Name }}</p>
                 <p id="creationDateArtist">{{ .CreationDate }}</p>
@@ -56,19 +60,16 @@
                 {{ end }}  
                 </fieldset>
             </div>
-            <div class="spotify">
-                {{ $i := index .SpotifySearchArtist.Artists.Items 0 }}
-                <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/{{ $i.Id }}?utm_source=generator&theme=0" width="99%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>    
-            </div>
-            <div class="artistAlbums">
-                {{ range $album := .Albums }}
-                    <div class="album">
-                        {{ $image := index $album.Images 1 }}
-                        <img src="{{ $image.Url }}" alt="{{ $album.Name }}">
-                        <p>{{ $album.Name }}</p>
-                    </div>
-                {{ end }}
-            </div>
+        </div>
+        <div class="artistAlbums">
+            <strong><p id="titleAlbumArt">Album de l'artist</p></strong>
+            {{ range $album := .Albums }}
+                <div class="album">
+                    {{ $image := index $album.Images 1 }}
+                    <img src="{{ $image.Url }}" alt="{{ $album.Name }}">
+                    <p>{{ $album.Name }}</p>
+                </div>
+            {{ end }}
         </div>
     </body>
     <footer>
