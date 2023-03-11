@@ -188,6 +188,7 @@ body {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
     gap: 1vw 1vh;
 }
 
@@ -200,7 +201,9 @@ body {
 
 .album p{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     color: white;
 }
 

@@ -63,7 +63,7 @@
             <div class="artistAlbums">
                 {{ range $album := .Albums }}
                     <div class="album">
-                        {{ $image := index $album.Images 2 }}
+                        {{ $image := index $album.Images 1 }}
                         <img src="{{ $image.Url }}" alt="{{ $album.Name }}">
                         <p>{{ $album.Name }}</p>
                     </div>
