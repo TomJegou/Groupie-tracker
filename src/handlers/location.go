@@ -1,7 +1,8 @@
 package handlers
 
 import (
-	"absolut-music/src/globalDataStructures"
+	"absolut-music/src/api"
+	gds "absolut-music/src/globalDataStructures"
 	"absolut-music/src/tools"
 	"net/http"
 	"sync"
@@ -12,15 +13,17 @@ var LibLocations = tools.NewLibLocations()
 
 /*handles the Locations library*/
 func LocationHandler(w http.ResponseWriter, r *http.Request) {
-	go tools.ChangeListenAddr(r)
-	LibLocations.ListenAddr = &globalDataStructures.ListeningAddr
-	globalDataStructures.OnLibraryArtists = false
+	gds.OnLibraryArtists = false
 	var wg sync.WaitGroup
-	wg.Add(1)
-	go tools.PutBodyResponseApiIntoStruct(globalDataStructures.URLRELATION, &globalDataStructures.Relations, &wg)
-	wg.Wait()
+	wg.Add(2)
+	go tools.ChangeListenAddr(r, &wg)
+	LibLocations.ListenAddr = &gds.ListeningAddr
+	go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqHerokuapp(gds.URLRELATION)), &gds.Relations, &wg)
 	go tools.ParseHtml("static/html/locations.html")
-	template := <-globalDataStructures.ChanTemplates
-	tools.GetLocations(LibLocations)
+	template := <-gds.ChanTemplates
+	wg.Wait()
+	wg.Add(1)
+	go tools.GetLocations(LibLocations, &wg)
+	wg.Wait()
 	template.Execute(w, LibLocations)
 }

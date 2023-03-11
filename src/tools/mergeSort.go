@@ -1,7 +1,7 @@
 package tools
 
 import (
-	"absolut-music/src/globalDataStructures"
+	gds "absolut-music/src/globalDataStructures"
 	"absolut-music/src/structures"
 	"fmt"
 	"strconv"
@@ -22,8 +22,8 @@ type FormatDate struct {
 /*Reverse the Artists slice*/
 func ReverseSliceArtist(wg *sync.WaitGroup) {
 	defer wg.Done()
-	for i := 0; i < len(globalDataStructures.Artists)/2; i++ {
-		globalDataStructures.Artists[i], globalDataStructures.Artists[len(globalDataStructures.Artists)-1-i] = globalDataStructures.Artists[len(globalDataStructures.Artists)-1-i], globalDataStructures.Artists[i]
+	for i := 0; i < len(gds.Artists)/2; i++ {
+		gds.Artists[i], gds.Artists[len(gds.Artists)-1-i] = gds.Artists[len(gds.Artists)-1-i], gds.Artists[i]
 	}
 }
 
@@ -131,7 +131,7 @@ Call the quickSortControler function and copy
 the result to the slice Artist wich will be overwritten by the result
 */
 func QuickSort(sortingOption string, asc bool) {
-	copy(globalDataStructures.Artists, quickSortControler(globalDataStructures.Artists, sortingOption))
+	copy(gds.Artists, quickSortControler(gds.Artists, sortingOption))
 	if !asc {
 		RunParallel(ReverseSliceArtist)
 	}

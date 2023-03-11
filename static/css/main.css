@@ -28,7 +28,6 @@ body {
 
 /*Header*/
 .navLogo {
-    width: 24vw;
     height: 12vh;
     max-width: 153px;
     overflow: hidden;
@@ -43,7 +42,7 @@ body {
 }
 
 .txt:hover{
-    color: gray;
+    color: cyan;
 }
 
 header{
@@ -68,20 +67,23 @@ nav li{
     margin-right: 3vw;
 }
 
+.txt {
+    font-size: small;
+}
+
 /*Footer*/
 footer{
     height: 10vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2d3436;;
+    background-color: white;
     margin-top: auto;
-
-    color: white;
+    color: black;
 }
 
 footer a{
-    color: white;
+    color: black;
 }
 
 #ftxt:link{
@@ -89,19 +91,19 @@ footer a{
 }
 
 #ftxt:hover{
-    color: rgb(222, 222, 222);
+    color: cyan;
 }
 
 @media screen and (min-width: 768px) {
     /*Header*/
+ 
 .navLogo {
-    width: 15vw;
-    height: 12vh;
     margin-left: 3%;
 }
 
 .txt{
     color: black;
+    font-size: larger;
 }
 
 .txt:link{
@@ -109,7 +111,7 @@ footer a{
 }
 
 .txt:hover{
-    color: #2d3436;
+    color: cyan;
 }
 
 header{
@@ -137,17 +139,17 @@ nav li{
 
 /*Footer*/
 footer{
-    height: 10vh;
+    height: 6vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #2d3436;
+    background-color: white;
     margin-top: auto;
-    color: white;
+    color: black;
 }
 
 footer a{
-    color: white;
+    color: black;
 }
 
 #ftxt:link{
@@ -155,6 +157,6 @@ footer a{
 }
 
 #ftxt:hover{
-    color: rgb(222, 222, 222);
+    color: cyan;
     }
 }

@@ -1,7 +1,7 @@
 package tools
 
 import (
-	"absolut-music/src/globalDataStructures"
+	gds "absolut-music/src/globalDataStructures"
 	"absolut-music/src/structures"
 	"fmt"
 	"net/http"
@@ -20,7 +20,7 @@ func ParseHtml(fileToParse string) {
 		fmt.Println("Error Parsing Template")
 		fmt.Println(errors)
 	}
-	globalDataStructures.ChanTemplates <- template
+	gds.ChanTemplates <- template
 }
 
 /*Make the function passed as a parameter run in Parallel as a goroutine*/
@@ -36,9 +36,10 @@ Check if in the request if the host ipv4 is
 the same as the one to be used for the templates.
 If it's not the same, change the ListeningAddr.Ipv4 to the host requested
 */
-func ChangeListenAddr(r *http.Request) {
-	if r.Host != globalDataStructures.ListeningAddr.Ipv4 {
-		globalDataStructures.ListeningAddr.Ipv4 = r.Host
+func ChangeListenAddr(r *http.Request, wg *sync.WaitGroup) {
+	defer wg.Done()
+	if r.Host != gds.ListeningAddr.Ipv4 {
+		gds.ListeningAddr.Ipv4 = r.Host
 	}
 }
 
@@ -46,14 +47,15 @@ func ChangeListenAddr(r *http.Request) {
 Find the artist who as the same id as the id passed as parameter
 from the Artists slice
 */
-func FindArtistById(id int) {
-	for _, artist := range globalDataStructures.Artists {
+func FindArtistById(id int, wg *sync.WaitGroup) {
+	defer wg.Done()
+	for _, artist := range gds.Artists {
 		if artist.Id == id {
-			globalDataStructures.ChanArtDet <- &artist
+			gds.ChanArtDet <- &artist
 			return
 		}
 	}
-	globalDataStructures.ChanArtDet <- &globalDataStructures.Artists[0]
+	gds.ChanArtDet <- &gds.Artists[0]
 }
 
 /*
@@ -69,8 +71,8 @@ Set all of the artists's attribute IsVisible from the slice Artists
 to the boolean isVisible passed as parameter
 */
 func SetAllArtistVisibility(isVisible bool) {
-	for i := 0; i < len(globalDataStructures.Artists); i++ {
-		SetArtistVisibility(&globalDataStructures.Artists[i], isVisible)
+	for i := 0; i < len(gds.Artists); i++ {
+		SetArtistVisibility(&gds.Artists[i], isVisible)
 	}
 }
 
@@ -81,16 +83,16 @@ searchContent passed as parameter. Every artist found has his visibility set to 
 */
 func SearchArtists(searchContent string) {
 	SetAllArtistVisibility(false)
-	for i := 0; i < len(globalDataStructures.Artists); i++ {
+	for i := 0; i < len(gds.Artists); i++ {
 		isOk := true
 		for indexChar, char := range searchContent {
-			if !strings.EqualFold(string(globalDataStructures.Artists[i].Name[indexChar]), string(char)) {
+			if !strings.EqualFold(string(gds.Artists[i].Name[indexChar]), string(char)) {
 				isOk = false
 				break
 			}
 		}
 		if isOk {
-			SetArtistVisibility(&globalDataStructures.Artists[i], true)
+			SetArtistVisibility(&gds.Artists[i], true)
 		}
 	}
 }
@@ -101,40 +103,40 @@ each page is put into the slice ListPages
 */
 func DispatchIntoPage(wg *sync.WaitGroup) {
 	defer wg.Done()
-	globalDataStructures.ListPages = []structures.Page{}
+	gds.ListPages = []structures.Page{}
 	pageCount := 0
 	countArtist := 0
-	page := structures.Page{Index: pageCount, Capacity: globalDataStructures.PageCapacity, IsFirst: true}
-	for i := 0; i < len(globalDataStructures.Artists); i++ {
-		if countArtist == globalDataStructures.PageCapacity {
-			globalDataStructures.ListPages = append(globalDataStructures.ListPages, page)
+	page := structures.Page{Index: pageCount, Capacity: gds.PageCapacity, IsFirst: true}
+	for i := 0; i < len(gds.Artists); i++ {
+		if countArtist == gds.PageCapacity {
+			gds.ListPages = append(gds.ListPages, page)
 			pageCount++
-			page = structures.Page{Index: pageCount, Capacity: globalDataStructures.PageCapacity, IsFirst: false, IsLast: false}
+			page = structures.Page{Index: pageCount, Capacity: gds.PageCapacity, IsFirst: false, IsLast: false}
 			countArtist = 0
 		}
-		if globalDataStructures.Artists[i].IsVisible {
-			page.Content = append(page.Content, globalDataStructures.Artists[i])
+		if gds.Artists[i].IsVisible {
+			page.Content = append(page.Content, gds.Artists[i])
 			countArtist++
 		}
 	}
 	page.IsLast = true
-	globalDataStructures.ListPages = append(globalDataStructures.ListPages, page)
+	gds.ListPages = append(gds.ListPages, page)
 }
 
 /*Initialize the artists library*/
 func InitLibArt() {
-	if globalDataStructures.IsStartServer {
-		globalDataStructures.LibArtists.ListenAddr = &globalDataStructures.ListeningAddr
-		globalDataStructures.LibArtists.Artistlist = &globalDataStructures.Artists
+	if gds.IsStartServer {
+		gds.LibArtists.ListenAddr = &gds.ListeningAddr
+		gds.LibArtists.Artistlist = &gds.Artists
 		SetAllArtistVisibility(true)
-		globalDataStructures.LibArtists.SortingFilter = "name"
-		globalDataStructures.LibArtists.Asc = true
-		QuickSort(globalDataStructures.LibArtists.SortingFilter, globalDataStructures.LibArtists.Asc)
-		globalDataStructures.LibArtists.IdPageToDisplay = 0
-		globalDataStructures.PageCapacity = 10
+		gds.LibArtists.SortingFilter = "name"
+		gds.LibArtists.Asc = true
+		QuickSort(gds.LibArtists.SortingFilter, gds.LibArtists.Asc)
+		gds.LibArtists.IdPageToDisplay = 0
+		gds.PageCapacity = 10
 		RunParallel(DispatchIntoPage)
-		globalDataStructures.LibArtists.Page = &globalDataStructures.ListPages[globalDataStructures.LibArtists.IdPageToDisplay]
-		globalDataStructures.IsStartServer = false
+		gds.LibArtists.Page = &gds.ListPages[gds.LibArtists.IdPageToDisplay]
+		gds.IsStartServer = false
 	}
 }
 
@@ -144,12 +146,15 @@ func NewLibLocations() *structures.LibLocations {
 	return &structures.LibLocations{LocationsList: locationList}
 }
 
-/*Grabs in the Relations object all the cities and their concert dates in order to put them
-into the libloca's attribute LocationsList wich is a map*/
-func GetLocations(libloca *structures.LibLocations) {
-	for i := 0; i < len(globalDataStructures.Relations["index"]); i++ {
-		for j := 0; j < len(globalDataStructures.Relations["index"][i].DatesLocations); j++ {
-			for cityName, listDate := range globalDataStructures.Relations["index"][i].DatesLocations {
+/*
+Grabs in the Relations object all the cities and their concert dates in order to put them
+into the libloca's attribute LocationsList wich is a map
+*/
+func GetLocations(libloca *structures.LibLocations, wg *sync.WaitGroup) {
+	defer wg.Done()
+	for i := 0; i < len(gds.Relations["index"]); i++ {
+		for j := 0; j < len(gds.Relations["index"][i].DatesLocations); j++ {
+			for cityName, listDate := range gds.Relations["index"][i].DatesLocations {
 				if !libloca.InLocations(cityName) {
 					libloca.LocationsList[cityName] = listDate
 				} else {
@@ -158,4 +163,16 @@ func GetLocations(libloca *structures.LibLocations) {
 			}
 		}
 	}
+}
+
+func PreprocessArtNameSearchSpotify(artistName string) string {
+	result := ""
+	l := strings.Split(artistName, " ")
+	for index, kword := range l {
+		if index != len(l)-1 {
+			kword += "%20"
+		}
+		result += kword
+	}
+	return result
 }

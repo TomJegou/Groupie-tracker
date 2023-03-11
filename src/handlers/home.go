@@ -1,16 +1,20 @@
 package handlers
 
 import (
-	"absolut-music/src/globalDataStructures"
+	gds "absolut-music/src/globalDataStructures"
 	"absolut-music/src/tools"
 	"net/http"
+	"sync"
 )
 
 /*Home page's handler*/
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
-	go tools.ChangeListenAddr(r)
-	globalDataStructures.OnLibraryArtists = false
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go tools.ChangeListenAddr(r, &wg)
+	gds.OnLibraryArtists = false
 	go tools.ParseHtml("static/html/index.html")
-	template := <-globalDataStructures.ChanTemplates
-	template.Execute(w, globalDataStructures.ListeningAddr)
+	template := <-gds.ChanTemplates
+	wg.Wait()
+	template.Execute(w, gds.ListeningAddr)
 }

@@ -7,9 +7,15 @@ body {
   padding: 0;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(#2b1055, #7597de);
+  background-image: linear-gradient(360deg, rgb(160, 222, 219),rgb(3, 165, 209));
   background-attachment: fixed;
   background-repeat: no-repeat;
+}
+
+.search-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .searchContainer {
@@ -17,6 +23,7 @@ body {
   justify-content: center;
   margin-top: 3%;
   padding-bottom: 3%;
+  width: 50%;
   padding-right: 3%;
 }
 
@@ -24,15 +31,12 @@ body {
   display: flex;
   align-items: center;
   background-color: white;
-  border-radius: 20px;
   overflow: hidden;
-  width: 40%;
 }
 
 .searchContainer input[type="text"] {
   border: solid 1px black;
   font-size: 16px;
-  border-radius: 20px;
   padding: 10px;
   width: 100%;
 }
@@ -46,13 +50,26 @@ body {
   border: none;
   color: #fff;
   font-size: 16px;
+  border-radius: 0 20px 20px 0;
   padding: 10px 15px;
   cursor: pointer;
+}
+
+input {
+  border-radius: 20px 0 0 20px;
 }
 
 .filter {
   width: 100%;
   color: white;
+}
+
+#submitInputSort {
+  border-radius: 20px;
+}
+
+.buttonPagination {
+  border-radius: 20px;
 }
 
 .divButtonPagination {
@@ -96,18 +113,17 @@ gap: 2vw 2vh;
   border-radius: 5%;
 }
 
-@media screen and (min-width: 768px) {    
-    body {
+@media screen and (min-width: 768px) {  
+      body {
     margin: 0;
     padding: 0;
-    height: 110vh;
     display: flex;
     flex-direction: column;
     background-attachment: fixed;
-    background: linear-gradient(#2b1055, #7597de);
+    background-image: linear-gradient(360deg, rgb(160, 222, 219),rgb(3, 165, 209));
     background-repeat: no-repeat;
     }
-    
+
     .searchContainer {
       display: flex;
       justify-content: center;
@@ -120,17 +136,14 @@ gap: 2vw 2vh;
       display: flex;
       align-items: center;
       background-color: white;
-      border-radius: 20px;
       overflow: hidden;
-      width: 20%;
     }
     
     .searchContainer input[type="text"] {
       border: solid 1px black;
       font-size: 16px;
-      border-radius: 20px;
       padding: 10px;
-      width: 100%;
+      width: 20%;
     }
     
     .searchContainer button[type="submit"] {
@@ -140,6 +153,7 @@ gap: 2vw 2vh;
       background-position: center;
       background-size: contain;
       border: none;
+      border-radius: 0 20px 20px 0;
       color: #fff;
       font-size: 16px;
       padding: 10px 15px;
@@ -147,14 +161,24 @@ gap: 2vw 2vh;
     }
 
     input {
-      border-radius: 20px;
+      border-radius: 20px 0 0 20px;
       width: 5vw;
     }
     
     .buttonPagination {
       border-radius: 20px;
-      height: 3vh;
+      height: 4vh;
       width: 6vw;
+    }
+
+    .sortingFilter {
+      display: flex;
+    }
+
+    #submitInputSort {
+      width: 6vw;
+      height: 4vh;
+      border-radius: 20px;
     }
 
     .filter {
@@ -187,6 +211,7 @@ gap: 2vw 2vh;
     }
     
     .formListcardArtist{
+      overflow-y: hidden; 
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

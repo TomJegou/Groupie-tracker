@@ -1,7 +1,7 @@
 package src
 
 import (
-	"absolut-music/src/globalDataStructures"
+	gds "absolut-music/src/globalDataStructures"
 	"absolut-music/src/handlers"
 	"fmt"
 	"net/http"
@@ -26,7 +26,7 @@ func StartServer(wg *sync.WaitGroup, startAttempt int) {
 		http.HandleFunc("/legalNotice", handlers.LegalNoticeHandler)
 		http.HandleFunc("/location", handlers.LocationHandler)
 		fmt.Println("http://127.0.0.1:80")
-		err := http.ListenAndServe(globalDataStructures.ListeningAddr.Ipv4+":"+globalDataStructures.ListeningAddr.Port, nil)
+		err := http.ListenAndServe(gds.ListeningAddr.Ipv4+":"+gds.ListeningAddr.Port, nil)
 		if err != nil {
 			fmt.Println(err)
 			fmt.Println("Error starting the server")
