@@ -13,6 +13,7 @@ import (
 
 /*Handler func of the library artists*/
 func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
+	var wg sync.WaitGroup
 	needSort := false
 	needDispatch := false
 	// call the api if the user wasn't in the libArt page
@@ -77,7 +78,6 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 			needSort = true
 		}
 	}
-	var wg sync.WaitGroup
 	wg.Add(1)
 	go tools.ChangeListenAddr(r, &wg)
 	go tools.ParseHtml("static/html/libraryArtists.html")
