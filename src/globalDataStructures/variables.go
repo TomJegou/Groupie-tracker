@@ -25,3 +25,4 @@ var EncodedAuth = b64.StdEncoding.EncodeToString([]byte(SPOTIFY_CLIENT_ID + ":" 
 var OAuthSpotifyToken = &structures.SpotifyToken{}
 var ResultSpotifySearchArtist = &structures.SpotifySearchArtist{}
 var ResultSpotifySearchAlbum = &structures.SpotifySearchAlbum{}
+var ResultSpotifyArtistAlbums = &structures.SpotifyArtistAlbums{}

@@ -39,8 +39,12 @@ func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 			template := <-gds.ChanTemplates
 			go tools.FindArtistById(idArtist)
 			artistDetailled := &structures.ArtistDetailled{Artist: <-gds.ChanArtDet, ArtistConcertsDatesLocation: gds.Relations["index"][idArtist-1].DatesLocations, ListenAddr: &gds.ListeningAddr}
-			go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqSearchArtAPISportify(artistDetailled.Name)), gds.ResultSpotifySearchArtist, &wg)
+			go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqSearchArtAPISportify(artistDetailled.Name)), &gds.ResultSpotifySearchArtist, &wg)
 			artistDetailled.SpotifySearchArtist = gds.ResultSpotifySearchArtist
+			wg.Wait()
+			wg.Add(1)
+			go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqArtAlbumAPISportify(artistDetailled.SpotifySearchArtist.Artists.Items[0].Id)), &gds.ResultSpotifyArtistAlbums, &wg)
+			artistDetailled.Albums = &gds.ResultSpotifyArtistAlbums.Items
 			wg.Wait()
 			template.Execute(w, artistDetailled)
 		}

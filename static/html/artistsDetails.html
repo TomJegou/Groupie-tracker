@@ -59,6 +59,11 @@
                 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/{{ $i.Id }}?utm_source=generator&theme=0" width="99%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>    
             </div>
         </div>
+        <div class="artistAlbums">
+            {{ range $album := .Albums }}
+                <p>{{ $album.Name }}</p>
+            {{ end }}
+        </div>
     </body>
     <footer>
         <p>© 2023 Absolut Music</p>
