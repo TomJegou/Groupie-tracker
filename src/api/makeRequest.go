@@ -75,3 +75,16 @@ func MakeReqSearchAlbumArtAPISportify(artistName string) *http.Request {
 	wg.Wait()
 	return MakeReq(url, map[string]string{"Authorization": "Bearer " + gds.OAuthSpotifyToken.Access_token}, nil)
 }
+
+/*
+Create a request to get the result of Spotify research of the artist name
+and return the request's pointer
+*/
+func MakeReqArtAlbumAPISportify(artistId string) *http.Request {
+	url := "https://api.spotify.com/v1/artists/" + artistId + "/albums"
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go PutBodyResponseApiIntoStruct(RequestApi(MakeReqTokenSpotify()), &gds.OAuthSpotifyToken, &wg)
+	wg.Wait()
+	return MakeReq(url, map[string]string{"Authorization": "Bearer " + gds.OAuthSpotifyToken.Access_token}, nil)
+}

@@ -38,10 +38,8 @@ func ArtistsDetailsHandler(w http.ResponseWriter, r *http.Request) {
 			go tools.FindArtistById(idArtist, &wg)
 			artistDetailled := &structures.ArtistDetailled{Artist: <-gds.ChanArtDet, ArtistConcertsDatesLocation: gds.Relations["index"][idArtist-1].DatesLocations, ListenAddr: &gds.ListeningAddr}
 			api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqSearchArtAPISportify(artistDetailled.Name)), gds.ResultSpotifySearchArtist, &wg)
-			//api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqSearchAlbumArtAPISportify(artistDetailled.Name)), gds.ResultSpotifySearchAlbum, &wg)
 			wg.Wait()
 			artistDetailled.SpotifySearchArtist = gds.ResultSpotifySearchArtist
-			//fmt.Println(gds.ResultSpotifySearchAlbum)
 			template.Execute(w, artistDetailled)
 		}
 	} else {

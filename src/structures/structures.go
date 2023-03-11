@@ -78,6 +78,15 @@ type SpotifyToken struct {
 	Expires_in   int
 }
 
+/*Search struct*/
+
+type SpotifySearchImage struct {
+	Height int
+	Url    string
+	Width  int
+}
+
+/*Search Artist*/
 type SpotifySearchArtist struct {
 	Artists SpotifyResultSearchArtist
 }
@@ -97,7 +106,7 @@ type SpotifyResultSearchArtItem struct {
 	Genres        []string
 	Href          string
 	Id            string
-	Images        []SpotifyArtImage
+	Images        []SpotifySearchImage
 	Name          string
 	Popularity    int
 	Type          string
@@ -109,20 +118,44 @@ type SpotifyResultSearchArtFollowers struct {
 	Total int
 }
 
-type SpotifyArtImage struct {
-	Height int
-	Url    string
-	Width  int
-}
-
+/*Search Album*/
 type SpotifySearchAlbum struct {
 	Albums SpotifyResultSearchAlbum
 }
 
 type SpotifyResultSearchAlbum struct {
-	Items []SpotifyResultSearchAlbumItem
+	Href     string
+	Items    []SpotifyResultSearchAlbumItem
+	Limit    int
+	Next     string
+	Offset   int
+	Previous interface{}
+	Total    int
 }
 
 type SpotifyResultSearchAlbumItem struct {
-	Id string
+	Album_group            string
+	Album_type             string
+	Artists                []SpotifyResultSearchAlbumArtist
+	Available_markets      []string
+	External_urls          map[string]string
+	Href                   string
+	Id                     string
+	Images                 []SpotifySearchImage
+	Is_playable            bool
+	Name                   string
+	Release_date           string
+	Release_date_precision string
+	Total_tracks           int
+	Type                   string
+	Uri                    string
+}
+
+type SpotifyResultSearchAlbumArtist struct {
+	External_urls map[string]string
+	Href          string
+	Id            string
+	Name          string
+	Type          string
+	Uri           string
 }
