@@ -16,8 +16,9 @@ func SpotifyHandler(w http.ResponseWriter, r *http.Request) {
 	gds.OnLibraryArtists = false
 	go tools.ParseHtml("static/html/spotify.html")
 	template := <-gds.ChanTemplates
-	go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqSearchArtAPISportify(gds.SearchContent, "20")), gds.ResultSpotifySearchArtist, &wg)
+	go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqSearchArtAPISportify(gds.SearchContent, "1")), gds.ResultSpotifySearchArtist, &wg)
 	wg.Wait()
 	gds.SpotifyHdlStrct.SpotifySearchArtist = gds.ResultSpotifySearchArtist
+	gds.SearchContent = ""
 	template.Execute(w, gds.SpotifyHdlStrct)
 }
