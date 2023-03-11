@@ -47,7 +47,7 @@ func ChangeListenAddr(r *http.Request, wg *sync.WaitGroup) {
 Find the artist who as the same id as the id passed as parameter
 from the Artists slice
 */
-func FindArtistById(id int,) {
+func FindArtistById(id int) {
 	for _, artist := range gds.Artists {
 		if artist.Id == id {
 			gds.ChanArtDet <- &artist
@@ -175,4 +175,13 @@ func PreprocessArtNameSearchSpotify(artistName string) string {
 		result += kword
 	}
 	return result
+}
+
+func CheckAllArtInvisible() bool {
+	for _, art := range gds.Artists {
+		if art.IsVisible {
+			return false
+		}
+	}
+	return true
 }

@@ -64,6 +64,10 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		if len(r.FormValue("searchBar")) > 0 && r.FormValue("searchBar") != gds.SearchContent {
 			gds.SearchContent = r.FormValue("searchBar")
 			tools.SearchArtists(gds.SearchContent)
+			if tools.CheckAllArtInvisible() {
+				http.Redirect(w, r, "/spotify-search", http.StatusFound)
+				return
+			}
 			needSort = true
 			needDispatch = true
 		}

@@ -63,6 +63,13 @@ type LibraryArtists struct {
 	*ListenAddr
 }
 
+/*Structure used for the Spotify page*/
+
+type SpotifyHandlerStruct struct {
+	*ListenAddr
+	*SpotifySearchArtist
+}
+
 /*tools*/
 
 type FormatDate struct {

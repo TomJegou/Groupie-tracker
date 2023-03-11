@@ -26,3 +26,4 @@ var OAuthSpotifyToken = &structures.SpotifyToken{}
 var ResultSpotifySearchArtist = &structures.SpotifySearchArtist{}
 var ResultSpotifySearchAlbum = &structures.SpotifySearchAlbum{}
 var ResultSpotifyArtistAlbums = &structures.SpotifyArtistAlbums{}
+var SpotifyHdlStrct = &structures.SpotifyHandlerStruct{}
