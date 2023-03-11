@@ -64,7 +64,7 @@ func MakeReqTokenSpotify() *http.Request {
 }
 
 /*
-Create a request to get the result of Spotify research of the artist name
+Create a request to get the result of Spotify research of the album name
 and return the request's pointer
 */
 func MakeReqSearchAlbumArtAPISportify(artistName string) *http.Request {
@@ -77,7 +77,7 @@ func MakeReqSearchAlbumArtAPISportify(artistName string) *http.Request {
 }
 
 /*
-Create a request to get the result of Spotify research of the artist name
+Create a request to get the result of Spotify albums of the artist id
 and return the request's pointer
 */
 func MakeReqArtAlbumAPISportify(artistId string) *http.Request {
