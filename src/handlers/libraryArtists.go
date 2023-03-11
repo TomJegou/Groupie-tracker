@@ -1,9 +1,9 @@
 package handlers
 
 import (
+	"absolut-music/src/api"
 	gds "absolut-music/src/globalDataStructures"
 	"absolut-music/src/tools"
-	"absolut-music/src/api"
 	"fmt"
 	"math"
 	"net/http"
@@ -13,7 +13,6 @@ import (
 
 /*Handler func of the library artists*/
 func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
-	go tools.ChangeListenAddr(r)
 	needSort := false
 	needDispatch := false
 	// call the api if the user wasn't in the libArt page
@@ -25,8 +24,6 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		gds.OnLibraryArtists = true
 	}
 	tools.InitLibArt()
-	go tools.ParseHtml("static/html/libraryArtists.html")
-	template := <-gds.ChanTemplates
 	if len(r.FormValue("searchBar")) == 0 && len(r.FormValue("sortFilter")) == 0 && len(r.FormValue("sortOrder")) == 0 && len(r.FormValue("pagination")) == 0 && len(r.FormValue("nbrElem")) == 0 {
 		tools.SetAllArtistVisibility(true)
 		needDispatch = true
@@ -80,6 +77,11 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 			needSort = true
 		}
 	}
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go tools.ChangeListenAddr(r, &wg)
+	go tools.ParseHtml("static/html/libraryArtists.html")
+	template := <-gds.ChanTemplates
 	// sort the artists list
 	if needSort {
 		tools.QuickSort(gds.LibArtists.SortingFilter, gds.LibArtists.Asc)
@@ -93,5 +95,6 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		}
 		gds.LibArtists.Page = &gds.ListPages[gds.LibArtists.IdPageToDisplay]
 	}
+	wg.Wait()
 	template.Execute(w, gds.LibArtists)
 }

@@ -36,7 +36,8 @@ Check if in the request if the host ipv4 is
 the same as the one to be used for the templates.
 If it's not the same, change the ListeningAddr.Ipv4 to the host requested
 */
-func ChangeListenAddr(r *http.Request) {
+func ChangeListenAddr(r *http.Request, wg *sync.WaitGroup) {
+	defer wg.Done()
 	if r.Host != gds.ListeningAddr.Ipv4 {
 		gds.ListeningAddr.Ipv4 = r.Host
 	}
@@ -46,7 +47,8 @@ func ChangeListenAddr(r *http.Request) {
 Find the artist who as the same id as the id passed as parameter
 from the Artists slice
 */
-func FindArtistById(id int) {
+func FindArtistById(id int, wg *sync.WaitGroup) {
+	defer wg.Done()
 	for _, artist := range gds.Artists {
 		if artist.Id == id {
 			gds.ChanArtDet <- &artist
@@ -148,7 +150,8 @@ func NewLibLocations() *structures.LibLocations {
 Grabs in the Relations object all the cities and their concert dates in order to put them
 into the libloca's attribute LocationsList wich is a map
 */
-func GetLocations(libloca *structures.LibLocations) {
+func GetLocations(libloca *structures.LibLocations, wg *sync.WaitGroup) {
+	defer wg.Done()
 	for i := 0; i < len(gds.Relations["index"]); i++ {
 		for j := 0; j < len(gds.Relations["index"][i].DatesLocations); j++ {
 			for cityName, listDate := range gds.Relations["index"][i].DatesLocations {

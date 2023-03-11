@@ -13,15 +13,15 @@ var LibLocations = tools.NewLibLocations()
 
 /*handles the Locations library*/
 func LocationHandler(w http.ResponseWriter, r *http.Request) {
-	go tools.ChangeListenAddr(r)
-	LibLocations.ListenAddr = &gds.ListeningAddr
 	gds.OnLibraryArtists = false
 	var wg sync.WaitGroup
-	wg.Add(1)
+	wg.Add(3)
+	go tools.ChangeListenAddr(r, &wg)
+	LibLocations.ListenAddr = &gds.ListeningAddr
 	go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqHerokuapp(gds.URLRELATION)), &gds.Relations, &wg)
-	wg.Wait()
 	go tools.ParseHtml("static/html/locations.html")
 	template := <-gds.ChanTemplates
-	tools.GetLocations(LibLocations)
+	tools.GetLocations(LibLocations, &wg)
+	wg.Wait()
 	template.Execute(w, LibLocations)
 }
