@@ -47,8 +47,8 @@ func MakeReqHerokuapp(url string) *http.Request {
 Create a request to get the result of Spotify research of the artist name
 and return the request's pointer
 */
-func MakeReqSearchArtAPISportify(artistName string) *http.Request {
-	url := "https://api.spotify.com/v1/search?q=" + tools.PreprocessArtNameSearchSpotify(artistName) + "&type=artist&offset=0&limit=1"
+func MakeReqSearchArtAPISportify(artistName string, numberOfArtist string) *http.Request {
+	url := "https://api.spotify.com/v1/search?q=" + tools.PreprocessArtNameSearchSpotify(artistName) + "&type=artist&offset=0&limit=" + numberOfArtist
 	var wg sync.WaitGroup
 	wg.Add(1)
 	go PutBodyResponseApiIntoStruct(RequestApi(MakeReqTokenSpotify()), &gds.OAuthSpotifyToken, &wg)
