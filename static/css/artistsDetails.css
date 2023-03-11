@@ -71,7 +71,6 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     background-image: linear-gradient(360deg, rgb(160, 222, 219),rgb(3, 165, 209));
-
     gap: 2vh;
 }
 
@@ -182,6 +181,27 @@ body {
 
 .cardConcertDates p{
     display: flex;
+}
+
+.artistAlbums{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1vw 1vh;
+}
+
+.album{
+    display: flex;
+    flex-direction: column;
+    background: #000000;
+    border-radius: 5px;
+}
+
+.album p{
+    display: flex;
+    flex-direction: column;
+    color: white;
 }
 
 @media only screen and (min-width: 500px) {
