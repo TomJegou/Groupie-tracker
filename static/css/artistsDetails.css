@@ -7,11 +7,12 @@ body {
     font-weight: bold;
 }
 .dropdown-container {
+    display: contents;
     position: relative;
     max-width: 15vw;
 }
 .dropdown-toggle {
-      color:white;
+      color:red;
       font-size: 17px;
       padding: 20px 20px;
       font-weight: 600;
@@ -19,7 +20,7 @@ body {
       position: relative;
       transition: all ease-in-out 0.3s;}
 .dropdown-toggle:hover{
-        color: rgb(204, 203, 203);
+        color: rgb(255, 0, 0);
 }
 .dropdown-menu {
       width: 100%;
@@ -43,7 +44,7 @@ body {
 }
 .dropdown-menu a:hover,.dropdown-menu a:active,.dropdown-menu a:focus {
           background-color: green;
-          color: white;   
+          color: rgb(255, 0, 0);   
 }  
 .dropdown-menu {
         position: relative;
@@ -163,7 +164,6 @@ body {
     font-size: 1.5em;
     /* display: flex; */
     flex-direction: column;
-    color: white;
     overflow: hidden;
 }
 
