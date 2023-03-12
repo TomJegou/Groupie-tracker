@@ -80,6 +80,7 @@ strong{
     border-radius: 12px;
     width: 90%;
     height: 20vh;
+    overflow-y: hidden;
 }
 
 .track p{
