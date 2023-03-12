@@ -22,8 +22,6 @@
     </header>
     <body>
         <div class="containerone">
-            <canvas class="webgl"></canvas>
-            <script type="javascript" src="http://{{ .Ipv4 }}:{{ .Port }}/src/scripts/script3d.js"></script>
             <div class="menutextwelcome">
                 <h1>Welcome To Absolut Music</h1>
                 <p>Soyez au courant des dernières date de concert de vos artistes préférés</p>
@@ -37,4 +35,5 @@
                 <li><a id="ftxt" href="http://{{ .Ipv4 }}:{{ .Port }}/legalNotice">Mentions légales</a></li>
             </ul>
     </footer>
+    <script type="module" src="http://{{ .Ipv4 }}:{{ .Port }}/static/scripts/script3d.js"></script>
 </html>

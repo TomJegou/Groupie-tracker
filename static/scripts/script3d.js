@@ -1,45 +1,18 @@
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
-
-init();
-
-function init() {
-    const canvas = document.querySelector('.webgl');
-    const scene = new THREE.Scene();
-    
-    const dracoLoader = new DRACOLoader();
-    dracoLoader.setDecoderPath( 'js/libs/draco/gltf/' );
-    const loader = new GLTFLoader();
-    loader.setDRACOLoader( dracoLoader );
-
-    loader.load('http://localhost/static/img/casque.gltf', function(gltf) {
-        const model = gltf.scene;
-        model.position.set(1, 1, 0);
-        model.scale.set(0.01, 0.01, 0.01);
-        scene.add(model);
-    }, function(error) {
-        console.log("An error occurred: ", error);
-    });
-
-    const light = new THREE.DirectionalLight(0xffffff, 1);
-    light.position.set(2, 2, 5);
-    scene.add(light);
-
-    const sizes = {
-        width: window.innerWidth,
-        height: window.innerHeight
-    };
-
-    const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-    camera.position.set(0, 1, 2);
-    scene.add(camera);
-
-    const renderer = new THREE.WebGLRenderer({
-        canvas: canvas,
-        antialias: true
-    });
-    renderer.setSize(sizes.width, sizes.height);
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.render(scene, camera);
+import * as THREE from './node_modules/three/src/Three.js';
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth/2, window.innerHeight/2 );
+document.body.appendChild( renderer.domElement );
+const geometry = new THREE.BoxGeometry( 1, 1, 1 );
+const material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+const cube = new THREE.Mesh( geometry, material );
+scene.add( cube );
+camera.position.z = 10;
+function animate() {
+    requestAnimationFrame( animate );
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    renderer.render( scene, camera );
 }
+animate();
