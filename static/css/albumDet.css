@@ -3,7 +3,8 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #323030;
+    align-items: flex-start;
+    background: linear-gradient(to bottom, #86C1D3, #DEE4E6);
 }
 
 .contentAlbumDet p{
@@ -25,4 +26,47 @@
     max-width: 150px;
     max-height: 150px;
     border-radius: 12px;
+}
+
+strong{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+#titleAlbum{
+    font-size: 2em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+}
+
+#TitleNbrTracks{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 1.5em;
+    width: 100%;
+}
+
+#nbrTracks{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    font-weight: bold;
+    width: 100%;
+    font-size: 2em;
+}
+
+.listTracks{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
 }

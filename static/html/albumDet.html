@@ -25,8 +25,8 @@
             <div class="divImageAlbum">
                 {{ $image := index .SpotifyAlbum.Images 0 }}
                 <img src="{{ $image.Url }}" alt=".SpotifyAlbum.Name">
+                <strong><p id="titleAlbum">{{ .SpotifyAlbum.Name }}</p></strong>
             </div>
-            <strong><p id="titleAlbum">{{ .SpotifyAlbum.Name }}</p></strong>
             <p id="TitleNbrTracks">Nombres de morceaux :</p>
             <p id="nbrTracks">{{ .SpotifyAlbum.Total_tracks }}</p>
             <div class="listTracks">
