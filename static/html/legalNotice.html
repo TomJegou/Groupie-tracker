@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://{{ .Ipv4 }}:{{ .Port }}/static/css/legalNotice.css">
-    <link rel="stylesheet" href="http://{{ .Ipv4 }}:{{ .Port }}/static/css/main.css">
-    <link rel="shortcut icon" href="http://{{ .Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg">
-    <title>Absolut Music</title>
-</head>
-<header>
-    <a href="http://{{ .Ipv4 }}:{{ .Port }}/static/html/index.html" class="navLogo"><img class="navLogo" src="http://{{ .Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg" alt="logo"></a>
-    <nav>
-        <ul>
-            <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}">Accueil</a></li>
-            <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
-            <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/about">À propos</a></li>
-        </ul>
-    </nav>
-</header>
-<body>
-    <div class="legalNotice">
-        <p> Propriété intellectuelle : <br>
-            <br>
-            Tout le contenu du présent site http://absolutmusic.online incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et <br>
-            icônes ainsi que leur mise en forme sont la propriété exclusive de la société à l’exception des marques, logos ou contenus appartenant à d’autres sociétés partenaires <br>
-            ou auteurs. <br>
-            Toute reproduction, distribution, modification, adaptation, retransmission ou publication, même partielle, de ces différents éléments est strictement interdite sans <br> 
-            l’accord exprès par écrit de Absolut music. Cette représentation ou reproduction, par quelque procédé que ce soit, constitue une contrefaçon sanctionnée par les  <br>
-            articles L.335-2 et suivants du Code de la propriété intellectuelle. Le non-respect de cette interdiction constitue une contrefaçon pouvant engager la responsabilité <br>
-            civile et pénale du contrefacteur. En outre, les propriétaires des Contenus copiés pourraient intenter une action en justice à votre encontre. <br>
-            <br>
-            Déclaration à la CNIL : <br>
-            <br>
-            Conformément à la loi 78-17 du 6 janvier 1978 (modifiée par la loi 2004-801 du 6 août 2004 relative à la protection des personnes physiques à l’égard des traitements <br>
-            de données à caractère personnel) relative à l’informatique, aux fichiers et aux libertés, ce site a fait l’objet d’une déclaration 1656629 auprès de la <br>
-            Commission nationale de l’informatique et des libertés (www.cnil.fr).</p>
-    </div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://{{ .Ipv4 }}:{{ .Port }}/static/css/legalNotice.css">
+        <link rel="stylesheet" href="http://{{ .Ipv4 }}:{{ .Port }}/static/css/main.css">
+        <link rel="shortcut icon" href="http://{{ .Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg">
+        <title>Absolut Music</title>
+    </head>
+    <header>
+        <a href="http://{{ .Ipv4 }}:{{ .Port }}" class="navLogo"><img class="navLogo" src="http://{{ .Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg" alt="logo"></a>
+        <nav>
+            <ul>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}">Accueil</a></li>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/location">Lieux</a></li>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/about">À propos</a></li>
+            </ul>
+        </nav>
+    </header>
+    <body>
+        <div class="legalNotice">
+            <p> Propriété intellectuelle : <br>
+                <br>
+                Tout le contenu du présent site http://absolutmusic.online incluant, de façon non limitative, les graphismes, images, textes, vidéos, animations, sons, logos, gifs et <br>
+                icônes ainsi que leur mise en forme sont la propriété exclusive de la société à l’exception des marques, logos ou contenus appartenant à d’autres sociétés partenaires <br>
+                ou auteurs. <br>
+                Toute reproduction, distribution, modification, adaptation, retransmission ou publication, même partielle, de ces différents éléments est strictement interdite sans <br> 
+                l’accord exprès par écrit de Absolut music. Cette représentation ou reproduction, par quelque procédé que ce soit, constitue une contrefaçon sanctionnée par les  <br>
+                articles L.335-2 et suivants du Code de la propriété intellectuelle. Le non-respect de cette interdiction constitue une contrefaçon pouvant engager la responsabilité <br>
+                civile et pénale du contrefacteur. En outre, les propriétaires des Contenus copiés pourraient intenter une action en justice à votre encontre. <br>
+                <br>
+                Déclaration à la CNIL : <br>
+                <br>
+                Conformément à la loi 78-17 du 6 janvier 1978 (modifiée par la loi 2004-801 du 6 août 2004 relative à la protection des personnes physiques à l’égard des traitements <br>
+                de données à caractère personnel) relative à l’informatique, aux fichiers et aux libertés, ce site a fait l’objet d’une déclaration 1656629 auprès de la <br>
+                Commission nationale de l’informatique et des libertés (www.cnil.fr).</p>
+        </div>
+    </body>
     <footer>
             <p>© 2023 Absolut Music</p>
             <ul>
                 <li><a id="ftxt" href="http://{{ .Ipv4 }}:{{ .Port }}/legalNotice">Mentions légales</a></li>
             </ul>
-</footer>
+    </footer>
 </html>

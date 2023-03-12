@@ -11,12 +11,13 @@
         <title>Absolut Music</title>
     </head>
     <header>
-        <a href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/html/index.html" class="navLogo"><img class="navLogo" src="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg" alt="logo"></a>
-        <nav class="navTxtArtistDetailled">
+        <a href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}" class="navLogo"><img class="navLogo" src="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg" alt="logo"></a>
+        <nav>
             <ul>
-                <li><a href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}">Accueil</a></li>
-                <li><a href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
-                <li><a href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/about">À propos</a></li>
+                <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}">Accueil</a></li>
+                <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
+                <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/location">Lieux</a></li>
+                <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/about">À propos</a></li>
             </ul>
         </nav>
     </header>
@@ -25,18 +26,20 @@
             <div class="divImgArtistDetailled">
                 <img id="idImgArtistDetailled" src="{{.Image}}" alt="{{.Name}}">
             </div>
+            <div class="divSpotify">
+                {{ $i := index .SpotifySearchArtist.Artists.Items 0 }}
+                <iframe class="iframeSpotify" src="https://open.spotify.com/embed/artist/{{ $i.Id }}?utm_source=generator&theme=0" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>    
+            </div>
             <div class="divInfoTxtArtist">
-                <p id="nameArtist" class="infoTextArtist">{{ .Name }}</p>
-                <p id="creationDateArtist" class="infoTextArtist">{{ .CreationDate }}</p>
-                <p id="firstAlbumArtist" class="infoTextArtist">{{ .FirstAlbum }}</p>
+                <p id="nameArtist">{{ .Name }}</p>
+                <p id="creationDateArtist">{{ .CreationDate }}</p>
+                <p id="firstAlbumArtist">{{ .FirstAlbum }}</p>
             </div>
             <div class="divMembersArtist">
                 <fieldset class="fieldsetArtistsMembers">
-                    <legend id="titleMembreGrp">Membres du Groupe</legend>
+                    <legend id="titleMembersGrp">Membres du Groupe</legend>
                     {{ range .Members }}
-                    <div class="divMembersArtistName">
-                        <p id="membersArtist" class="infoTextArtist"> {{.}}</p>
-                    </div>
+                    <p> {{.}}</p>
                     {{ end }}
                 </fieldset>
             </div>
@@ -44,18 +47,32 @@
                 <fieldset class="fieldsetTableCityDate">
                     <legend id="titleTableCardConcertDates">Lieux de Concert</legend>
                     {{ range $city, $listDates := .ArtistConcertsDatesLocation }}
-                    <div class="cardConcertDates">
-                        <button onclick="toggleDropdown()" class="btn" id="btn">{{ $city }}:</button>
-                        <div class="dropdown" id="dropdown">
-                            {{ range $listDates }}
-                                <a href="#">- {{.}} </a>
+                        <div class="dropdown-container">
+                            <div class="dropdown-toggle click-dropdown">{{ $city }}:</div>
+                            <div class="dropdown-menu">
+                                <ul>
+                                {{ range $listDates }}
+                                <li><a href="#">- {{.}} </a></li>
                                 {{ end }}
-                         </div>
+                            </ul>
+                        </div>
                     </div>
-                    {{ end }}
+                {{ end }}  
                 </fieldset>
             </div>
         </div>
+        <form action="/album-detail">
+            <div class="artistAlbums">
+                <strong><p id="titleAlbumArt">Albums de l'artist</p></strong>
+                {{ range $album := .Albums }}
+                    <button class="album" value="{{ $album.Id }}" name="albumCard">
+                        {{ $image := index $album.Images 1 }}
+                        <img src="{{ $image.Url }}" alt="{{ $album.Name }}">
+                        <p>{{ $album.Name }}</p>
+                    </button>
+                {{ end }}
+            </div>
+        </form>
     </body>
     <footer>
         <p>© 2023 Absolut Music</p>

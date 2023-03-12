@@ -1,32 +1,41 @@
 
-// function toggleDropdown() {
-//   document.getElementById("dropdown").classList.toggle("show");
-// }
-// //open/close when dropdown button is clicked
-// document.getElementById("btn").addEventListener("click",function(){ toggleDropdown()});
-// Close dropdown when dom element is clicked
-// document.documentElement.addEventListener("click", function () {
-//   if (document.getElementsByClassName("dropdown").classList.classList("show")) {
-//     toggleDropdown();
-//   }
+// const dropdowns = document.querySelectorAll('.dropdown-toggle');
 
-// 
-//   // Get the button, and when the user clicks on it, execute myFunction
-//   document.getElementById("hamburger-icon").onclick = function() {myFunction()};
+// dropdowns.forEach(dropdown => {
+//   if (dropdown.classList.contains('click-dropdown')) {
+//     dropdown.addEventListener('click', (event) => {
+//       event.preventDefault();
+//       console.log('click')
+//       const parent = dropdown.parentElement;
+//       const dropdownMenu = parent.querySelector('.dropdown-menu');
+//       const isOpen = dropdownMenu.classList.contains('dropdown-active');
 
-//   /* myFunction toggles between adding and removing the show class, which is used to hide and show the dropdown content */
-//   function myFunction() {
-//     document.getElementById("dropdown-content").classList.toggle("show");
+//       closeDropdown();
+
+//       if (!isOpen) {
+//         parent.classList.add('dropdown-open');
+//         dropdownMenu.classList.add('dropdown-active');
+//       }
+//     });
 //   }
+// });
+
+// function closeDropdown() { 
+//   document.querySelectorAll('.dropdown-open').forEach((openDropdown) => {
+//     openDropdown.classList.remove('dropdown-open');
+//   });
+
+//   document.querySelectorAll('.dropdown-active').forEach((activeDropdown) => {
+//     activeDropdown.classList.remove('dropdown-active');
+//   });
 // }
-window.onload = () => {
-  document.getElementById("btn").addEventListener("click", toggleDropdown)
-  // document.getElementById("btn").onclick = function() {toggleDropdown()};
-  function toggleDropdown() {
-    document.getElementById("dropdown").classList.toggle("show");
-  }
-  // document.documentElement.addEventListener("click", function () {
-  //   if (document.getElementsByClassName("dropdown").classList.classList("show")) {
-  // toggleDropdown();
-      }
-// })}
+
+
+
+
+// window.addEventListener('click', (event) => {
+//   if (!event.target.closest('.dropdown-container')) {
+//     closeDropdown();
+//     console.log('close')
+//   }
+// });
