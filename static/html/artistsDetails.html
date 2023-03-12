@@ -61,16 +61,18 @@
                 </fieldset>
             </div>
         </div>
-        <div class="artistAlbums">
-            <strong><p id="titleAlbumArt">Albums de l'artist</p></strong>
-            {{ range $album := .Albums }}
-                <div class="album">
-                    {{ $image := index $album.Images 1 }}
-                    <img src="{{ $image.Url }}" alt="{{ $album.Name }}">
-                    <p>{{ $album.Name }}</p>
-                </div>
-            {{ end }}
-        </div>
+        <form action="/album-detail">
+            <div class="artistAlbums">
+                <strong><p id="titleAlbumArt">Albums de l'artist</p></strong>
+                {{ range $album := .Albums }}
+                    <button class="album" value="{{ $album.Id }}" name="albumCard">
+                        {{ $image := index $album.Images 1 }}
+                        <img src="{{ $image.Url }}" alt="{{ $album.Name }}">
+                        <p>{{ $album.Name }}</p>
+                    </button>
+                {{ end }}
+            </div>
+        </form>
     </body>
     <footer>
         <p>© 2023 Absolut Music</p>

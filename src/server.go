@@ -26,6 +26,7 @@ func StartServer(wg *sync.WaitGroup, startAttempt int) {
 		http.HandleFunc("/legalNotice", handlers.LegalNoticeHandler)
 		http.HandleFunc("/location", handlers.LocationHandler)
 		http.HandleFunc("/spotify-search", handlers.SpotifyHandler)
+		http.HandleFunc("/album-detail", handlers.AlbumDetHandler)
 		fmt.Println("http://127.0.0.1:80")
 		err := http.ListenAndServe(gds.ListeningAddr.Ipv4+":"+gds.ListeningAddr.Port, nil)
 		if err != nil {
