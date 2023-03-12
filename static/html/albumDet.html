@@ -22,7 +22,21 @@
         </nav>
     </header>
     <body>
-        {{ .SpotifyAlbum.Name }}
+        <strong><p>{{ .SpotifyAlbum.Name }}</p></strong>
+        <div class="divImageAlbum">
+            {{ $image := index .SpotifyAlbum.Images 0 }}
+            <img src="{{ $image.Url }}" alt=".SpotifyAlbum.Name">
+        </div>
+        <p id="TitleNbrTracks">Nombres de morceaux :</p>
+        <p id="nbrTracks">{{ .SpotifyAlbum.Total_tracks }}</p>
+        <div class="listTracks">
+            {{ range $track := .SpotifyAlbum.Tracks.Items }}
+                <div class="track">
+                    {{ $track.Name }}
+                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/{{ $track.Id }}?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                </div>
+            {{ end }}
+        </div>
     </body>
     <footer>
         <p>© 2023 Absolut Music</p>
