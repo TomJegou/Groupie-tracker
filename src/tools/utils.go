@@ -125,8 +125,6 @@ func DispatchIntoPage(wg *sync.WaitGroup) {
 /*Initialize the artists library*/
 func InitLibArt() {
 	if gds.IsStartServer {
-		gds.LibArtists.ListenAddr = &gds.ListeningAddr
-		gds.LibArtists.Artistlist = &gds.Artists
 		SetAllArtistVisibility(true)
 		gds.LibArtists.SortingFilter = "name"
 		gds.LibArtists.Asc = true
@@ -142,7 +140,7 @@ func InitLibArt() {
 /*Creates a new LibLocations object and returns it's pointer*/
 func NewLibLocations() *structures.LibLocations {
 	locationList := make(map[string][]string)
-	return &structures.LibLocations{LocationsList: locationList}
+	return &structures.LibLocations{LocationsList: locationList, ListenAddr: gds.ListeningAddr}
 }
 
 /*

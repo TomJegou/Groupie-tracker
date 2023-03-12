@@ -40,6 +40,12 @@ type SpotifyHandlerStruct struct {
 	*SpotifySearchArtist
 }
 
+/*Structure used for the Album details page*/
+type AlbumDetail struct {
+	*ListenAddr
+	*SpotifyAlbum
+}
+
 /*tools*/
 
 type FormatDate struct {

@@ -17,7 +17,6 @@ func LocationHandler(w http.ResponseWriter, r *http.Request) {
 	var wg sync.WaitGroup
 	wg.Add(2)
 	go tools.ChangeListenAddr(r, &wg)
-	LibLocations.ListenAddr = &gds.ListeningAddr
 	go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqHerokuapp(gds.URLRELATION)), &gds.Relations, &wg)
 	go tools.ParseHtml("static/html/locations.html")
 	template := <-gds.ChanTemplates

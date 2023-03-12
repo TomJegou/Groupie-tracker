@@ -9,7 +9,6 @@ import (
 )
 
 func SpotifyHandler(w http.ResponseWriter, r *http.Request) {
-	gds.SpotifyHdlStrct.ListenAddr = &gds.ListeningAddr
 	var wg sync.WaitGroup
 	if len(r.FormValue("searchBarSpotify")) > 0 {
 		gds.SearchContent = r.FormValue("searchBarSpotify")

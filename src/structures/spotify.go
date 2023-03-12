@@ -6,13 +6,14 @@ type SpotifyToken struct {
 	Expires_in   int
 }
 
-/*Search struct*/
-
+/*Spotify api*/
 type SpotifyImage struct {
 	Height int
 	Url    string
 	Width  int
 }
+
+/* GET /search */
 
 /*Search Artist*/
 type SpotifySearchArtist struct {
@@ -64,7 +65,7 @@ type SpotifyResultSearchAlbum struct {
 type SpotifyResultSearchAlbumItem struct {
 	Album_group            string
 	Album_type             string
-	Artists                []SpotifyResultSearchAlbumArtist
+	Artists                []SpotifyResultSearchAlbumItemArtist
 	Available_markets      []string
 	External_urls          map[string]string
 	Href                   string
@@ -79,7 +80,7 @@ type SpotifyResultSearchAlbumItem struct {
 	Uri                    string
 }
 
-type SpotifyResultSearchAlbumArtist struct {
+type SpotifyResultSearchAlbumItemArtist struct {
 	External_urls map[string]string
 	Href          string
 	Id            string
@@ -88,7 +89,7 @@ type SpotifyResultSearchAlbumArtist struct {
 	Uri           string
 }
 
-/*Spotify artist/id/albums*/
+/*GET artist/{id}/albums*/
 
 type SpotifyArtistAlbums struct {
 	Href     string
@@ -119,6 +120,56 @@ type SpotifyArtistAlbumsItems struct {
 }
 
 type SpotifyArtistAlbumsArtists struct {
+	External_urls map[string]string
+	Href          string
+	Id            string
+	Name          string
+	Type          string
+	Uri           string
+}
+
+/* GET /ablums/{id} */
+
+type SpotifyAlbum struct {
+	Album_type             string
+	Total_tracks           int
+	Available_markets      []string
+	External_urls          map[string]string
+	Href                   string
+	Id                     string
+	Images                 []SpotifyImage
+	Name                   string
+	Release_date           string
+	Release_date_precision string
+	Type                   string
+	Uri                    string
+	Tracks                 SpotifyAlbumTracks
+}
+
+type SpotifyAlbumTracks struct {
+	Href     string
+	Limit    int
+	Next     string
+	Offset   int
+	Previous string
+	Total    int
+	Items    []SpotifyAlbumItems
+}
+
+type SpotifyAlbumItems struct {
+	Artists           []SpotifyAlbumTracksArtists
+	Available_markets []string
+	Disc_number       int
+	Duration_ms       int
+	Explicit          bool
+	External_urls     map[string]string
+	Href              string
+	Id                string
+	Is_playable       bool
+	Name              string
+}
+
+type SpotifyAlbumTracksArtists struct {
 	External_urls map[string]string
 	Href          string
 	Id            string
