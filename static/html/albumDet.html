@@ -4,9 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/scripts/animation.js"></script>
-        <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/artistsDetails.css">
         <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/main.css">
+        <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/albumDet.css">
         <link rel="shortcut icon" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg">
         <title>Absolut Music</title>
     </head>
@@ -22,20 +21,22 @@
         </nav>
     </header>
     <body>
-        <strong><p>{{ .SpotifyAlbum.Name }}</p></strong>
-        <div class="divImageAlbum">
-            {{ $image := index .SpotifyAlbum.Images 0 }}
-            <img src="{{ $image.Url }}" alt=".SpotifyAlbum.Name">
-        </div>
-        <p id="TitleNbrTracks">Nombres de morceaux :</p>
-        <p id="nbrTracks">{{ .SpotifyAlbum.Total_tracks }}</p>
-        <div class="listTracks">
-            {{ range $track := .SpotifyAlbum.Tracks.Items }}
-                <div class="track">
-                    {{ $track.Name }}
-                    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/{{ $track.Id }}?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-                </div>
-            {{ end }}
+        <div class="contentAlbumDet">
+            <div class="divImageAlbum">
+                {{ $image := index .SpotifyAlbum.Images 0 }}
+                <img src="{{ $image.Url }}" alt=".SpotifyAlbum.Name">
+            </div>
+            <strong><p id="titleAlbum">{{ .SpotifyAlbum.Name }}</p></strong>
+            <p id="TitleNbrTracks">Nombres de morceaux :</p>
+            <p id="nbrTracks">{{ .SpotifyAlbum.Total_tracks }}</p>
+            <div class="listTracks">
+                {{ range $track := .SpotifyAlbum.Tracks.Items }}
+                    <div class="track">
+                        <p>{{ $track.Name }}</p>
+                        <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/{{ $track.Id }}?utm_source=generator" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                {{ end }}
+            </div>
         </div>
     </body>
     <footer>

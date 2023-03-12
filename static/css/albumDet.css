@@ -1,0 +1,28 @@
+.contentAlbumDet{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #323030;
+}
+
+.contentAlbumDet p{
+    color: #E4EAEB;
+}
+
+.divImageAlbum{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: space-around;
+    height: 25vh;
+    width: 100%;
+}
+
+.divImageAlbum img{
+    display: flex;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 12px;
+}
