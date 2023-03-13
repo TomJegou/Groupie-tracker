@@ -22,12 +22,13 @@
     </header>
     <body>
         <div class="libLocations">
-            {{ range $cityName, $listDate := .LocationsList }}
-            <div class="cityName">
-                <p class="cityNameTxt">{{ $cityName }}</p>
-            </div>
-            {{ end }}
-        </div>
+            <form action="/concertDet">
+                {{ range $cityName, $Date := .LocationsList}}
+                    <div class="cityName">
+                        <button class="cityNameTxt" name="buttonCityName" value="{{ $cityName }}">{{ $cityName }}</button>
+                    </div>
+                {{ end }}
+            </form>
     </body>
     <footer>
         <p>© 2023 Absolut Music</p>

@@ -29,3 +29,4 @@ var ResultSpotifyArtistAlbums = &structures.SpotifyArtistAlbums{}
 var ResultSpotifyAlbum = &structures.SpotifyAlbum{}
 var SpotifyHdlStrct = &structures.SpotifyHandlerStruct{ListenAddr: ListeningAddr}
 var AlbumDet = &structures.AlbumDetail{ListenAddr: ListeningAddr, SpotifyAlbum: ResultSpotifyAlbum}
+var ConcertDetailPage = &structures.ConcertDetail{ListenAddr: ListeningAddr}

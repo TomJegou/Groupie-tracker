@@ -46,6 +46,12 @@ type AlbumDetail struct {
 	*SpotifyAlbum
 }
 
+/*Structure used for the concert details page*/
+type ConcertDetail struct {
+	*ListenAddr
+	ListDate []string
+}
+
 /*tools*/
 
 type FormatDate struct {
