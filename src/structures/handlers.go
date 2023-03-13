@@ -53,3 +53,9 @@ type FormatDate struct {
 	Month int
 	Day   int
 }
+
+type DateHistoric struct {
+	Id    int
+	Dates []string
+	*ListenAddr
+}

@@ -5,6 +5,7 @@ import (
 	"absolut-music/src/structures"
 	"fmt"
 	"net/http"
+	"strconv"
 	"strings"
 	"sync"
 	"text/template"
@@ -122,6 +123,25 @@ func DispatchIntoPage(wg *sync.WaitGroup) {
 	gds.ListPages = append(gds.ListPages, page)
 }
 
+/*Parse the first album's date into a structure FormatDate*/
+func ParseDate(date string) structures.FormatDate {
+	t := strings.Split(date, "-")
+	yearInt, err := strconv.Atoi(t[2])
+	if err != nil {
+		fmt.Println(err)
+	}
+	monthInt, err := strconv.Atoi(t[1])
+	if err != nil {
+		fmt.Println(err)
+	}
+	dayInt, err := strconv.Atoi(t[0])
+	if err != nil {
+		fmt.Println(err)
+	}
+	parsedDate := structures.FormatDate{Year: yearInt, Month: monthInt, Day: dayInt}
+	return parsedDate
+}
+
 /*Initialize the artists library*/
 func InitLibArt() {
 	if gds.IsStartServer {
@@ -183,4 +203,11 @@ func CheckAllArtInvisible() bool {
 		}
 	}
 	return true
+}
+
+func SortDate() {
+	for _, dates := range gds.Dates["index"] {
+		fmt.Println(gds.Dates)
+		gds.DateHistr.Dates = append(gds.DateHistr.Dates, dates.Dates...)
+	}
 }
