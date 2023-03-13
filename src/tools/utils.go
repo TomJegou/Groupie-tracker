@@ -205,8 +205,21 @@ func CheckAllArtInvisible() bool {
 	return true
 }
 
-func SortDate() {
+func AppendtDate() {
 	for _, dates := range gds.Dates["index"] {
-		gds.DateHistr.Dates = append(gds.DateHistr.Dates, dates.Dates...)
+		for _, date := range dates.Dates {
+			if CheckDuplicateDate(date) {
+				gds.DateHistr.Dates = append(gds.DateHistr.Dates, date)
+			}
+		}
 	}
+}
+
+func CheckDuplicateDate(date string) bool {
+	for _, t := range gds.DateHistr.Dates {
+		if t == date {
+			return false
+		}
+	}
+	return true
 }
