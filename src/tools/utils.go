@@ -207,7 +207,6 @@ func CheckAllArtInvisible() bool {
 
 func SortDate() {
 	for _, dates := range gds.Dates["index"] {
-		fmt.Println(gds.Dates)
 		gds.DateHistr.Dates = append(gds.DateHistr.Dates, dates.Dates...)
 	}
 }
