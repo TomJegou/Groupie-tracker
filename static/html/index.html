@@ -1,47 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://localhost:80/static/css/homePage.css">
-    <link rel="stylesheet" href="http://localhost:80/static/css/main.css">
-    <link rel="shortcut icon" href="http://localhost:80/static/img/absolut_music.jpg">
-    <title>Absolut Music</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://{{ .Ipv4 }}:{{ .Port }}/static/css/homePage.css">
+        <link rel="stylesheet" href="http://{{ .Ipv4 }}:{{ .Port }}/static/css/main.css">
+        <link rel="shortcut icon" href="http://{{ .Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg">
+        <script type="module" src="http://{{ .Ipv4 }}:{{ .Port }}/static/scripts/casque/dist/bundle.js"></script>
+        <title>Absolut Music</title>
+    </head>
     <header>
-        <a href="http://localhost:80/static/html/index.html" class="navLogo"><img class="navLogo" src="http://localhost:80/static/img/absolut_music.jpg" alt="logo"></a>
+        <a href="http://{{ .Ipv4 }}:{{ .Port }}" class="navLogo"><img class="navLogo" src="http://{{ .Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg" alt="logo"></a>
         <nav>
             <ul>
-                <li><a class="txt" href="http://localhost:80">Accueil</a></li>
-                <li><a class="txt" href="http://localhost:80/libraryArtists">Artistes</a></li>
-                <li><a class="txt" href="http://localhost:80/about">À propos</a></li>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}">Accueil</a></i></li>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/location">Lieux</a></li>
+                <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/about">À propos</a></li>
             </ul>
         </nav>
     </header>
-<body>
-    <div class="containerone">
-        <div class="scene"></div>
-        <script src="https://cdn.jsdelivr.net/npm/three"></script>
-        <script src="https://cdn.jsdelivr.net/npm/three/examples/js/loaders/GLTFLoader.js"></script>    
-        <script src="http://localhost:80/src/scripts/script3d.js"></script>
-        <div class="menutextwelcome">
-            <h1>Welcome To Absolut Music</h1>
-            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dignissimos eaque consequuntur, assumenda necessitatibus voluptatum deserunt voluptatem consequatur iste quis repellendus dolore fugit minus adipisci odit aut omnis autem excepturi quod?</p>
-            <p>Qui excepturi debitis aliquid veniam perferendis id fugiat expedita repudiandae ipsum blanditiis repellendus quaerat eum iure unde porro a ratione, officia at placeat sed consectetur recusandae modi? Ipsam, tenetur sunt.</p>
+    <body>
+        <div class="containerone" id="object3d">
+            <div class="menutextwelcome">
+                <h1>Welcome To Absolut Music</h1>
+                <p>Soyez au courant des dernières date de concert de vos artistes préférés</p>
+                <p>La musique n’a pas de limite, découvrez ses stars avec Absolute Music</p>
+            </div>
         </div>
-    </div>
-    <div class="containertwo">
-        <h1 id="title">TOP 10 artists of the month</h1>
-        <div class="spotify">
-            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DX4WYpdgoIcn6?utm_source=generator" width="99%" height="135" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>    
-        </div>
-    </div>
-</body>
+    </body>
     <footer>
             <p>© 2023 Absolut Music</p>
             <ul>
-                <li><a id="ftxt" href="http://localhost:80/legalNotice">Mentions légales</a></li>
+                <li><a id="ftxt" href="http://{{ .Ipv4 }}:{{ .Port }}/legalNotice">Mentions légales</a></li>
             </ul>
-</footer>
+    </footer>
 </html>

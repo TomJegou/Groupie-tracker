@@ -1,230 +1,299 @@
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
     justify-content: center;
-    flex-direction: column;
-    background: white;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    gap: 1vh;
+
   }
 
 *{
     font-weight: bold;
 }
-.navTxtArtistDetailled{
-    display: flex;
-    flex-direction: row;
+.dropdown-container {
+    display: contents;
+    position: relative;
+    max-width: 15vw;
+}
+.dropdown-toggle {
+      color:white;
+      font-size: 17px;
+      padding: 20px 20px;
+      font-weight: 600;
+      cursor: pointer;
+      position: relative;
+      transition: all ease-in-out 0.3s;}
+.dropdown-toggle:hover{
+        color: rgb(126, 126, 126);
+}
+.dropdown-menu {
+      width: 100%;
+      position: absolute;
+      left: 0;
+      display: block;
+      position: relative;
+}
+.dropdown-menu ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+}
+.dropdown-menu a {
+        text-decoration: none;
+        display: block;
+        color: #000000;
+        font-size: 15px;
+        padding: 10px 15px;
+        font-weight: 600;
+}
+/* .dropdown-menu a:hover,.dropdown-menu a:active,.dropdown-menu a:focus {
+          background-color: green;
+          color: red;   
+}  
+.dropdown-menu {
+        position: relative;
+}
+.dropdown-open {
+    display: block;
 }
 
-.navTxtArtistDetailled a{
-    color: black;
-    text-decoration: none;
-}
+.dropdown-menu.dropdown-active {
+    display: block;
+} */
+      
+    
+    
+
 
 .allInfo{
+    width: 100vw;
+    min-height: 92vh;
+    height: auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;    
+    flex-wrap: wrap;
     justify-content: center;
-    background: white;
-    gap: 1vh;
-}
-
-.divInfoTxtArtist{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background: white;
-    gap: 1vh;
-}
-
-.divInfoTxtArtist p{
-    color: black;
+    background-image: linear-gradient(360deg, rgb(160, 222, 219),rgb(3, 165, 209));
+    gap: 2vh;
 }
 
 .divImgArtistDetailled{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     height: 12vh;
-    width: 90vw;
+    width: 90%;
     align-items: center;
-    background: linear-gradient(to bottom, #292929, #0B0B0B);
-    border-radius: 5px;
-    margin: 5vw;
+    align-content: center;
+    /* background: linear-gradient(to bottom, #292929, #0B0B0B); */
+    border-radius:12px;
     overflow: hidden;
+    gap: 3vh; 
 }
 
 #idImgArtistDetailled{
-    width: 20vw;
-    height: 10vh;
-    max-width: 200px;
-    max-height: 151px;
-    border-radius: 5%;
+    width: 30vw;
+    height: 30vw;
+    max-height: 99px;
+    max-width: 99px;
+    border-radius:12px;
 }
 
-.infoTextArtist{
+.divSpotify{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
-    height: 5vh;
-    color: white;
+    align-items: center;
+    height: 15vh;
+    width: 100%;
+}
+
+.iframeSpotify{
+    display: flex;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-radius:12px;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+
+.divInfoTxtArtist{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: #ECE9E9;
+    border-radius:12px;
+    width: 90%;
+}
+
+.divInfoTxtArtist p{
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    color: black;
+    overflow: hidden;
 }
 
 .divMembersArtist{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     background: linear-gradient(to bottom, #292929, #0B0B0B);
-    width: 90vw;
-    margin: 5vw;
-    border-radius: 5px;
-    padding-bottom: 2vh;
+    border-radius:12px;
+}
+
+.divMembersArtist p{
+    display: flex;
+    justify-content: center;
+    height: 4vh;
+    color: white;
 }
 
 .fieldsetArtistsMembers{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 2vw;
+    margin: 2vh;
 }
 
-.divMembersArtistName{
-    display: flex;
-    width: 30vw;
-}
-
-.divMembersArtistName p{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    color: white;
-}
-
-#titleMembreGrp{
-    display: flex;
-    flex-direction: column;
-    color: white;
+#titleMembersGrp{
     font-size: 1.5em;
+    display: flex;
+    flex-direction: column;
+    color: white;
     overflow: hidden;
+}
+
+.divtableCardConcertDates{
+    margin-bottom: 2vh;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+    background: linear-gradient(to bottom,#0bf,#066aff);
+    border-radius:12px;
+    gap: 2vw 1vh;
 }
 
 .fieldsetTableCityDate{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 2vw;
+    margin: 2vh;
 }
 
 #titleTableCardConcertDates{
+    font-size: 1.5em;
     display: flex;
-    flex-direction: column;
     color: white;
-    font-size: 2em;
-    overflow: hidden;
-}
-
-.divtableCardConcertDates{
-    display: flex;
-    justify-content: center;
     flex-direction: column;
-    background: linear-gradient(to bottom, #090438, #01162F);
-    border-radius: 5px;
-    width: 90vw;
-    margin: 5vw;
-    padding-bottom: 2vh;
+    overflow: hidden;
 }
 
 .cardConcertDates{
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .cardConcertDates p{
     display: flex;
-    justify-content: flex-start;
+}
+
+#titleAlbumArt{
+    font-size: 1.5em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100vw;
+}
+
+.artistAlbums{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw 1vh;
+}
+
+.album{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    background: linear-gradient(to bottom, #797676, #E6E1E1);
+    border-radius:12px;
+    width: 65vw;
+    gap: 1vh;
+}
+
+.album img{
+    width: 100%;
+    border-radius:12px;
+}
+
+.album p{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
     color: white;
 }
 
-#nameArtist{
-    height: 4vh;
-}
-
-#creationDateArtist{
-    height: 4vh;
-}
-
 @media only screen and (min-width: 500px) {
+    .allInfo{
+        align-items: flex-start;
+    }
+
     #idImgArtistDetailled{
-        width: 17vw;
-        height: 10vh;
+        max-width: 100px;
+        max-height: 100px;
+    }
+
+    .album{
+        max-width: 200px;
+        max-height: 350px;
+    }
+
+    .album img{
+        max-height: 150px;
     }
 }
 
 @media only screen and (min-width: 650px) {
     #idImgArtistDetailled{
-        width: 17vw;
-        height: 12vh;
-    }
-
-    .divImgArtistDetailled{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border-radius: 5px;
-        height: 14vh;
-        margin: 5vw;
-        overflow: hidden;
+        max-width: 119px;
+        max-height: 119px;
     }
 }
 
 @media only screen and (min-width: 800px) {
-    .allInfo{
-        flex-direction: row;
-        align-items: flex-end;
-        flex-wrap: wrap;
-    }
-
-    .divInfoTxtArtist{
-        width: 20vw;
-    }
-
-    .infoTextArtist{
-        justify-content: center;
-    }
-
-    .divMembersArtist{
-        padding: 0;
-        margin: 0;
-        width: 25vw;
-    }
-
-    .divMembersArtistName{
-        width: 15vw;
-    }
-
-    .divtableCardConcertDates{
-        padding: 0;
-        margin: 0;
-        justify-content: center;
-        flex-direction: column;
-        width: 25vw;
-    }
-
     .divImgArtistDetailled{
-        margin: 0;
-        padding: 1vw;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        align-self: flex-start;
+        width: 98%;
     }
 
     #idImgArtistDetailled{
-        width: 20vw;
-        height: 14vh;
-        max-width: 200px;
+        width: 18vw;
+        height: 18vw;
+    }
+
+    .divInfoTxtArtist{
+        width: auto;
+        height: auto;
     }
 }
+
+
+
+
+
+  
+ 
