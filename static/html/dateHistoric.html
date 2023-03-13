@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/locations.css">
         <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/main.css">
-        <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/spotify.css">
         <link rel="shortcut icon" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg">
         <title>Absolut Music</title>
     </head>
@@ -22,32 +22,5 @@
         </nav>
     </header>
     <body>
-        <div class="search-filterSpotify">
-            <div class="searchContainerSpotify">
-                <form action="/spotify-search">
-                    <input type="text" placeholder="Rechercher..." name="searchBarSpotify">
-                    <button type="submit">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-        <div>
-            {{ range $art := .SpotifySearchArtist.Artists.Items }}
-                <div class="divSpotifyArt">
-                    <div class="interDivSpotifyArt">
-                        {{ $image := index $art.Images 1 }}
-                        <img src="{{ $image.Url }}" alt="{{ $art.Name }}">
-                        <p>{{ $art.Name }}</p>
-                    </div>
-                </div>
-            {{ end }}
-        </div>
+       {{ range .Dates }} {{ . }} {{ end }}
     </body>
-    <footer>
-        <p>© 2023 Absolut Music</p>
-        <ul>
-            <li><a id="ftxt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/legalNotice">Mentions légales</a></li>
-        </ul>
-    </footer>
-</html>

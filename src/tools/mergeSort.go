@@ -3,9 +3,6 @@ package tools
 import (
 	gds "absolut-music/src/globalDataStructures"
 	"absolut-music/src/structures"
-	"fmt"
-	"strconv"
-	"strings"
 	"sync"
 )
 
@@ -15,25 +12,6 @@ func ReverseSliceArtist(wg *sync.WaitGroup) {
 	for i := 0; i < len(gds.Artists)/2; i++ {
 		gds.Artists[i], gds.Artists[len(gds.Artists)-1-i] = gds.Artists[len(gds.Artists)-1-i], gds.Artists[i]
 	}
-}
-
-/*Parse the first album's date into a structure FormatDate*/
-func parseDate(date string) structures.FormatDate {
-	t := strings.Split(date, "-")
-	yearInt, err := strconv.Atoi(t[2])
-	if err != nil {
-		fmt.Println(err)
-	}
-	monthInt, err := strconv.Atoi(t[1])
-	if err != nil {
-		fmt.Println(err)
-	}
-	dayInt, err := strconv.Atoi(t[0])
-	if err != nil {
-		fmt.Println(err)
-	}
-	parsedDate := structures.FormatDate{Year: yearInt, Month: monthInt, Day: dayInt}
-	return parsedDate
 }
 
 /*
@@ -71,8 +49,8 @@ func partition(t []structures.Artist, sortingOption string) ([]structures.Artist
 				sliceAfter = append(sliceAfter, t[i])
 			}
 		case "Firstalbumrelease":
-			formatedPivot := parseDate(pivot.FirstAlbum)
-			formatedDateT := parseDate(t[i].FirstAlbum)
+			formatedPivot := ParseDate(pivot.FirstAlbum)
+			formatedDateT := ParseDate(t[i].FirstAlbum)
 			if formatedDateT.Year < formatedPivot.Year {
 				sliceBefore = append(sliceBefore, t[i])
 			} else if formatedDateT.Year == formatedPivot.Year {
