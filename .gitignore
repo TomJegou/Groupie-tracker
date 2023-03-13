@@ -1,3 +1,4 @@
-/test
+test/
 .DS_Store
-/static/scripts/casque/node_modules*
+node_modules/
+/static/scripts/casque/*.json
