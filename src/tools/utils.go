@@ -184,3 +184,10 @@ func CheckAllArtInvisible() bool {
 	}
 	return true
 }
+func sortByNbOfConcert() int {
+	for _,art : range gds.Artists{
+		for nbOfConcert:=0 ;nbOfConcert < len(); nbOfConcert++{
+			fmt.Println(nbOfConcert)
+		}
+	}
+}
