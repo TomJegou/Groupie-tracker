@@ -211,6 +211,7 @@ func CheckAllArtInvisible() bool {
 	return true
 }
 
+// Sort all the artist by number of concert they made using selection sort
 func NumberOfConcert() {
 	for i := 0; i < len(gds.Artists)-1; i++ {
 		minIdx := i
