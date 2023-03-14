@@ -223,3 +223,25 @@ func CheckDuplicateDate(date string) bool {
 	}
 	return true
 }
+
+func SortDates() {
+	for i := 0; i < len(gds.DateHistr.Dates); i++ {
+		x := i
+		for z := i + 1; z < len(gds.DateHistr.Dates); z++ {
+			DateX := ParseDate(gds.DateHistr.Dates[x])
+			DateZ := ParseDate(gds.DateHistr.Dates[z])
+			if DateZ.Year < DateX.Year {
+				x = z
+			} else if DateZ.Year == DateX.Year {
+				if DateZ.Month < DateX.Month {
+					x = z
+				} else if DateZ.Month == DateX.Month {
+					if DateZ.Day < DateX.Day {
+						x = z
+					}
+				}
+			}
+		}
+		gds.DateHistr.Dates[i], gds.DateHistr.Dates[x] = gds.DateHistr.Dates[x], gds.DateHistr.Dates[i]
+	}
+}

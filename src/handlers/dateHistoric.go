@@ -18,5 +18,6 @@ func DateHistoricHandler(w http.ResponseWriter, r *http.Request) {
 	go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqHerokuapp(gds.URLDATES)), &gds.Dates, &wg)
 	wg.Wait()
 	tools.AppendtDate()
+	tools.SortDates()
 	template.Execute(w, gds.DateHistr)
 }
