@@ -18,7 +18,7 @@ func StartServer(wg *sync.WaitGroup, startAttempt int) {
 	} else {
 		defer wg.Done()
 		fileServer := http.FileServer(http.Dir("./static"))
-		http.Handle("/static/", http.StripPrefix("/static", fileServer))
+		http.Handle("/static/", handlers.AddHeaderFs(http.StripPrefix("/static", fileServer)))
 		http.HandleFunc("/", handlers.HomeHandler)
 		http.HandleFunc("/libraryArtists", handlers.LibraryArtistsHandler)
 		http.HandleFunc("/artistsDetails", handlers.ArtistsDetailsHandler)

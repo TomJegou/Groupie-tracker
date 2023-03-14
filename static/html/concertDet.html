@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/libraryArtists.css">
+    <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/concertDet.css">
     <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/main.css">
     <link rel="shortcut icon" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg">
     <title>Absolut Music</title>
@@ -16,14 +16,17 @@
             <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}">Accueil</a></li>
             <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
             <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/location">Lieux</a></li>
+            <li><a class="txt" href="http://{{ .Ipv4 }}:{{ .Port }}/date-historic">Dates</a></li>
             <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/about">À propos</a></li>
         </ul>
     </nav>
 </header>
 <body>
-    {{ range .ListDate }}
-    {{ . }}
-    {{ end }}
+    <div class="containerDate">
+            {{ range .ListDate }}
+            {{ . }}
+        {{ end }}
+    </div>
 </body>
 <footer>
     <p>© 2023 Absolut Music</p>
