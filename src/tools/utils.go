@@ -211,11 +211,15 @@ func CheckAllArtInvisible() bool {
 	return true
 }
 
-func NumberOfConcert() int {
-	for i, art := range gds.Artists {
-		if len(gds.Artists[i].ConcertDates) > len(gds.Artists[i].ConcertDates) {
-
+func NumberOfConcert() {
+	for i := 0; i < len(gds.Artists)-1; i++ {
+		minIdx := i
+		for j := i + 1; j < len(gds.Artists); j++ {
+			if len(gds.Dates["index"][j].Dates) < len(gds.Dates["index"][minIdx].Dates) {
+				minIdx = j
+			}
 		}
+		gds.Artists[i], gds.Artists[minIdx] = gds.Artists[minIdx], gds.Artists[i]
 	}
 }
 
