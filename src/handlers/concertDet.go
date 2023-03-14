@@ -11,6 +11,7 @@ import (
 
 /*handles the Relation library*/
 func ConcertDetailHandler(w http.ResponseWriter, r *http.Request) {
+	gds.ConcertDetailPage.ListDate = nil
 	gds.OnLibraryArtists = false
 	var wg sync.WaitGroup
 	wg.Add(2)

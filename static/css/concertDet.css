@@ -2,8 +2,35 @@ body {
     background-image: linear-gradient(360deg, rgb(160, 222, 219),rgb(3, 165, 209));
 }
 
+.containerDate {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 15%;
+    margin-top: 45%;
+    background-color: white;
+    width: 70vw;
+    height: 40vh;
+    border-radius: 20px;
+    font-size: larger;
+}
+
 @media screen and (min-width: 768px) {
     body{
         background-image: linear-gradient(360deg, rgb(160, 222, 219),rgb(3, 165, 209));
+    }
+
+    .containerDate {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-left: 35%;
+        margin-top: 15%;
+        background-color: white;
+        height: 30vh;
+        width: 30vw;
+        border-radius: 20px;
+        font-size: x-large;
+        justify-content: center;
     }
 }

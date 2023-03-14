@@ -61,10 +61,11 @@ nav{
 
 nav ul{
     display: flex;
+    margin-right: 3vw;
 }
 
 nav li{
-    margin-right: 3vw;
+    margin-right: 2vw;
 }
 
 .txt {

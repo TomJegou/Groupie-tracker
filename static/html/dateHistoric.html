@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/locations.css">
+        <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/dateHistoric.css">
         <link rel="stylesheet" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/css/main.css">
         <link rel="shortcut icon" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/static/img/absolut_music.jpg">
         <title>Absolut Music</title>
@@ -22,5 +22,16 @@
         </nav>
     </header>
     <body>
-       {{ range .Dates }} {{ . }} {{ end }}
+        <div class="containerDate">
+            {{ range .Dates }}
+            {{ . }} 
+            {{ end }}
+        </div>
     </body>
+    <footer>
+        <p>© 2023 Absolut Music</p>
+        <ul>
+            <li><a id="ftxt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/legalNotice">Mentions légales</a></li>
+        </ul>
+    </footer>
+    </html>
