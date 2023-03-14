@@ -106,6 +106,5 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		gds.LibArtists.Page = &gds.ListPages[gds.LibArtists.IdPageToDisplay]
 	}
 	wg.Wait()
-	tools.NumberOfConcert()
 	template.Execute(w, gds.LibArtists)
 }
