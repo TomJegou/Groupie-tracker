@@ -8,8 +8,9 @@ import (
 	"sync"
 )
 
+/*Handler for the album detailled page*/
 func AlbumDetHandler(w http.ResponseWriter, r *http.Request) {
-	if len(r.FormValue("albumCard")) > 0 {
+	if len(r.FormValue("albumCard")) > 0 { //check if the user went to this page without clicking on an album card
 		var wg sync.WaitGroup
 		wg.Add(2)
 		go tools.ChangeListenAddr(r, &wg)
