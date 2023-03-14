@@ -54,7 +54,7 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 				http.Redirect(w, r, "/libraryArtists", http.StatusFound)
 			}
 		}
-		// change the artists sort
+		// change the artists sort filter
 		if len(r.FormValue("sortFilter")) > 0 && r.FormValue("sortFilter") != gds.SortingOption {
 			gds.SortingOption = r.FormValue("sortFilter")
 			gds.LibArtists.SortingFilter = gds.SortingOption

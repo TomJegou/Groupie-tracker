@@ -8,6 +8,10 @@ import (
 	"sync"
 )
 
+/*
+Handler for the spotify artist when searchin for an artist who'isn't in
+the herokuapp api
+*/
 func SpotifyHandler(w http.ResponseWriter, r *http.Request) {
 	var wg sync.WaitGroup
 	if len(r.FormValue("searchBarSpotify")) > 0 {
