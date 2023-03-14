@@ -90,7 +90,7 @@
                                 <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease">
                             {{ end }}
                             <label>Date du premier Album</label>
-                            {{ if  eq.}}
+                            {{ if  eq .SortingFilter "NumberOfConcert"}}
                                 <input id="radioSortingNumberOfConcert" type="radio" name="sortFilter"  value="NumberOfConcert" checked>
                                 {{ else }}
                                 <input id="radioSortingNumberOfConcert" type="radio" name="sortFilter"  value="NumberOfConcert">

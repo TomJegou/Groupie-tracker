@@ -89,7 +89,7 @@ func MakeReqArtAlbumAPISportify(artistId string) *http.Request {
 	return MakeReq(url, map[string]string{"Authorization": "Bearer " + gds.OAuthSpotifyToken.Access_token}, nil)
 }
 
-func MakeReqAlbumDet(idAlbum string) *http.Request{
+func MakeReqAlbumDet(idAlbum string) *http.Request {
 	url := "https://api.spotify.com/v1/albums/" + idAlbum
 	var wg sync.WaitGroup
 	wg.Add(1)
