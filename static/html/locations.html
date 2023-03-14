@@ -16,18 +16,21 @@
                 <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}">Accueil</a></li>
                 <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/libraryArtists">Artistes</a></li>
                 <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/location">Lieux</a></li>
+                <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/date-historic">Date</a></li>
                 <li><a class="txt" href="http://{{ .ListenAddr.Ipv4 }}:{{ .Port }}/about">À propos</a></li>
             </ul>
         </nav>
     </header>
     <body>
         <div class="libLocations">
-            {{ range $cityName, $listDate := .LocationsList }}
-            <div class="cityName">
-                <p class="cityNameTxt">{{ $cityName }}</p>
+            <form action="/concertDet">
+                {{ range $cityName, $Date := .LocationsList}}
+                    <div class="cityName">
+                        <button class="cityNameTxt" name="buttonCityName" value="{{ $cityName }}">{{ $cityName }}</button>
+                    </div>
+                {{ end }}
+            </form>
             </div>
-            {{ end }}
-        </div>
     </body>
     <footer>
         <p>© 2023 Absolut Music</p>

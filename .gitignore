@@ -1,2 +1,5 @@
-/test
+test/
 .DS_Store
+node_modules/
+static/scripts/casque/package-lock.json
+static/scripts/casque/package.json
