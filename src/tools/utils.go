@@ -125,6 +125,11 @@ func DispatchIntoPage(wg *sync.WaitGroup) {
 
 /*Parse the first album's date into a structure FormatDate*/
 func ParseDate(date string) structures.FormatDate {
+	for i, k := range date {
+		if k == '*' {
+			date = date[:i] + date[i+1:]
+		}
+	}
 	t := strings.Split(date, "-")
 	yearInt, err := strconv.Atoi(t[2])
 	if err != nil {
