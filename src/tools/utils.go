@@ -125,6 +125,11 @@ func DispatchIntoPage(wg *sync.WaitGroup) {
 
 /*Parse the first album's date into a structure FormatDate*/
 func ParseDate(date string) structures.FormatDate {
+	for i, k := range date {
+		if k == '*' {
+			date = date[:i] + date[i+1:]
+		}
+	}
 	t := strings.Split(date, "-")
 	yearInt, err := strconv.Atoi(t[2])
 	if err != nil {
@@ -222,4 +227,26 @@ func CheckDuplicateDate(date string) bool {
 		}
 	}
 	return true
+}
+
+func SortDates() {
+	for i := 0; i < len(gds.DateHistr.Dates); i++ {
+		x := i
+		for z := i + 1; z < len(gds.DateHistr.Dates); z++ {
+			DateX := ParseDate(gds.DateHistr.Dates[x])
+			DateZ := ParseDate(gds.DateHistr.Dates[z])
+			if DateZ.Year < DateX.Year {
+				x = z
+			} else if DateZ.Year == DateX.Year {
+				if DateZ.Month < DateX.Month {
+					x = z
+				} else if DateZ.Month == DateX.Month {
+					if DateZ.Day < DateX.Day {
+						x = z
+					}
+				}
+			}
+		}
+		gds.DateHistr.Dates[i], gds.DateHistr.Dates[x] = gds.DateHistr.Dates[x], gds.DateHistr.Dates[i]
+	}
 }
