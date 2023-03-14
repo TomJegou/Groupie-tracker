@@ -215,7 +215,7 @@ func NumberOfConcert() {
 	for i := 0; i < len(gds.Artists)-1; i++ {
 		minIdx := i
 		for j := i + 1; j < len(gds.Artists); j++ {
-			if len(gds.Dates["index"][j].Dates) < len(gds.Dates["index"][minIdx].Dates) {
+			if len(gds.Dates["index"][gds.Artists[j].Id-1].Dates) < len(gds.Dates["index"][gds.Artists[minIdx].Id-1].Dates) {
 				minIdx = j
 			}
 		}

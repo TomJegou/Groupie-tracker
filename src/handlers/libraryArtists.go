@@ -57,7 +57,7 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		// change the artists sort
 		if len(r.FormValue("sortFilter")) > 0 && r.FormValue("sortFilter") != gds.SortingOption {
 			gds.SortingOption = r.FormValue("sortFilter")
-			if gds.SortingOption == "NumberOfConcert" && len(gds.Dates["index"][0].Dates) == 0 {
+			if gds.SortingOption == "NumberOfConcert" && len(gds.Dates["index"]) == 0 {
 				var wg sync.WaitGroup
 				wg.Add(1)
 				go api.PutBodyResponseApiIntoStruct(api.RequestApi(api.MakeReqHerokuapp(gds.URLDATES)), &gds.Dates, &wg)
@@ -94,7 +94,11 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 	template := <-gds.ChanTemplates
 	// sort the artists list
 	if needSort {
-		tools.QuickSort(gds.LibArtists.SortingFilter, gds.LibArtists.Asc)
+		if gds.LibArtists.SortingFilter == "NumberOfConcert" {
+			tools.NumberOfConcert()
+		} else {
+			tools.QuickSort(gds.LibArtists.SortingFilter, gds.LibArtists.Asc)
+		}
 		needDispatch = true
 	}
 	// dispatch all the artists into pages
