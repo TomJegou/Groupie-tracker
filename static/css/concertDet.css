@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
     margin-left: 15%;
     margin-top: 45%;
     background-color: white;
