@@ -211,16 +211,14 @@ func CheckAllArtInvisible() bool {
 	return true
 }
 
-// func NumberOfConcert() int {
-// 	for _, art := range gds.Dates["index"] {
-// 		for _, date := range art.Dates {
+func NumberOfConcert() int {
+	for i, art := range gds.Artists {
+		if len(gds.Artists[i].ConcertDates) > len(gds.Artists[i].ConcertDates) {
 
-// 		}
+		}
+	}
+}
 
-// 	}
-
-//		fmt.Println(gds.Artists[0].Name, gds.Dates["index"][gds.Artists[0].Id-1])
-//	}
 func AppendtDate() {
 	for _, dates := range gds.Dates["index"] {
 		for _, date := range dates.Dates {
