@@ -1,53 +1,54 @@
 # Groupie Tracker - Absolut Music
-Absolut Music est une application web développée dans le cadre du projet Groupie Tracker à l'école informatique Ynov.<br> L'application récupère des informations depuis une API pour permettre aux utilisateurs de suivre les concerts de leurs groupes de musique préférés.<br>
+(A french version of the readme is disponible [here](readme-f.md))
+Absolut Music is a web application developed as part of the Groupie Tracker project at Ynov School of Computer Science. <br> The application retrieves information from an API to allow users to track the concerts of their favorite music groups.
 
-## Prérequis
+## Prerequisiteicis
 
-Avant de pouvoir utiliser cette application, vous devez avoir les éléments suivants :<br>
+Before being able to use this application, you must have the following:
 
-* Docker (version 23.0.1 ou ultérieure) (si vous souhaitez lancer l'application avec Docker)
-* Go (version 1.19.6 ou ultérieure) (si vous souhaitez lancer l'application en utilisant ```go build```)
+* Docker (version 23.0.1 or later) (if you want to run the application using Docker)
+* Go (version 1.19.6 or later) (if you want to run the application using `go build`)
 
 ## Installation
 
-1. Clonez ce dépôt de code sur votre ordinateur en utilisant la commande suivante :
+1. Clone this code repository to your computer using the following command:
 ``` bash
 git clone https://github.com/TomJegou/Groupie-tracker.git
 ```
 
-2. Accédez au répertoire de l'application en utilisant la commande suivante :
+2. Navigate to the application directory using the following command:
 ``` bash
 cd Groupie-tracker
 ```
 
-## Lancement avec Docker
+## Running with Docker
 
-1. Lancez l'application en utilisant la commande suivante :
+1. Launch the application using the following command:
 ``` bash
 docker-compose up
 ```
 
-2. Ouvrez votre navigateur web et accédez à l'URL suivante :
+2. Open your web browser and go to the following URL:
 ``` bash
 http://localhost:80
 ```
-3. Utilisez l'application pour rechercher des groupes de musique et suivre leurs concerts.
+3. Use the application to search for music groups and track their concerts.
 
-## Exécution avec Go
+## Running with Go
 
-1. Compilez l'application en utilisant la commande suivante :
+1. Compile the application using the following command:
 ``` bash
 go build -o bin/absolut-music
 ```
 
-2. Lancez l'application en utilisant la commande suivante :
+2. Launch the application using the following command:
 ```bash
 ./bin/absolut-music
 ```
 
-3. Ouvrez votre navigateur web et accédez à l'URL suivante :
+3. Open your web browser and go to the following URL:
 ``` bash
 http://localhost:8080
 ```
 
-4. Utilisez l'application pour rechercher des groupes de musique et suivre leurs concerts.
+4. Use the application to search for music groups and track their concerts.
