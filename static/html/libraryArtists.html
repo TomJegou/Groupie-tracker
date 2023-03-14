@@ -89,6 +89,12 @@
                                 <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease">
                             {{ end }}
                             <label>Date du premier Album</label>
+                            {{ if  eq.}}
+                                <input id="radioSortingNumberOfConcert" type="radio" name="sortFilter"  value="NumberOfConcert" checked>
+                                {{ else }}
+                                <input id="radioSortingNumberOfConcert" type="radio" name="sortFilter"  value="NumberOfConcert">
+                                {{ end }}
+                                <label>Nombre de Concert</label>
                         </div>
                         <div class="sortingOrderDiv">
                             {{ if .Asc }}
