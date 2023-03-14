@@ -9,6 +9,7 @@ import (
 )
 
 func DateHistoricHandler(w http.ResponseWriter, r *http.Request) {
+	gds.DateHistr.Dates = nil
 	var wg sync.WaitGroup
 	wg.Add(2)
 	go tools.ChangeListenAddr(r, &wg)
