@@ -145,6 +145,7 @@ func ParseDate(date string) structures.FormatDate {
 	}
 	parsedDate := structures.FormatDate{Year: yearInt, Month: monthInt, Day: dayInt}
 	return parsedDate
+
 }
 
 /*Initialize the artists library*/
@@ -229,7 +230,19 @@ func CheckDuplicateDate(date string) bool {
 	return true
 }
 
+func removeStarFromDates() {
+	for i, date := range gds.DateHistr.Dates {
+		for k, kword := range date {
+			if kword == '*' {
+				date = date[:k] + date[k+1:]
+			}
+			gds.DateHistr.Dates[i] = date
+		}
+	}
+}
+
 func SortDates() {
+	removeStarFromDates()
 	for i := 0; i < len(gds.DateHistr.Dates); i++ {
 		x := i
 		for z := i + 1; z < len(gds.DateHistr.Dates); z++ {
