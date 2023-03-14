@@ -1,5 +1,5 @@
 # Groupie Tracker - Absolut Music
-(A french version of the readme is disponible [here](readme-f.md))
+(A french version of the readme is disponible [here](readme-fr.md))
 Absolut Music is a web application developed as part of the Groupie Tracker project at Ynov School of Computer Science. <br> The application retrieves information from an API to allow users to track the concerts of their favorite music groups.
 
 ## Prerequisiteicis
