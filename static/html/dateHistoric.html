@@ -22,11 +22,15 @@
         </nav>
     </header>
     <body>
-        <div class="containerDate">
-            {{ range .Dates }}
-            {{ . }} 
-            {{ end }}
-        </div>
+         <div class="libLocations">
+            <form action="/concertDet">
+                {{ range $Date := .Dates}}
+                    <div class="Date">
+                        <button class="Datetxt" name="buttonDate" value="{{ $Date }}">{{ $Date }}</button>
+                    </div>
+                {{ end }}
+            </form>
+            </div>
     </body>
     <footer>
         <p>© 2023 Absolut Music</p>

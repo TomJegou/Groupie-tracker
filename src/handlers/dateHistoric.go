@@ -4,12 +4,12 @@ import (
 	"absolut-music/src/api"
 	gds "absolut-music/src/globalDataStructures"
 	"absolut-music/src/tools"
-	"fmt"
 	"net/http"
 	"sync"
 )
 
 func DateHistoricHandler(w http.ResponseWriter, r *http.Request) {
+	gds.DateHistr.Dates = nil
 	var wg sync.WaitGroup
 	wg.Add(2)
 	go tools.ChangeListenAddr(r, &wg)
@@ -20,6 +20,5 @@ func DateHistoricHandler(w http.ResponseWriter, r *http.Request) {
 	wg.Wait()
 	tools.AppendtDate()
 	tools.SortDates()
-	fmt.Println(gds.DateHistr.Dates[0])
 	template.Execute(w, gds.DateHistr)
 }
