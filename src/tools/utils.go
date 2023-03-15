@@ -224,6 +224,7 @@ func NumberOfConcert() {
 	}
 }
 
+/*Append a date to the slice gds.DateHistr.Dates*/
 func AppendtDate() {
 	for _, dates := range gds.Dates["index"] {
 		for _, date := range dates.Dates {
@@ -234,6 +235,7 @@ func AppendtDate() {
 	}
 }
 
+/*Check for duplicate dates*/
 func CheckDuplicateDate(date string) bool {
 	for _, t := range gds.DateHistr.Dates {
 		if t == date {
@@ -243,6 +245,7 @@ func CheckDuplicateDate(date string) bool {
 	return true
 }
 
+/*Remove the star in the date*/
 func removeStarFromDates() {
 	for i, date := range gds.DateHistr.Dates {
 		for k, kword := range date {
