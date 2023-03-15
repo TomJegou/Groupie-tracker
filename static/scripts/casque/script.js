@@ -21,7 +21,7 @@ let object;
 
 const loader = new GLTFLoader();
 loader.load(
-    "http://127.0.0.1/static/img/casque.gltf",
+    "static/img/casque.gltf",
     function (gltf) {
         object = gltf.scene;
         object.traverse(function(child) {
