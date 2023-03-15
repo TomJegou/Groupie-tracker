@@ -23,13 +23,11 @@
     </header>
     <body>
          <div class="libLocations">
-            <form action="/concertDet">
-                {{ range $Date := .Dates}}
-                    <div class="Date">
-                        <button class="Datetxt" name="buttonDate" value="{{ $Date }}">{{ $Date }}</button>
-                    </div>
-                {{ end }}
-            </form>
+            {{ range $Date := .Dates}}
+                <div class="Date">
+                    <button class="Datetxt" name="buttonDate">{{ $Date }}</button>
+                </div>
+            {{ end }}
             </div>
     </body>
     <footer>
