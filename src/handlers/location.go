@@ -8,11 +8,10 @@ import (
 	"sync"
 )
 
-/*Create new object Liblocation using the func NewLibLocations()*/
-var LibLocations = tools.NewLibLocations()
-
 /*handles the Locations library*/
 func LocationHandler(w http.ResponseWriter, r *http.Request) {
+	/*Create new object Liblocation using the func NewLibLocations()*/
+	var LibLocations = tools.NewLibLocations()
 	gds.OnLibraryArtists = false
 	var wg sync.WaitGroup
 	wg.Add(2)
@@ -24,5 +23,8 @@ func LocationHandler(w http.ResponseWriter, r *http.Request) {
 	wg.Add(1)
 	go tools.GetLocations(LibLocations, &wg)
 	wg.Wait()
+	if len(r.FormValue("searchBar")) > 0 {
+		tools.SearchBarLocate(r.FormValue("searchBar"), LibLocations)
+	}
 	template.Execute(w, LibLocations)
 }

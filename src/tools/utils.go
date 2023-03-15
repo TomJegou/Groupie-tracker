@@ -276,3 +276,14 @@ func SortDates() {
 		gds.DateHistr.Dates[i], gds.DateHistr.Dates[x] = gds.DateHistr.Dates[x], gds.DateHistr.Dates[i]
 	}
 }
+
+// Searchbar for concert date in city
+func SearchBarLocate(querry string, lib *structures.LibLocations) {
+	for city := range lib.LocationsList {
+		for i, char := range querry {
+			if strings.ToLower(string(char)) != strings.ToLower(string(city[i])) {
+				delete(lib.LocationsList, city)
+			}
+		}
+	}
+}

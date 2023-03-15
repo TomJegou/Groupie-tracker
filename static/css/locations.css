@@ -2,6 +2,46 @@ body {
     background-image: linear-gradient(360deg, rgb(160, 222, 219),rgb(3, 165, 209));
 }
 
+.searchContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+    padding-bottom: 3%;
+    padding-right: 3%;
+  }
+  
+  .searchContainer form {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    overflow: hidden;
+  }
+  
+  .searchContainer input[type="text"] {
+    border: solid 1px black;
+    font-size: 16px;
+    padding: 10px;
+    width: 60%;
+  }
+  
+  .searchContainer button[type="submit"] {
+    background-color: white;
+    background-image: url("http://localhost:80/static/img/loupe.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 15px;
+    cursor: pointer;
+  }
+
+  input {
+    border-radius: 20px 0 0 20px;
+  }
+
 .libLocations{
     display:flex;
     flex-direction: row;
@@ -38,6 +78,46 @@ body {
         flex-wrap: wrap;
         justify-content: center;
     }
+
+    .searchContainer {
+        display: flex;
+        justify-content: center;
+        margin-top: 3%;
+        padding-bottom: 3%;
+        padding-right: 3%;
+      }
+      
+      .searchContainer form {
+        display: flex;
+        align-items: center;
+        background-color: white;
+        overflow: hidden;
+      }
+      
+      .searchContainer input[type="text"] {
+        border: solid 1px black;
+        font-size: 16px;
+        padding: 10px;
+        width: 100%;
+      }
+      
+      .searchContainer button[type="submit"] {
+        background-color: white;
+        background-image: url("http://localhost:80/static/img/loupe.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        border: none;
+        border-radius: 0 20px 20px 0;
+        color: #fff;
+        font-size: 16px;
+        padding: 10px 15px;
+        cursor: pointer;
+      }
+
+      input {
+        border-radius: 20px 0 0 20px;
+      }
 
     .cityName{
         display: flex;
