@@ -25,6 +25,7 @@ func LibraryArtistsHandler(w http.ResponseWriter, r *http.Request) {
 		gds.OnLibraryArtists = true
 	}
 	tools.InitLibArt()
+	// If no filter or search criteria is applied, show all the artists
 	if len(r.FormValue("searchBar")) == 0 && len(r.FormValue("sortFilter")) == 0 && len(r.FormValue("sortOrder")) == 0 && len(r.FormValue("pagination")) == 0 && len(r.FormValue("nbrElem")) == 0 {
 		tools.SetAllArtistVisibility(true)
 		needDispatch = true

@@ -8,6 +8,7 @@ import (
 	"sync"
 )
 
+/*Hanler of the historic of the dates*/
 func DateHistoricHandler(w http.ResponseWriter, r *http.Request) {
 	gds.DateHistr.Dates = nil
 	var wg sync.WaitGroup
