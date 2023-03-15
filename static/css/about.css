@@ -11,8 +11,8 @@ body {
 .about {
     display: flex;
     justify-content: center;
-    margin-top: 30%;
     font-size: large;
+    margin: 6%;
     color: white;
 }
 
@@ -31,6 +31,6 @@ body {
         display: flex;
         font-size: xx-large;
         justify-content: center;
-        margin-top: 7%;
+        margin: 5%;
     }
 }
