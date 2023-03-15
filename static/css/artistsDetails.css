@@ -3,9 +3,6 @@ body {
 
   }
 
-*{
-    font-weight: bold;
-}
 .dropdown-container {
     display: contents;
     position: relative;

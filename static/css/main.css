@@ -1,18 +1,11 @@
-@font-face {font-family: "Circular Sp UI v3 T Light";
-    src: url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.eot");
-    src: url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.eot?#iefix") format("embedded-opentype"),
-         url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.woff2") format("woff2"), 
-         url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.woff") format("woff"), 
-         url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.ttf") format("truetype"), 
-         url("//db.onlinewebfonts.com/t/a29ff91e578ca75fd55c8eeb43542086.svg#Circular Sp UI v3 T Light") format("svg");
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 html{
     height: 100%;
 }
 
 * {
-    font-family: "Circular Sp UI v3 T Light";
+    font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
 }
 
@@ -64,7 +57,7 @@ nav ul{
 }
 
 nav li{
-    margin-right: 2vw;
+    margin-right: 1vw;
 }
 
 .txt {
