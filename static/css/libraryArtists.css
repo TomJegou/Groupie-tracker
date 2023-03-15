@@ -170,11 +170,6 @@ gap: 2vw 2vh;
       height: 4vh;
       width: 6vw;
     }
-
-    .sortingFilter {
-      display: flex;
-    }
-
     #submitInputSort {
       width: 6vw;
       height: 4vh;
@@ -184,24 +179,29 @@ gap: 2vw 2vh;
     .filter {
       display: flex;
       justify-content: center;
-      align-items: flex-end;
+      align-items: center;
       gap: 2%;
       color: white;
     }
-
-    .divButtonPagination {
+    .ButtonPagination {
       color: white;
     }
-    
+    .divButtonPagination{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
     .divNbrElemDisplayed {
       height: 8%;
-      width: 18%;
+      width: 25%;
     }
 
     .sortingFilter {
-      width: 18%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 40vh;
     }
-
     .listcardArtist{
       border-radius: 20px;
       display: flex;

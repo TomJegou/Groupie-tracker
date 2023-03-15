@@ -36,11 +36,11 @@
                     {{ if ne .Page.IsFirst true}}
                         <button class="buttonPagination" id="idButtonPrev" value="prev" name="pagination">Prev</button>
                     {{ end }}
-                    <p>{{ .IdPageToDisplay }}</p>
                     {{ if ne .Page.IsLast true }}
-                        <button class="buttonPagination" id="idButtonNext" value="next" name="pagination">Next</button>
+                    <button class="buttonPagination" id="idButtonNext" value="next" name="pagination">Next</button>
                     {{ end }}
                 </div>
+                <p>Page : {{ .IdPageToDisplay }}</p>
                 <div class="divNbrElemDisplayed">
                     <fieldset><legend>Nombre d'éléments</legend>
                             {{ if eq .Page.Capacity 10 }}
@@ -71,33 +71,33 @@
                             {{ else }}
                                 <input id="radioSortingName" type="radio" name="sortFilter" value="name">
                             {{ end }}
-                            <label>Name</label>
+                            <label>Name</label><br>
                             {{ if eq .SortingFilter "creationDate" }}
                                 <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate" checked>
                             {{ else }}
                                 <input id="radioSortingCreationDate" type="radio" name="sortFilter" value="creationDate">
                             {{ end }}
-                            <label>Date de Création</label>
+                            <label>Date de Création</label><br>
                             {{ if eq .SortingFilter "numberMembers" }}
                                 <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers" checked>
                             {{ else }}
                                 <input id="radioSortingMembers" type="radio" name="sortFilter" value="numberMembers">
                             {{ end }}
-                            <label>Nombre de membres</label>
+                            <label>Nombre de membres</label><br>
                             {{ if eq .SortingFilter "Firstalbumrelease" }} 
                                 <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease" checked>
                             {{ else }}
                                 <input id="radioSortingFirstalbumrelease" type="radio" name="sortFilter" value="Firstalbumrelease">
                             {{ end }}
-                            <label>Date du premier Album</label>
+                            <label>Date du premier Album</label><br>
                             {{ if  eq .SortingFilter "NumberOfConcert"}}
                                 <input id="radioSortingNumberOfConcert" type="radio" name="sortFilter"  value="NumberOfConcert" checked>
                                 {{ else }}
                                 <input id="radioSortingNumberOfConcert" type="radio" name="sortFilter"  value="NumberOfConcert">
                                 {{ end }}
                                 <label>Nombre de Concert</label>
-                        </div>
-                        <div class="sortingOrderDiv">
+                            <br>
+
                             {{ if .Asc }}
                             <input id="radioSortingOrder" type="radio" name="sortOrder" value="asc" checked>
                             <label>Croissant</label>
