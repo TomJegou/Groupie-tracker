@@ -257,6 +257,7 @@ func removeStarFromDates() {
 	}
 }
 
+/*Sort the list of dates using the algorithm selection sort*/
 func SortDates() {
 	removeStarFromDates()
 	for i := 0; i < len(gds.DateHistr.Dates); i++ {
