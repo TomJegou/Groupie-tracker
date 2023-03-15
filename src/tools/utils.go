@@ -284,7 +284,7 @@ func SortDates() {
 func SearchBarLocate(querry string, lib *structures.LibLocations) {
 	for city := range lib.LocationsList {
 		for i, char := range querry {
-			if strings.ToLower(string(char)) != strings.ToLower(string(city[i])) {
+			if strings.EqualFold(string(char), string(city[i])) {
 				delete(lib.LocationsList, city)
 			}
 		}
