@@ -55,4 +55,4 @@ http://localhost:8080
 
 ### Organization
 
-For the organization we use trello were you can find the task and the schedule.[here](https://trello.com/invite/b/2xhTB18x/ATTI020dcaac9ef35348614f97bfc580ed476613003E/absolut-music)
+For the organization we use trello were you can find the task and the schedule [here](https://trello.com/invite/b/2xhTB18x/ATTI020dcaac9ef35348614f97bfc580ed476613003E/absolut-music).

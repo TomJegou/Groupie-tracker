@@ -51,3 +51,6 @@ http://localhost:8080
 ```
 
 4. Utilisez l'application pour rechercher des groupes de musique et suivre leurs concerts.
+
+### Organisation
+Pour l'organisation, nous utilisons Trello où vous pouvez trouver les tâches et le retroplaning [ici](https://trello.com/invite/b/2xhTB18x/ATTI020dcaac9ef35348614f97bfc580ed476613003E/absolut-music).
